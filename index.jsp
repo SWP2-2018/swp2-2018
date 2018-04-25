@@ -8,7 +8,7 @@
     <body>
         <div style="width: 100%; text-align: center;">
             <h1><% out.println("Berichtsheft Digital!");%></h1>
-            <h3><strong>HFT Stuttgart:</strong>Informatikprojekt 2 - SoSe 2018</h2>
+            <h2><strong>HFT Stuttgart:</strong>Informatikprojekt 2 - SoSe 2018</h2>
         </div>
     </body>
 </html>

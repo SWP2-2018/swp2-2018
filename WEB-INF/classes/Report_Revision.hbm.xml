@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name = "tablePojos.Report_Revision" table = "report_revision">
+
+    <meta attribute = "class-description">
+      This class contains reports.
+    </meta>
+
+    <id name = "id" type = "int" column = "id">
+      <generator class="native"/>
+    </id>
+
+    <property name = "report_id" column = "report_id" type = "int"/>
+    <property name = "number" column = "number" type = "int"/>
+
+    <property name = "text1" column = "text1" type = "string"/>
+    <property name = "text2" column = "text2" type = "string"/>
+    <property name = "text3" column = "text3" type = "string"/>
+
+    <property name = "hours1" column = "hours1" type = "int"/>
+    <property name = "hours2" column = "hours2" type = "int"/>
+    <property name = "hours3" column = "hours3" type = "int"/>
+
+    <property name = "comment" column = "comment" type = "string"/>
+
+
+  </class>
+</hibernate-mapping>
