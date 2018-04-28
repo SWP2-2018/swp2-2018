@@ -6,7 +6,7 @@ import tablePojos.Report_Revision;
 import tablePojos.User;
 
 /**
- * Class ReportRevisionService provides methods to communicate with the database regarding the ReportRevisions.
+ * Class ReportRevisionService.java provides methods to communicate with the database regarding the ReportRevisions.
  */
 public class ReportRevisionService {
 
@@ -102,7 +102,7 @@ public class ReportRevisionService {
     // TODO implement
   }
 }
-
+ 
 
 
 
