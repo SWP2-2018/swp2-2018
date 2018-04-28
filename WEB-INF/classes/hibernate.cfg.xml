@@ -5,9 +5,9 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://172.18.0.4:3306/swp</property>
+    <property name="hibernate.connection.url">jdbc:mysql://172.18.0.2:3306/swp</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">TmtcDXZ4q7RgT4HrnWTEMFFD7vlnVZOW</property>
+    <property name="hibernate.connection.password">2inI6NRQ51GbVxLJtlqCo8ZDFNCasEcB</property>
     <property name="hibernate.connection.pool_size">1</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
