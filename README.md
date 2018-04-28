@@ -7,7 +7,7 @@ muss je nach dem der Hostname "db" (Docker normal)
 oder die IP Adresse der Datenbank bzw. des entsprechendem Containers
 (Docker Toolbox) in der `hibernate.cfg.xml` eingestellt werden.
 
-Aktuell ist das Hibernate auf die drei POJOs 'User' 'Reprt' und 'Report_Revision' 
+Aktuell ist das Hibernate auf die drei POJOs 'User' 'Report' und 'Report_Revision' 
 eingestellt. Falls Änderungen an jenen Java Dateien durch geführt werden,
 müssen diese neu compiliert werden. Dafür liegt aktuell noch nur eine Batch Datei vor
 `buildClassFiles.bat` , welche alle drei neu compiliert und in das notwendige Verzeichnis
