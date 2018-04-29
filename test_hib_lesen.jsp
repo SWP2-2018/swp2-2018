@@ -29,7 +29,7 @@
     out.println("ID: " + user.getId());
     out.println("User: " + user.getUser());
     out.println("Password: " + user.getPassword());
-    out.println("Intructor: " + user.getInstructor());
+    out.println("Instructor: " + user.getInstructor());           // FIX'ed Intructor TO Instructor
     out.println("First Name: " + user.getFirst_name());
     out.println("Last Name: " + user.getLast_name());
     out.println("Job: " + user.getJob());
