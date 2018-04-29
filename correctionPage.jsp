@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-
+<!-- Setzte request Attribute "page" für die navbar -->
 <%
   request.setAttribute("page","correctionPage");
 %>
@@ -10,7 +10,7 @@
 
 
 <t:stdTempl>
-  <jsp:attribute name="titleText"> - Userpage</jsp:attribute>
+  <jsp:attribute name="titleText"> - Korrekturen</jsp:attribute>
   <jsp:body>
 
     <t:navbar>

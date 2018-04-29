@@ -3,6 +3,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 
+
   <div class="container-fluid">
     <a class="navbar-brand visible-xs-inline-block" href="">
       <jsp:invoke fragment="navText"/>
@@ -18,11 +19,22 @@
 
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
+
+        <!-- Legt die Listenelemente der navbar je nach Seite(page) und User(Azubi/Auszubildender) fest. -->
+        <!-- Überprüfe ob der User einem Azubi (instructor == 0) enspricht -->
         <%
         if(session.getAttribute("username").toString().equals("azubi")){
 
+          //Sollte eine Seite ohne Attribute aufgerufen das eine navbar haben sollte wird auf die error.jsp weitergeleitet
+          if(request.getAttribute("page").toString()==null) {
+        %>
+          response.sendRedirect("error.jsp");
+        <%
+          }
+          //Lässt Listenelemente aus je nachdem welchse Seite aufgerufen wird
           if(request.getAttribute("page").toString()!="userPage"){
         %>
+          <!-- Erzeugt Listenelement das auf die Bezeichnete Seite Verlinkt -->
           <li class="nav-item">
             <a class="nav-link" href="userPageTrainee.jsp"><i class="fa fa-cog" ></i>&Uuml;bersicht</a>
           </li>
@@ -49,7 +61,8 @@
           </li>
         <%
         }
-        else{
+        //Die Buttons für einen Ausbilder(instructor == 1)
+        else if (session.getAttribute("username").toString().equals("ausbilder"){
         %>
           <li class="nav-item">
             <a class="nav-link" href="allReports.jsp"><i class="fa fa-cog" ></i>Alle Berichte</a>

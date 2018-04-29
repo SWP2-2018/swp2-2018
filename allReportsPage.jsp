@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-
+<!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page","allReports");
 %>
