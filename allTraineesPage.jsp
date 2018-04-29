@@ -13,10 +13,7 @@
   <jsp:attribute name="titleText"> - Auszubildende</jsp:attribute>
   <jsp:body>
     <t:navbar>
-
       <jsp:attribute name="navText">Auszubildende</jsp:attribute>
-      <jsp:body>
-      </jsp:body>
     </t:navbar>
 
     <div class="panel panel-primary" id="result_panel">

@@ -4,7 +4,7 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  request.setAttribute("page","allReports");
+  request.setAttribute("page","allReportsPage");
 %>
 
 
