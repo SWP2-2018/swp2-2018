@@ -23,6 +23,7 @@
 
   tx = _session.beginTransaction();
   List users = _session.createQuery("FROM User").list();
+
   for (Iterator iterator = users.iterator(); iterator.hasNext(); ) {
     User user = (User) iterator.next();
     out.println("ID: " + user.getId());
