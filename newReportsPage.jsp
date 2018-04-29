@@ -10,15 +10,11 @@
 
 
 <t:stdTempl>
-  <jsp:attribute name="titleText"> - Neu Berichte</jsp:attribute>
+  <jsp:attribute name="titleText"> - Neue Berichte</jsp:attribute>
   <jsp:body>
-
     <t:navbar>
-      <jsp:attribute name="navText">Neu Berichte</jsp:attribute>
-      <jsp:body>
-      </jsp:body>
+      <jsp:attribute name="navText">Neue Berichte</jsp:attribute>
     </t:navbar>
-
   </jsp:body>
 </t:stdTempl>
 

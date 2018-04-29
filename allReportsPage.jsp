@@ -4,9 +4,8 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  request.setAttribute("page","allReportsPage");
+  request.setAttribute("page", "allReportsPage");
 %>
-
 
 
 <t:stdTempl>
@@ -18,35 +17,31 @@
       <jsp:body>
       </jsp:body>
     </t:navbar>
-
-    <div class="panel panel-primary" id="result_panel">
-      <div class="panel-body">
-        <ul class="list-group">
-
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-        </ul>
-      </div>
+    <div class=" col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-4  ">
+      <ul class="list-group ">
+        <a href="newReport.jsp" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Bericht</a>
+        <a href="#" class="list-group-item list-group-item-action">Bericht</a>
+      </ul>
     </div>
   </jsp:body>
 </t:stdTempl>

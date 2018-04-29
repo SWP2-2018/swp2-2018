@@ -144,6 +144,6 @@
 
       </ul>
     </div>
-
+    <jsp:doBody/>
   </div>
 </nav>
