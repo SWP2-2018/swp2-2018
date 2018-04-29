@@ -33,8 +33,6 @@
           // Überprüfe ob der User einem Azubi (instructor == 0) enspricht
         if(session.getAttribute("username").toString().equals("azubi")){
 
-
-
           //Lässt Listenelemente aus, je nachdem welchse Seite aufgerufen wird
           if(request.getAttribute("page").toString()!="userPageT"){
         %>
