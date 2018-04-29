@@ -20,7 +20,7 @@
 
     <div id="login-form">
 
-        <form method="post" autocomplete="off">
+        <form action="loginCheck.jsp" method="post" autocomplete="off">
 
             <div class="col-12 col-sm-10 col-md-8">
                 <div class="form-group">
@@ -31,10 +31,10 @@
                     <hr/>
                 </div>
 
-                <!------ Beruf, Nutzername eingabe ---------->
+                <!------ Nutzername eingabe ---------->
 
                 <div class="form-group">
-                    <input type="text" name="user_name" id="user_name" class="form-control input"
+                    <input type="text" name="username" id="username" class="form-control input"
                            placeholder="Nutzername" required>
                 </div>
 
@@ -48,7 +48,7 @@
                 <!------ Buttons am Ende ---------->
 
                 <div class="form-group">
-                    <button type="submit" class="btn    btn-block btn-primary" name="signup" id="reg">Login
+                    <button type="submit" class="btn    btn-block btn-primary" name="signup" id="reg" value="Submit">Login
                     </button>
                 </div>
                 <div class="form-group">
