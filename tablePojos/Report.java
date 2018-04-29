@@ -5,16 +5,26 @@ import java.util.Date;
 public class Report {
     private int id;
     private Date date;
-    private short status;
+    private int status;
     private int user_id;
 
-    public Report() {
-    }
-
-    public Report(Date date, short status, int user_id) {
+    public Report(int id, Date date, int status, int user_id) {
+        this.id = id;
         this.date = date;
+
         this.status = status;
         this.user_id = user_id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Report() {
     }
 
     public int getId() {
@@ -33,13 +43,6 @@ public class Report {
         this.date = date;
     }
 
-    public short getStatus() {
-        return status;
-    }
-
-    public void setStatus(short status) {
-        this.status = status;
-    }
 
     public int getUser_id() {
         return user_id;

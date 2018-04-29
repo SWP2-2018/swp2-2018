@@ -62,6 +62,29 @@ public class ReportService {
         return report;
     }
 
+    /**
+     * Method provides a Report object based on the provided user_id.
+     *
+     * @param int user_id
+     * @throws Exception
+     * @return Report
+     */
+    public Report getByUserId(int user_id){
+        Session userSession = null;
+        Report report = null;
+        try {
+            userSession = new Configuration().configure().buildSessionFactory().openSession();
+            String query = String.format("FROM Report where user_id=%s",user_id);
+            report = (Report)userSession.createQuery(query).list().get(0);
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(userSession != null && userSession.isOpen()){
+                userSession.close();
+            }
+        }
+        return report;
+    }
 
     /**
      * Method updates an existing Report based on the provided Report object.

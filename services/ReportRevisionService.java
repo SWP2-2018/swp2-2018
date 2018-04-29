@@ -64,6 +64,33 @@ public class ReportRevisionService {
   }
 
 
+    /**
+     * Method provides a ReportRevision object based on the provided reportRevisionReportId.
+     *
+     * @param int reportRevisionReportId
+     * @throws Exception
+     * @return ReportRevision
+     */
+
+  public Report_Revision getByReportId(int reportRevisionReportId){
+    Session userSession = null;
+    Report_Revision reportRevision = null;
+    try {
+      userSession = new Configuration().configure().buildSessionFactory().openSession();
+      String query = String.format("FROM Report_revision where report_id=%s",reportRevisionReportId);
+      reportRevision = (Report_Revision)userSession.createQuery(query).list().get(0);
+    } catch (Exception e){
+      e.printStackTrace();
+    } finally {
+      if(userSession != null && userSession.isOpen()){
+        userSession.close();
+      }
+    }
+    return reportRevision;
+  }
+
+
+
   /**
    * Method updates an existing ReportRevision based on the provided ReportRevision object.
    *
