@@ -4,7 +4,7 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  request.setAttribute("page","userPageT");
+  request.setAttribute("page","userPageI");
 %>
 
 <t:stdTempl>
@@ -12,7 +12,7 @@
   <jsp:body>
 
     <t:navbar>
-      <jsp:attribute name="navText">&Uuml;bersicht</jsp:attribute>
+      <jsp:attribute name="navText">Übersicht</jsp:attribute>
       <jsp:body>
       </jsp:body>
     </t:navbar>

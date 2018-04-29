@@ -14,8 +14,13 @@
     session.setAttribute("username",username);
     response.sendRedirect("userPageTrainee.jsp");
   }
-  else
+  else if((username.equals("ausbilder") && password.equals("pw"))){
+    session.setAttribute("username",username);
+    response.sendRedirect("userPageInstructor.jsp");
+  }
+  else {
     response.sendRedirect("error.jsp");
+  }
 %>
 </body>
 </html>

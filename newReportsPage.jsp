@@ -2,17 +2,19 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-<!-- Setzte Attribute Page für die navbar -->
+<!-- Setzte request Attribute "page" für die navbar -->
 <%
-  request.setAttribute("page","userPageT");
+  request.setAttribute("page","newReports");
 %>
 
+
+
 <t:stdTempl>
-  <jsp:attribute name="titleText"> - Userpage</jsp:attribute>
+  <jsp:attribute name="titleText"> - Neu Berichte</jsp:attribute>
   <jsp:body>
 
     <t:navbar>
-      <jsp:attribute name="navText">&Uuml;bersicht</jsp:attribute>
+      <jsp:attribute name="navText">Neu Berichte</jsp:attribute>
       <jsp:body>
       </jsp:body>
     </t:navbar>
