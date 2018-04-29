@@ -16,14 +16,6 @@
 
       <jsp:attribute name="navText">Alle Berichte</jsp:attribute>
       <jsp:body>
-        <head>
-          <style>
-            .berichte{
-              visibility: hidden;
-            @include invisible;
-            }
-          </style>
-        </head>
       </jsp:body>
     </t:navbar>
 
