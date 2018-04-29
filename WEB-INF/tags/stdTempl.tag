@@ -16,6 +16,16 @@
   <title>Berichtsheft Digital <jsp:invoke fragment="titleText"/></title>
 </head>
 <body>
+
+<%
+  if (session.getAttribute("username")!=null) {
+    String name = session.getAttribute("username").toString();
+    request.setAttribute("name",name);
+  }else{
+    response.sendRedirect("error.jsp");
+  }
+%>
+
 <jsp:doBody/>
 </body>
 </html>

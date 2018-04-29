@@ -10,8 +10,10 @@
   session.removeAttribute("username");
   session.removeAttribute("password");
   session.invalidate();
+  response.setHeader("Refresh", "3;url=index.jsp");
 %>
 <h1>Logout was done successfully.</h1>
+You will be redirected in a few seconds.
 
 </body>
 </html>

@@ -4,15 +4,17 @@
 
 
 <%
-  request.setAttribute("page","userPage");
+  request.setAttribute("page","correctionPage");
 %>
+
+
 
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Userpage</jsp:attribute>
   <jsp:body>
 
     <t:navbar>
-      <jsp:attribute name="navText">Übersicht</jsp:attribute>
+      <jsp:attribute name="navText">Korrekturen</jsp:attribute>
       <jsp:body>
       </jsp:body>
     </t:navbar>

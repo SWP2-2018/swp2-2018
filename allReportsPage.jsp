@@ -1,15 +1,29 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+
+
+<%
+  request.setAttribute("page","allReports");
+%>
+
+
+
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Alle Berichte</jsp:attribute>
   <jsp:body>
     <t:navbar>
+
       <jsp:attribute name="navText">Alle Berichte</jsp:attribute>
       <jsp:body>
-        <li class="nav-item">
-          <a class="nav-link" href="userPageTrainee.jsp">Übersicht</a>
-        </li>
+        <head>
+          <style>
+            .berichte{
+              visibility: hidden;
+            @include invisible;
+            }
+          </style>
+        </head>
       </jsp:body>
     </t:navbar>
 
