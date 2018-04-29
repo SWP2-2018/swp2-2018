@@ -49,7 +49,7 @@
         </li>
         <%
           }
-          if(request.getAttribute("page").toString()!="userPageI"){
+          if(request.getAttribute("page").toString()!="correctionPage"){
         %>
         <li class="nav-item">
           <a class="nav-link" href="correctionPage.jsp"><i class="fa fa-cog" ></i>Korrektur</a>
