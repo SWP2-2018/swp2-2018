@@ -12,7 +12,7 @@
   <jsp:body>
 
     <t:navbar>
-      <jsp:attribute name="navText">Übersicht</jsp:attribute>
+      <jsp:attribute name="navText">&Uuml;bersicht</jsp:attribute>
       <jsp:body>
       </jsp:body>
     </t:navbar>
