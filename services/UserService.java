@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import tablePojos.User;
 
+import java.util.List;
+
 /**
  * Class UserService provides methods to communicate with the database regarding the Users.
  */
@@ -26,6 +28,7 @@ public class UserService {
             tx = userSession.beginTransaction();
             userSession.save(user);
             tx.commit();
+
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
@@ -80,6 +83,34 @@ public class UserService {
         }
         return user;
     }
+
+
+
+    /**
+     * Method provides a User List based on the provided instructor_id.
+     *
+     * @param int instructor_id
+     * @throws Exception
+     * @return List<User>
+     */
+    public List<User> getAllByInstructorId(int instructor_id){
+        Session userSession = null;
+        List<User> userListe = null;
+        try {
+            userSession = new Configuration().configure().buildSessionFactory().openSession();
+            String query = "FROM User where instructor_id= :instructor_id";
+            userListe = userSession.createQuery(query).setParameter("instructor_id",instructor_id).list();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(userSession != null && userSession.isOpen()){
+                userSession.close();
+            }
+        }
+        return userListe;
+    }
+
+
 
 
     /**

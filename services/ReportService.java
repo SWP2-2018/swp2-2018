@@ -7,6 +7,8 @@ import org.hibernate.cfg.Configuration;
 import tablePojos.Report;
 import tablePojos.User;
 
+import java.util.List;
+
 /**
  * Class ReportService provides methods to communicate with the database regarding the Reports.
  */
@@ -26,10 +28,14 @@ public class ReportService {
 
         try {
             tx = userSession.beginTransaction();
-            userSession.get(User.class, userId); // Checks if user is in db.
-            report.setUser_id(userId);
-            userSession.save(report);
-            tx.commit();
+            if (userSession.get(User.class, userId) != null) // Checks if user is in db.
+            {
+                report.setUser_id(userId);
+                userSession.save(report);
+                tx.commit();
+            }
+            else report = null;
+
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
@@ -63,19 +69,19 @@ public class ReportService {
     }
 
     /**
-     * Method provides a Report object based on the provided user_id.
+     * Method provides a Report List based on the provided user_id.
      *
      * @param int user_id
      * @throws Exception
-     * @return Report
+     * @return List<Report>
      */
-    public Report getByUserId(int user_id){
+    public List<Report> getAllByUserId(int user_id){
         Session userSession = null;
-        Report report = null;
+        List<Report> reportListe = null;
         try {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
             String query = "FROM Report where user_id= :user_id";
-            report = (Report)userSession.createQuery(query).setParameter("user_id",user_id).list().get(0);
+            reportListe = userSession.createQuery(query).setParameter("user_id",user_id).list();
         } catch (Exception e){
             e.printStackTrace();
         } finally {
@@ -83,8 +89,36 @@ public class ReportService {
                 userSession.close();
             }
         }
-        return report;
+        return reportListe;
     }
+
+    /**
+     * Method provides a Report List based on the provided status.
+     *
+     * @param int status
+     * @throws Exception
+     * @return List<Report>
+     */
+    public List<Report> getAllByStatus(int status){
+        Session userSession = null;
+        List<Report> reportListe = null;
+        try {
+            userSession = new Configuration().configure().buildSessionFactory().openSession();
+            String query = "FROM Report where status= :status";
+            reportListe = userSession.createQuery(query).setParameter("status",status).list();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(userSession != null && userSession.isOpen()){
+                userSession.close();
+            }
+        }
+        return reportListe;
+    }
+
+
+
+
 
     /**
      * Method updates an existing Report based on the provided Report object.
@@ -94,14 +128,14 @@ public class ReportService {
      * @throws Exception
      * @return Report
      */
-    public Report update(int reportId, Report report){
+    public Report update(Report report, int reportId){
         Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
         Report oldReport = null;
 
         try {
             tx = userSession.beginTransaction();
-            oldReport = (Report) userSession.get(Report.class, reportId);
+            oldReport = userSession.get(Report.class, reportId);
 
             oldReport.setDate(report.getDate());
             oldReport.setStatus(report.getStatus());
@@ -115,13 +149,9 @@ public class ReportService {
             userSession.close();
         }
 
-        return oldReport;
+        return report;
     }
 
-
-    public void getAllByUser(int userId){
-        // TODO implement
-    }
 }
 
 
