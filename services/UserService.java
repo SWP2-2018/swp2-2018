@@ -69,9 +69,8 @@ public class UserService {
         User user = null;
         try {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
-            String query = String.format("FROM User where user='%s'",userName);
-            user = (User)userSession.createQuery(query).list().get(0);
-
+            String query = "FROM User where user= :userName";
+            user = (User)userSession.createQuery(query).setParameter("userName",userName).list().get(0);
         } catch (Exception e){
             e.printStackTrace();
         } finally {

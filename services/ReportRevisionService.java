@@ -7,6 +7,9 @@ import org.hibernate.cfg.Configuration;
 import tablePojos.Report;
 import tablePojos.Report_Revision;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class ReportRevisionService.java provides methods to communicate with the database regarding the ReportRevisions.
  */
@@ -72,13 +75,13 @@ public class ReportRevisionService {
      * @return ReportRevision
      */
 
-  public Report_Revision getByReportId(int reportRevisionReportId){
+  public List<Report_Revision> getByReportId(int reportRevisionReportId){
     Session userSession = null;
-    Report_Revision reportRevision = null;
+    List<Report_Revision> reportListe = null;
     try {
       userSession = new Configuration().configure().buildSessionFactory().openSession();
-      String query = String.format("FROM Report_revision where report_id=%s",reportRevisionReportId);
-      reportRevision = (Report_Revision)userSession.createQuery(query).list().get(0);
+      String query = "FROM Report_Revision where report_id= :reportRevisionReportId";
+      reportListe = userSession.createQuery(query).setParameter("reportRevisionReportId",reportRevisionReportId).list();
     } catch (Exception e){
       e.printStackTrace();
     } finally {
@@ -86,7 +89,7 @@ public class ReportRevisionService {
         userSession.close();
       }
     }
-    return reportRevision;
+    return reportListe;
   }
 
 
