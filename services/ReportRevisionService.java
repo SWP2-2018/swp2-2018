@@ -35,7 +35,8 @@ public class ReportRevisionService {
 
                 if (rrL.size() > 0) { // Pruefe ob min. 1 Revision vorhanden ist
                     reportRevision.setNumber(rrL.get(0).getNumber() + 1);
-                } else // Keine Revision vorhanden
+                }
+                else // Keine Revision vorhanden
                 {
                     reportRevision.setNumber(0);
                 }
@@ -47,8 +48,9 @@ public class ReportRevisionService {
                 reportRevision = null;
             }
         }
-        catch (HibernateException e){
+        catch (Exception e){
             if (tx!=null) tx.rollback();
+            reportRevision = null;
             e.printStackTrace();
         } finally {
             userSession.close();
@@ -72,6 +74,7 @@ public class ReportRevisionService {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
             reportRevision = (Report_Revision) userSession.get(Report_Revision.class, reportRevisionId);
         } catch (Exception e) {
+            reportRevision = null;
             e.printStackTrace();
         } finally {
             if (userSession != null && userSession.isOpen()) {
@@ -98,6 +101,7 @@ public class ReportRevisionService {
             String query = "FROM Report_Revision where report_id= :reportRevisionReportId";
             reportListe = userSession.createQuery(query).setParameter("reportRevisionReportId", reportRevisionReportId).list();
         } catch (Exception e) {
+            reportListe = null;
             e.printStackTrace();
         } finally {
             if (userSession != null && userSession.isOpen()) {
@@ -119,29 +123,34 @@ public class ReportRevisionService {
     public Report_Revision update(Report_Revision reportRevision, int reportRevisionId) {
         Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
-        Report_Revision oldReportRevsion = null;
+        Report_Revision oldReportRevision = null;
 
         try {
             tx = userSession.beginTransaction();
-            oldReportRevsion = userSession.get(Report_Revision.class, reportRevisionId);
+            oldReportRevision = userSession.get(Report_Revision.class, reportRevisionId);
 
-            oldReportRevsion.setText1(reportRevision.getText1());
-            oldReportRevsion.setText2(reportRevision.getText2());
-            oldReportRevsion.setText3(reportRevision.getText3());
-            oldReportRevsion.setHours1(reportRevision.getHours1());
-            oldReportRevsion.setHours2(reportRevision.getHours2());
-            oldReportRevsion.setHours3(reportRevision.getHours3());
+            if (oldReportRevision!=null)
+            {
+                oldReportRevision.setText1(reportRevision.getText1());
+                oldReportRevision.setText2(reportRevision.getText2());
+                oldReportRevision.setText3(reportRevision.getText3());
+                oldReportRevision.setHours1(reportRevision.getHours1());
+                oldReportRevision.setHours2(reportRevision.getHours2());
+                oldReportRevision.setHours3(reportRevision.getHours3());
+                userSession.update(oldReportRevision);
+                tx.commit();
+            }
 
-            userSession.update(oldReportRevsion);
-            tx.commit();
-        } catch (HibernateException e) {
+
+        } catch (Exception e) {
             if (tx != null) tx.rollback();
+            oldReportRevision = null;
             e.printStackTrace();
         } finally {
             userSession.close();
         }
 
-        return oldReportRevsion;
+        return oldReportRevision;
     }
 
 }

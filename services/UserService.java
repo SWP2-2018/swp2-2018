@@ -26,11 +26,21 @@ public class UserService {
 
         try {
             tx = userSession.beginTransaction();
-            userSession.save(user);
-            tx.commit();
 
-        } catch (HibernateException e) {
+            if (getByUserName(user.getUser())!=null)
+            {
+                user = null;
+            }
+            else
+            {
+                userSession.save(user);
+                tx.commit();
+            }
+
+
+        } catch (Exception e) {
             if (tx!=null) tx.rollback();
+            user = null;
             e.printStackTrace();
         } finally {
             userSession.close();
@@ -75,6 +85,7 @@ public class UserService {
             String query = "FROM User where user= :userName";
             user = (User)userSession.createQuery(query).setParameter("userName",userName).list().get(0);
         } catch (Exception e){
+            user = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
@@ -101,6 +112,7 @@ public class UserService {
             String query = "FROM User where instructor_id= :instructor_id";
             userListe = userSession.createQuery(query).setParameter("instructor_id",instructor_id).list();
         } catch (Exception e){
+            userListe = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
@@ -113,6 +125,8 @@ public class UserService {
 
 
 
+
+
     /**
      * Method updates an existing User based on the provided User object.
      *
@@ -121,7 +135,7 @@ public class UserService {
      * @throws Exception
      * @return User
      */
-    public User update(int userId, User user ){
+    public User update(User user, int userId ){
         Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
         User oldUser = null;
@@ -130,19 +144,26 @@ public class UserService {
             tx = userSession.beginTransaction();
             oldUser = (User) userSession.get(User.class, userId);
 
-            oldUser.setUser(user.getUser());
-            oldUser.setPassword(user.getPassword());
-            oldUser.setInstructor(user.getInstructor());
-            oldUser.setLast_name(user.getLast_name());
-            oldUser.setFirst_name(user.getFirst_name());
-            oldUser.setJob(user.getJob());
-            oldUser.setEducational_year(user.getEducational_year());
-            oldUser.setStart_date(user.getStart_date());
+            //oldUser.setUser(user.getUser());
+            if (oldUser!=null) {
+                oldUser.setPassword(user.getPassword());
+                oldUser.setInstructor(user.getInstructor());
+                oldUser.setLast_name(user.getLast_name());
+                oldUser.setFirst_name(user.getFirst_name());
+                oldUser.setJob(user.getJob());
+                oldUser.setEducational_year(user.getEducational_year());
+                oldUser.setStart_date(user.getStart_date());
+                userSession.update(oldUser);
+                tx.commit();
+            }
+            else
+            {
+                oldUser = null;
+            }
 
-            userSession.update(oldUser);
-            tx.commit();
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (tx!=null) tx.rollback();
+            oldUser = null;
             e.printStackTrace();
         } finally {
             userSession.close();

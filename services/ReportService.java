@@ -34,10 +34,14 @@ public class ReportService {
                 userSession.save(report);
                 tx.commit();
             }
-            else report = null;
+            else
+            {
+                report = null;
+            }
 
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (tx!=null) tx.rollback();
+            report = null;
             e.printStackTrace();
         } finally {
             userSession.close();
@@ -59,6 +63,7 @@ public class ReportService {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
             report = (Report) userSession.get(Report.class, reportId);
         } catch (Exception e){
+            report = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
@@ -83,6 +88,7 @@ public class ReportService {
             String query = "FROM Report where user_id= :user_id";
             reportListe = userSession.createQuery(query).setParameter("user_id",user_id).list();
         } catch (Exception e){
+            reportListe = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
@@ -107,6 +113,7 @@ public class ReportService {
             String query = "FROM Report where status= :status";
             reportListe = userSession.createQuery(query).setParameter("status",status).list();
         } catch (Exception e){
+            userSession = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
@@ -135,21 +142,29 @@ public class ReportService {
 
         try {
             tx = userSession.beginTransaction();
+
             oldReport = userSession.get(Report.class, reportId);
+            if (oldReport!=null)
+            {
+                oldReport.setDate(report.getDate());
+                oldReport.setStatus(report.getStatus());
+                userSession.update(oldReport);
+                tx.commit();
+            }
+            else
+            {
+                oldReport = null;
+            }
 
-            oldReport.setDate(report.getDate());
-            oldReport.setStatus(report.getStatus());
-
-            userSession.update(oldReport);
-            tx.commit();
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (tx!=null) tx.rollback();
+            oldReport = null;
             e.printStackTrace();
         } finally {
             userSession.close();
         }
 
-        return report;
+        return oldReport;
     }
 
 }
