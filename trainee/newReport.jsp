@@ -18,26 +18,33 @@
 
     <div class="container">
 
-      <form  action="reportCheck.jsp" method="post" autocomplete="off">
-
-
-        <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-4 ">
+      <form action="reportCheck.jsp" method="post" autocomplete="off">
+        <div class=" justify-content-lg-center inForm" >
 
           <div class="form-group">
             <hr/>
           </div>
 
+          <div><h4>Wochenbericht von:</h4></div>
+
+          <div class="form-group">
+            <hr/>
+          </div>
+
+
           <!------ Betriebliche Tätigkeiten eingabe ---------->
 
           <div class="form-group">
-            <label for="operatingActivities">Betriebliche Tätigkeiten</label>
-            <textarea type="text" name="operatingActivities" id="operatingActivities" class="form-control input"
+
+            <label for="text1">Betriebliche Tätigkeiten</label>
+
+            <textarea type="text" name="text1" id="text1" class="form-control input"
                       placeholder="Betriebliche Tätigkeiten"></textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-              <input class="form-control" type="text" name="opHour" id="opHour">
+            <input class="form-control" type="text" name="opHour" id="opHour">
           </div>
 
 
@@ -49,8 +56,8 @@
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
             <label for="otherCourses">Unterweisungen, sonstige Schulungen</label>
-            <textarea type="text" name="otherCourses" id="otherCourses" class="form-control input"
-                   placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen"></textarea>
+            <textarea type="text" name="text2" id="text2" class="form-control input"
+                      placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen"></textarea>
           </div>
 
           <div class="form-group form-inline">
@@ -66,13 +73,13 @@
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
             <label for="otherCourses">Themen des Berufsschulunterrichts</label>
-            <textarea type="text" name="vocationalSchool" id="vocationalSchool" class="form-control input"
-                   placeholder="Themen des Berufsschulunterrichts"></textarea>
+            <textarea type="text" name="text3" id="text3" class="form-control input"
+                      placeholder="Themen des Berufsschulunterrichts"></textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input class="form-control " type="text" name="schoolHour" id="schoolHour">
+            <input class="form-control " type="text" name="schoolHour" id="text">
           </div>
 
           <div class="form-group">

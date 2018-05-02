@@ -1,6 +1,7 @@
 <%@tag description="navbar" pageEncoding="UTF-8" %>
 <%@attribute name="navText" fragment="true" %>
 
+
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
 
@@ -74,7 +75,7 @@
         <%
           }
         %>
-         " href=" correctionPage.jsp"><i class="fa fa-redo-alt"></i> Korrektur</a>
+         " href=" allCorrectionPage.jsp"><i class="fa fa-redo-alt"></i> Korrektur</a>
         </li>
         <!-----Ende eines Elements----->
 
@@ -139,7 +140,7 @@
 
         <!-----Elemente die alle benötigen----->
         <li class="nav-item">
-          <a class="nav-link " href="logout.jsp"><i class="fa fa-sign-out-alt"></i> Logout - ${name}</a>
+          <a class="nav-link " href="../logout.jsp"><i class="fa fa-sign-out-alt"></i> Logout - ${name}</a>
         </li>
 
       </ul>
