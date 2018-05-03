@@ -25,7 +25,7 @@
     </t:navbar>
 
         <a href="allReportsPage.jsp"> <h2>Offene Berichte:</h2></a>
-        <a href="allReportsPage.jsp"><h2>Noch zu Korregieren:</h2></a>
+        <a href="allCorrectionPage.jsp"><h2>Noch zu Korregieren:</h2></a>
 
 
 
