@@ -1,19 +1,21 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="services.UserService" %>
+<%@ page import="tablePojos.User" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+
+
 <%
-  String username=request.getParameter("username");
-  String password=request.getParameter("password");
+  UserService us = new UserService();
+  User user = us.getByUserName(request.getParameter("user"));
+  session.setAttribute("username", user.getUser());
+  if (user.getPassword().equals(request.getParameter("password"))) {
+    if (user.getInstructor() == 1) {
 
-  if((username.equals("azubi") && password.equals("pw")))
-  {
+      response.sendRedirect("instructor/userPageInstructor.jsp");
 
-    session.setAttribute("username",username);
-    response.sendRedirect("trainee/userPageTrainee.jsp");
-  }
-  else if((username.equals("ausbilder") && password.equals("pw"))){
-    session.setAttribute("username",username);
-    response.sendRedirect("instructor/userPageInstructor.jsp");
-  }
-  else {
+    } else {
+      response.sendRedirect("trainee/userPageTrainee.jsp");
+    }
+  } else {
     response.sendRedirect("error.jsp");
   }
 %>

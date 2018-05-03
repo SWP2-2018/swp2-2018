@@ -19,9 +19,9 @@
 
 <div class="container">
 
-    <div id="login-form">
+    <div id="register-form">
 
-        <form method="post" autocomplete="off">
+        <form action="registerCheck.jsp" method="post" autocomplete="off">
 
             <div class="col-12 col-sm-10 col-md-8">
                 <div class="form-group">
@@ -50,12 +50,12 @@
 
                 <!------ Beruf, Nutzername eingabe ---------->
                 <div class="form-group">
-                    <input type="text" name="profession" id="profession" class="form-control input"
+                    <input type="text" name="job" id="job" class="form-control input"
                            placeholder="Beruf" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="user_name" id="user_name" class="form-control input"
+                    <input type="text" name="user" id="user" class="form-control input"
                            placeholder="Nutzername" required>
                 </div>
 
@@ -73,10 +73,10 @@
                         <div class="form-group">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons" required>
                                 <label class="btn btn-outline-secondary  active">
-                                    <input type="radio" name="options" id="option1" checked> Azubi
+                                    <input type="radio" name="options" value="trainee" checked> Azubi
                                 </label>
                                 <label class="btn btn-outline-secondary ">
-                                    <input type="radio" name="options" id="option2"> Ausbilder
+                                    <input type="radio" name="options" value="instructor"> Ausbilder
                                 </label>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                 </div>
                 <!------ Buttons am Ende ---------->
                 <div class="form-group">
-                    <button type="submit" class="btn    btn-block btn-primary" name="signup" id="reg">Registrieren
+                    <button type="submit" class="btn    btn-block btn-primary" name="register" id="reg">Registrieren
                     </button>
                 </div>
                 <div class="form-group">

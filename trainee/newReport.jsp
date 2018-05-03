@@ -4,7 +4,7 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  request.setAttribute("page", "newReport.jsp");
+  request.setAttribute("page", "trainee/newReport.jsp");
 %>
 
 
@@ -44,7 +44,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input class="form-control" type="text" name="opHour" id="opHour">
+            <input class="form-control" type="text" name="hours1" id="opHour">
           </div>
 
 
@@ -55,14 +55,14 @@
 
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
-            <label for="otherCourses">Unterweisungen, sonstige Schulungen</label>
+            <label for="text2">Unterweisungen, sonstige Schulungen</label>
             <textarea type="text" name="text2" id="text2" class="form-control input"
                       placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen"></textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input class="form-control " type="text" name="otherHour" id="otherHour">
+            <input class="form-control " type="text" name="hours2" id="otherHour">
           </div>
 
           <div class="form-group">
@@ -72,14 +72,14 @@
 
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
-            <label for="otherCourses">Themen des Berufsschulunterrichts</label>
+            <label for="text3">Themen des Berufsschulunterrichts</label>
             <textarea type="text" name="text3" id="text3" class="form-control input"
                       placeholder="Themen des Berufsschulunterrichts"></textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input class="form-control " type="text" name="schoolHour" id="text">
+            <input class="form-control " type="text" name="hours3" id="text">
           </div>
 
           <div class="form-group">
