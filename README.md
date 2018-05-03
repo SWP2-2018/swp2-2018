@@ -1,5 +1,3 @@
 Berichtsheft Digital!
 ===
-Hardcoded 
-azubi
-pw
+Einloggen möglich mit den Datenbankusern
