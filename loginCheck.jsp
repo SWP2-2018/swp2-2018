@@ -6,10 +6,10 @@
 <%
   UserService us = new UserService();
   User user = us.getByUserName(request.getParameter("user"));
-  session.setAttribute("username", user.getUser());
+  session.setAttribute("user", user.getUser());
+  session.setAttribute("instructor", user.getInstructor());
   if (user.getPassword().equals(request.getParameter("password"))) {
     if (user.getInstructor() == 1) {
-
       response.sendRedirect("instructor/userPageInstructor.jsp");
 
     } else {

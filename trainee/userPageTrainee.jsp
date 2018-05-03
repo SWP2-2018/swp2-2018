@@ -11,10 +11,6 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  UserService us = new UserService();
- //  public User getById(int userId)
-  User user = us.getById(13);
-  session.setAttribute("name","user.getFirst_name()");
   request.setAttribute("page","userPageT");
 %>
 

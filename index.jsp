@@ -4,9 +4,8 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  session.setAttribute("username", "logout");
-  request.setAttribute("page", "logout");
-
+  session.setAttribute("username", "login");
+  request.setAttribute("page", "login");
 %>
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Login</jsp:attribute>

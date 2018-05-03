@@ -6,7 +6,6 @@
 <%
   session.setAttribute("username", "logout");
   request.setAttribute("page", "logout");
-
 %>
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Logout</jsp:attribute>
