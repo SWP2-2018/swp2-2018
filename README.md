@@ -3,9 +3,7 @@
 ## Wichtige Information
 
 Um Hibernate nutzen zu können, müsst ihr sowohl die IP Adresse, als auch das Datenbank Passwort von euch
-in die `hibernate.cfg.xml` schreiben, welche unter `WEB-INF/classes/services/` liegt. 
-Bitte aktuell nicht wundern, dass noch eine weitere `hibernate.cfg.xml` unter `WEB-INF/classes/`
-liegt, einfach ignorieren. Diese diente lediglich dazu Hibernate manuell an zu steuren. 
+in die `hibernate.cfg.xml` schreiben, welche unter `WEB-INF/classes/` liegt.
 Die passende IP könnt ihr ermitteln, indem ihr mit `docker ps` eure laufenden Container anzeigen lasst
 und hier die Container ID von der "mariadb" kopiert und anschliesend mit `docker inspect [Container ID]` 
 im untern Teil eine Zeile findet in der die IP Adresse steht: ` "IPAddress": "172.18.0.3", `.
