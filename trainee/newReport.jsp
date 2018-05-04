@@ -6,26 +6,20 @@
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.Report_Revision" %>
 
-<!-- Setze Attribute Page für die navbar -->
+<!-- Setze Attribut page für die navbar -->
 <%
   request.setAttribute("page", "newReport.jsp");
 
-  request.getParameter("reportID");
-
   ReportRevisionService rs = new ReportRevisionService();
   List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
-  Report_Revision rv = rs.create(new Report_Revision(), Integer.parseInt(request.getParameter("reportID")));
 
+  request.setAttribute("ID", request.getParameter("reportID"));
 
-  request.setAttribute("rvID", rv.getId());
-
-  response.sendRedirect(rv.getId() + ".jsp");
+  Report_Revision rv = new Report_Revision();
 
   if(rv_List.size() > 0){
     rv = rv_List.get(0);
   }
-
-
 
   if(Integer.parseInt(request.getParameter("reportStatus")) == 3){
     request.setAttribute("lockFields", "readonly");
@@ -40,8 +34,6 @@
     request.setAttribute("hours1", rv.getHours1());
     request.setAttribute("hours2", rv.getHours2());
     request.setAttribute("hours3", rv.getHours3());
-
-
 
 %>
 
@@ -58,7 +50,7 @@
 
       <form action="../reportCheck.jsp" method="post" autocomplete="off">
 
-        <input type="hidden" name="reportRevisionID" value="${rvID}" />
+        <input type="hidden" name="reportRevisionID" value="${ID}" />
 
         <div  class=" justify-content-lg-center inForm" >
 
