@@ -4,7 +4,10 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  request.setAttribute("page", "trainee/newReport.jsp");
+  request.setAttribute("page", "newReport.jsp");
+
+
+
 %>
 
 

@@ -33,7 +33,7 @@
     ausgabe = ausgabe + " text-center\">" + lrs.get(i).getDate() + "</a>";
   }
 
-  request.setAttribute("bericht", ausgabe);
+  request.setAttribute("berichte", ausgabe);
 
  // request.setAttribute("bericht", "<a href=\"newReport.jsp\" class=\"list-group-item list-group-item-action\">Bericht</a>");
  // request.setAttribute("bWarning", "<a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-warning\">Bericht</a>");
@@ -54,7 +54,7 @@
     <div class="inForm">
       <ul class="list-group">
 
-        ${bericht}
+        ${berichte}
 
       </ul>
     </div>

@@ -20,128 +20,53 @@
       <ul class="navbar-nav ml-auto">
 
 
-        <!-- Legt die Listenelemente der navbar je nach Seite(page) und User(Azubi/Auszubildender) fest. -->
-        <!--Sollte eine Seite ohne Attribute aufgerufen das eine navbar haben sollte wird auf die error.jsp weitergeleitet -->
         <%
           if (request.getAttribute("page").toString() == null) {
-        %>
-        response.sendRedirect("error.jsp");
-        <%
+            response.sendRedirect("error.jsp");
           }
-          // Überprüfe ob der User einem Azubi (instructor == 0) enspricht
-          if (session.getAttribute("instructor").toString().equals("0")) {
-        %>
 
-        <!-----Start eines Elements----->
-        <li class="nav-item">
-          <a class="nav-link
-        <%
-          //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString().equals("userPageT")) {
-        %>
-          disabled
-        <%
+          String[] tmp = {"userPageTrainee", "allReportsPage", "allCorrectionPage"};
+          request.setAttribute("pagesTr", tmp);
+          tmp = new String[]{"&Uuml;bersicht", "Alle Berichte", "Korrektur"};
+          request.setAttribute("bezTr", tmp);
+          tmp = new String[]{"userPageInstructor", "newReportsPage", "allTraineesPage"};
+          request.setAttribute("pagesIn", tmp);
+          tmp = new String[]{"&Uuml;bersicht", "Neue Berichte", "Auszubildende"};
+          request.setAttribute("bezIn", tmp);
+
+          String ausgabe = "";
+
+          if(!(request.getAttribute("page").toString().equals("login") || request.getAttribute("page").toString().equals("logout"))){
+
+            String[] pages = new String[1];
+            String[] bez = new String[1];
+
+
+            if (session.getAttribute("instructor").toString().equals("0")) {
+              pages = (String[]) request.getAttribute("pagesTr");
+              bez = (String[]) request.getAttribute("bezTr");
+
+            }else if(session.getAttribute("instructor").toString().equals("1")){
+              pages = (String[]) request.getAttribute("pagesIn");
+              bez = (String[]) request.getAttribute("bezIn");
+            }
+
+            if(pages.length != 1) {
+              for (int i = 0; i < pages.length; i++) {
+                ausgabe = ausgabe + "<li class=\"nav-item\"> <a class=\"nav-link";
+                if (request.getAttribute("page").toString().equals(pages[i])) {
+                  ausgabe = ausgabe + " disabled";
+                }
+                ausgabe = ausgabe + "\" href=\"" + pages[i] + ".jsp\"><i class=\"fa fa-user\"></i>" + bez[i] + "</a>";
+              }
+            }
+            ausgabe = ausgabe + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> </i> Logout - " + session.getAttribute("user").toString() + "</a> </li>";
+            request.setAttribute("anzeige", ausgabe);
           }
-        %>
-         " href=" userPageTrainee.jsp"><i class="fa fa-user"></i> &Uuml;bersicht</a>
-        </li>
-        <!-----Ende eines Elements----->
-
-
-        <!-----Start eines Elements----->
-        <li class="nav-item">
-          <a class="nav-link
-        <%
-          //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString().equals("allReportsPage")) {
-        %>
-          disabled
-        <%
-          }
-        %>
-         " href=" allReportsPage.jsp"><i class="fa fa-clipboard-list "></i> Alle Berichte</a>
-        </li>
-        <!-----Ende eines Elements----->
-
-
-        <!-----Start eines Elements----->
-        <li class="nav-item">
-          <a class="nav-link
-        <%
-          //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString().equals("correctionPage")) {
-        %>
-          disabled
-        <%
-          }
-        %>
-         " href=" allCorrectionPage.jsp"><i class="fa fa-redo-alt"></i> Korrektur</a>
-        </li>
-        <!-----Ende eines Elements----->
-
-
-        <%
-          //Die Elemente für einen Ausbilder(instructor == 1)
-        } else if (session.getAttribute("instructor").toString().equals("1")) {
 
         %>
 
-
-        <!-----Start eines Elements----->
-        <li class="nav-item">
-          <a class="nav-link
-        <%
-          //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString().equals("userPageI")) {
-        %>
-          disabled
-        <%
-          }
-        %>
-         " href=" userPageInstructor.jsp"><i class="fa fa-user"></i> &Uuml;bersicht</a>
-        </li>
-        <!-----Ende eines Elements----->
-
-
-        <!-----Start eines Elements----->
-        <li class="nav-item">
-          <a class="nav-link
-        <%
-          //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString().equals("newReports")) {
-        %>
-          disabled
-        <%
-          }
-        %>
-         " href=" newReportsPage.jsp"><i class="fa fa-clipboard"></i> Neue Berichte</a>
-        </li>
-        <!-----Ende eines Elements----->
-
-
-        <!-----Start eines Elements----->
-        <li class="nav-item">
-          <a class="nav-link
-        <%
-          //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString().equals("allTrainees")) {
-        %>
-          disabled
-        <%
-          }
-        %>
-         " href=" allTraineesPage.jsp"><i class="fa fa-users"></i> Auszubildende</a>
-        </li>
-        <!-----Ende eines Elements----->
-
-        <%
-          }
-        %>
-
-        <!-----Elemente die alle benötigen----->
-        <li class="nav-item">
-          <a class="nav-link " href="../logout.jsp"><i class="fa fa-sign-out-alt"></i> Logout - ${user}</a>
-        </li>
+        ${anzeige}
 
       </ul>
     </div>
