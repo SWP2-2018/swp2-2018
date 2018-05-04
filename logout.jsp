@@ -21,7 +21,7 @@
 </t:stdTempl>
 
 <%
-  session.removeAttribute("username");
+  session.removeAttribute("user");
   session.removeAttribute("password");
   session.invalidate();
   response.setHeader("Refresh", "3;url=index.jsp");
