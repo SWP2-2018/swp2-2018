@@ -22,7 +22,7 @@
   List<Report> lrsC = rs.getAllByStatusAndUserID(2,user.getId());
 
 
-
+//Erstellt Elemente für die noch offenen Berichte
   String openReportsList = "";
   for (int i = 0; i < lrs.size(); i++) {
     openReportsList = openReportsList
@@ -30,6 +30,7 @@
       + " text-center\">" + lrs.get(i).getDate() + "</a>";
   }
 
+  //Erstellt Elemente für die zu Korrigierenden Berichte
   String openCorrectionList = "";
   for (int i = 0; i < lrsC.size(); i++) {
     openCorrectionList = openCorrectionList
@@ -46,6 +47,8 @@
 
   String output = "";
 
+
+  //Accordeon Abschnitt zusammen setzen
   for (int i = 0; i <= cards.length - 1; i++) {
     output = output
       + "<div class=\"card\">"
@@ -67,9 +70,7 @@
       + "</div></div></div>"
     ;
   }
-
   request.setAttribute("cards", output);
-
 %>
 
 
