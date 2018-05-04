@@ -6,7 +6,7 @@
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.Report_Revision" %>
 
-<!-- Setzte Attribute Page für die navbar -->
+<!-- Setze Attribute Page für die navbar -->
 <%
   request.setAttribute("page", "newReport.jsp");
 
@@ -14,15 +14,18 @@
 
   ReportRevisionService rs = new ReportRevisionService();
   List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
-  Report_Revision rv;
+  Report_Revision rv = rs.create(new Report_Revision(), Integer.parseInt(request.getParameter("reportID")));
 
 
-  if(rv_List == null){
-    rv = new Report_Revision();
-    rs.create(rv, Integer.parseInt(request.getParameter("reportID")));
-  }else {
+  request.setAttribute("rvID", rv.getId());
+
+  response.sendRedirect(rv.getId() + ".jsp");
+
+  if(rv_List.size() > 0){
     rv = rv_List.get(0);
   }
+
+
 
   if(Integer.parseInt(request.getParameter("reportStatus")) == 3){
     request.setAttribute("lockFields", "readonly");
@@ -38,7 +41,7 @@
     request.setAttribute("hours2", rv.getHours2());
     request.setAttribute("hours3", rv.getHours3());
 
-    request.setAttribute("rvID", rv.getId());
+
 
 %>
 

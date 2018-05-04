@@ -5,7 +5,7 @@
 
 
 <%
-  Report_Revision rv = new Report_Revision();
+  Report_Revision rv = new ReportRevisionService().getById(Integer.parseInt(request.getParameter("reportRevisionID")));
 
   rv.setText1(request.getParameter("text1"));
   rv.setText2(request.getParameter("text2"));
@@ -14,7 +14,9 @@
   rv.setHours2(Integer.parseInt(request.getParameter("hours2")));
   rv.setHours3(Integer.parseInt(request.getParameter("hours3")));
 
-  new ReportRevisionService().update(rv, Integer.parseInt(request.getParameter("reportRevisionID")));
+
+
+  new ReportRevisionService().update(rv, rv.getId());
 
   response.sendRedirect("trainee/allReportsPage.jsp");
 
