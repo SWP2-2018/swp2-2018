@@ -85,7 +85,7 @@ public class ReportService {
         List<Report> reportListe = null;
         try {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
-            String query = "FROM Report where user_id= :user_id";
+            String query = "FROM Report where user_id= :user_id order by id desc";
             reportListe = userSession.createQuery(query).setParameter("user_id",user_id).list();
         } catch (Exception e){
             reportListe = null;
@@ -110,10 +110,40 @@ public class ReportService {
         List<Report> reportListe = null;
         try {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
-            String query = "FROM Report where status= :status";
+            String query = "FROM Report where status= :status order by id desc";
             reportListe = userSession.createQuery(query).setParameter("status",status).list();
         } catch (Exception e){
             userSession = null;
+            e.printStackTrace();
+        } finally {
+            if(userSession != null && userSession.isOpen()){
+                userSession.close();
+            }
+        }
+        return reportListe;
+    }
+
+
+
+
+    /**
+     * Method provides a Report List based on the provided status AND user_id.
+     *
+     * @param int status
+     * @param int user_id
+     * @throws Exception
+     * @return List<Report>
+     */
+    public List<Report> getAllByStatusAndUserID(int status,int user_id){
+        Session userSession = null;
+        List<Report> reportListe = null;
+        try {
+            userSession = new Configuration().configure().buildSessionFactory().openSession();
+            String query = "FROM Report where status= :status and user_id= :user_id order by id";
+            reportListe = userSession.createQuery(query).setParameter("status",status).setParameter("user_id",user_id).list();
+        } catch (Exception e){
+            userSession = null;
+            reportListe = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){

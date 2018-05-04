@@ -98,7 +98,7 @@ public class ReportRevisionService {
         List<Report_Revision> reportListe = null;
         try {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
-            String query = "FROM Report_Revision where report_id= :reportRevisionReportId";
+            String query = "FROM Report_Revision where report_id= :reportRevisionReportId order by number desc";
             reportListe = userSession.createQuery(query).setParameter("reportRevisionReportId", reportRevisionReportId).list();
         } catch (Exception e) {
             reportListe = null;
