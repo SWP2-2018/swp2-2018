@@ -29,21 +29,21 @@
             <!------ Nutzername eingabe ---------->
 
             <div class="form-group">
-              <input type="text" name="user" id="user" class="form-control input"
+              <input type="text" name="user" id="user" class="form-control"
                      placeholder="Nutzername" required>
             </div>
 
             <!------ Passwort eingabe ---------->
 
             <div class="form-group">
-              <input type="password" name="password" id="password" class="form-control input-lg"
+              <input type="password" name="password" id="password" class="form-control "
                      placeholder="Passwort" required>
             </div>
 
             <!------ Buttons am Ende ---------->
 
             <div class="form-group">
-              <button type="submit" class="btn btn-block btn-primary" name="signup" id="reg" value="Submit">Login
+              <button type="submit" class="btn btn-block btn-primary" name="signup" id="signup" value="Submit">Login
               </button>
             </div>
             <div class="form-group">

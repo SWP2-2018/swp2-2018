@@ -10,12 +10,6 @@
   UserService us2 = new UserService();
   User user = new User();
 
-
-
-
-
-/*
-
     user.setUser(request.getParameter("user"));
     user.setPassword(request.getParameter("password"));
     user.setInstructor(new Byte("0"));
@@ -30,13 +24,8 @@
     Date startDate = sdf.parse(startDateStr);
     user.setStart_date(startDate);
 
-  out.println( us.create(user));
-*/
+  us.create(user);
 
-
-   out.println(request.getParameter("options"));
-
-  out.println(request.getParameter("option2"));
 
 
 %>
