@@ -11,7 +11,7 @@
 
 <!-- Setzte request Attribute "page" für die navbar -->
 <%
-  request.setAttribute("page","correctionPage");
+  request.setAttribute("page","allCorrectionPage");
 
   ReportService rs = new ReportService();
   UserService us = new UserService();

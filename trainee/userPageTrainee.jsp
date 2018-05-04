@@ -11,7 +11,7 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  request.setAttribute("page","userPageT");
+  request.setAttribute("page","userPageTrainee");
 %>
 
 <t:stdTempl>

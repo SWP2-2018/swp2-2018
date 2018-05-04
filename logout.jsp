@@ -4,7 +4,6 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  session.setAttribute("username", "logout");
   request.setAttribute("page", "logout");
 %>
 <t:stdTempl>

@@ -4,7 +4,7 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  request.setAttribute("page","userPageI");
+  request.setAttribute("page","userPageInstructor");
 %>
 
 <t:stdTempl>
