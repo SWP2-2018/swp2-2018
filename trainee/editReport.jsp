@@ -6,20 +6,27 @@
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.Report_Revision" %>
 
-<!-- Setze Attribut page für die navbar -->
-<%
-  request.setAttribute("page", "newReport.jsp");
 
+<%
+  //Setze Attribut page für die navbar
+  request.setAttribute("page", "editReport.jsp");
+
+  //Lädt alle Reports_Revisions aus der Datenbank aus die zu der übertragenen ReportID gehören
   ReportRevisionService rs = new ReportRevisionService();
   List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
 
-  request.setAttribute("ID", request.getParameter("reportID"));
 
-  Report_Revision rv = new Report_Revision();
-
-  if(rv_List.size() > 0){
-    rv = rv_List.get(0);
+  if(rv_List.size() < 1){
+    response.sendRedirect("error.jsp");
+  } else if( rv_List.size() < 2){
+    request.setAttribute("comment", "");
+  }else{
+    request.setAttribute("comment", rv_List.get(1).getComment());
   }
+
+  Report_Revision rv = rv_List.get(0);
+
+  request.setAttribute("reportRevID", rv.getId());
 
   if(Integer.parseInt(request.getParameter("reportStatus")) == 3){
     request.setAttribute("lockFields", "readonly");
@@ -27,14 +34,12 @@
   else{
     request.setAttribute("lockFields", "");
   }
-
     request.setAttribute("text1", rv.getText1());
     request.setAttribute("text2", rv.getText2());
     request.setAttribute("text3", rv.getText3());
     request.setAttribute("hours1", rv.getHours1());
     request.setAttribute("hours2", rv.getHours2());
     request.setAttribute("hours3", rv.getHours3());
-
 %>
 
 
@@ -50,7 +55,7 @@
 
       <form action="../reportCheck.jsp" method="post" autocomplete="off">
 
-        <input type="hidden" name="reportRevisionID" value="${ID}" />
+        <input type="hidden" name="reportRevisionID" value="${reportRevID}" />
 
         <div  class=" justify-content-lg-center inForm" >
 

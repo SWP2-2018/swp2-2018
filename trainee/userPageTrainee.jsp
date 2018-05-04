@@ -26,7 +26,7 @@
   String openReportsList = "";
   for (int i = 0; i < lrs.size(); i++) {
     openReportsList = openReportsList
-      + "<a href=\"newReport.jsp\" class=\"list-group-item list-group-item-action"
+      + "<a href=\"editReport.jsp\" class=\"list-group-item list-group-item-action"
       + " text-center\">" + lrs.get(i).getDate() + "</a>";
   }
 
@@ -34,7 +34,7 @@
   String openCorrectionList = "";
   for (int i = 0; i < lrsC.size(); i++) {
     openCorrectionList = openCorrectionList
-      + "<a href=\"newReport.jsp\" class=\"list-group-item list-group-item-action"
+      + "<a href=\"editReport.jsp\" class=\"list-group-item list-group-item-action"
       + " list-group-item-danger"
       + " text-center\">" + lrs.get(i).getDate() + "</a>";
   }

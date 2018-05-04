@@ -18,20 +18,16 @@
 
   User user = us.getByUserName(session.getAttribute("user").toString());
 
-  List<Report> lrs = rs.getAllByUserId(user.getId());
+  List<Report> lrs = rs.getAllByStatusAndUserID(3, user.getId());
 
   String ausgabe = "";
 
   for (int i = 0; i < lrs.size(); i++) {
-    if(lrs.get(i).getStatus() != 0) {
-      ausgabe = ausgabe + "<a href=\"newReport.jsp\" class=\"list-group-item list-group-item-action";
-      if (lrs.get(i).getStatus() == 1) {
-        ausgabe = ausgabe + " list-group-item-warning";
-      } else if (lrs.get(i).getStatus() == 2) {
-        ausgabe = ausgabe + " list-group-item-danger";
-      }
-      ausgabe = ausgabe + " text-center\">" + lrs.get(i).getDate() + "</a>";
-    }
+    ausgabe = ausgabe + "<form id=\"reports\" action=\"editReport.jsp\" method=\"post\">";
+    ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />";
+    ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />";
+    ausgabe = ausgabe + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrs.get(i).getDate() +
+      "\"class=\"list-group-item list-group-item-action list-group-item-danger text-center\"></form>";
   }
 
   request.setAttribute("bericht", ausgabe);
