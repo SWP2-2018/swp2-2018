@@ -1,7 +1,6 @@
 package services;
 
 import org.hibernate.Session;
-import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import tablePojos.User;
@@ -62,6 +61,7 @@ public class UserService {
             userSession = new Configuration().configure().buildSessionFactory().openSession();
             user = (User) userSession.get(User.class, userId);
         } catch (Exception e){
+            user = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
@@ -70,6 +70,7 @@ public class UserService {
         }
         return user;
     }
+
     /**
      * Method provides a User object based on the provided user(name).
      *
@@ -95,8 +96,6 @@ public class UserService {
         return user;
     }
 
-
-
     /**
      * Method provides a User List based on the provided instructor_id.
      *
@@ -121,11 +120,6 @@ public class UserService {
         }
         return userListe;
     }
-
-
-
-
-
 
     /**
      * Method updates an existing User based on the provided User object.

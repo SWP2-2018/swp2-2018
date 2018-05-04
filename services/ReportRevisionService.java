@@ -1,7 +1,6 @@
 package services;
 
 import org.hibernate.Session;
-import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import tablePojos.Report;
@@ -137,6 +136,7 @@ public class ReportRevisionService {
                 oldReportRevision.setHours1(reportRevision.getHours1());
                 oldReportRevision.setHours2(reportRevision.getHours2());
                 oldReportRevision.setHours3(reportRevision.getHours3());
+                oldReportRevision.setComment(reportRevision.getComment());
                 userSession.update(oldReportRevision);
                 tx.commit();
             }

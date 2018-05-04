@@ -1,7 +1,6 @@
 package services;
 
 import org.hibernate.Session;
-import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import tablePojos.Report;
@@ -113,7 +112,7 @@ public class ReportService {
             String query = "FROM Report where status= :status order by id desc";
             reportListe = userSession.createQuery(query).setParameter("status",status).list();
         } catch (Exception e){
-            userSession = null;
+            reportListe = null;
             e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
@@ -122,9 +121,6 @@ public class ReportService {
         }
         return reportListe;
     }
-
-
-
 
     /**
      * Method provides a Report List based on the provided status AND user_id.
@@ -142,7 +138,6 @@ public class ReportService {
             String query = "FROM Report where status= :status and user_id= :user_id order by id";
             reportListe = userSession.createQuery(query).setParameter("status",status).setParameter("user_id",user_id).list();
         } catch (Exception e){
-            userSession = null;
             reportListe = null;
             e.printStackTrace();
         } finally {
@@ -152,10 +147,6 @@ public class ReportService {
         }
         return reportListe;
     }
-
-
-
-
 
     /**
      * Method updates an existing Report based on the provided Report object.
