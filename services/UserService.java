@@ -86,7 +86,7 @@ public class UserService {
             user = (User)userSession.createQuery(query).setParameter("userName",userName).list().get(0);
         } catch (Exception e){
             user = null;
-           e.printStackTrace();
+            e.printStackTrace();
         } finally {
             if(userSession != null && userSession.isOpen()){
                 userSession.close();
