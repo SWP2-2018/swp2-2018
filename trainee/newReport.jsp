@@ -2,11 +2,43 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
+<%@ page import ="java.util.List"%>
+<%@ page import="services.ReportRevisionService" %>
+<%@ page import="tablePojos.Report_Revision" %>
+
 <!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page", "newReport.jsp");
 
+  request.getParameter("reportID");
 
+  ReportRevisionService rs = new ReportRevisionService();
+  List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
+  Report_Revision rv;
+
+
+  if(rv_List == null){
+    rv = new Report_Revision();
+    rs.create(rv, Integer.parseInt(request.getParameter("reportID")));
+  }else {
+    rv = rv_List.get(0);
+  }
+
+  if(Integer.parseInt(request.getParameter("reportStatus")) == 3){
+    request.setAttribute("lockFields", "readonly");
+  }
+  else{
+    request.setAttribute("lockFields", "");
+  }
+
+    request.setAttribute("text1", rv.getText1());
+    request.setAttribute("text2", rv.getText2());
+    request.setAttribute("text3", rv.getText3());
+    request.setAttribute("hours1", rv.getHours1());
+    request.setAttribute("hours2", rv.getHours2());
+    request.setAttribute("hours3", rv.getHours3());
+
+    request.setAttribute("rvID", rv.getId());
 
 %>
 
@@ -19,16 +51,19 @@
     </t:navbar>
 
 
-    <div class="container">
+    <div aria-readonly="true" class="container">
 
-      <form action="reportCheck.jsp" method="post" autocomplete="off">
-        <div class=" justify-content-lg-center inForm" >
+      <form action="../reportCheck.jsp" method="post" autocomplete="off">
+
+        <input type="hidden" name="reportRevisionID" value="${rvID}" />
+
+        <div  class=" justify-content-lg-center inForm" >
 
           <div class="form-group">
             <hr/>
           </div>
 
-          <div><h4>Wochenbericht von:</h4></div>
+          <div><h4>Wochenbericht von: </h4></div>
 
           <div class="form-group">
             <hr/>
@@ -41,13 +76,13 @@
 
             <label for="text1">Betriebliche Tätigkeiten</label>
 
-            <textarea type="text" name="text1" id="text1" class="form-control input"
-                      placeholder="Betriebliche Tätigkeiten"></textarea>
+            <textarea ${lockFields} type="text" name="text1" id="text1" class="form-control input"
+                      placeholder="Betriebliche Tätigkeiten">${text1}</textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input class="form-control" type="text" name="hours1" id="opHour">
+            <input ${lockFields} class="form-control" type="text" name="hours1" id="opHour" value="${hours1}">
           </div>
 
 
@@ -59,13 +94,13 @@
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
             <label for="text2">Unterweisungen, sonstige Schulungen</label>
-            <textarea type="text" name="text2" id="text2" class="form-control input"
-                      placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen"></textarea>
+            <textarea ${lockFields} type="text" name="text2" id="text2" class="form-control input"
+                      placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen">${text2}</textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input class="form-control " type="text" name="hours2" id="otherHour">
+            <input ${lockFields} class="form-control " type="text" name="hours2" id="otherHour"  value="${hours2}">
           </div>
 
           <div class="form-group">
@@ -76,13 +111,13 @@
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
             <label for="text3">Themen des Berufsschulunterrichts</label>
-            <textarea type="text" name="text3" id="text3" class="form-control input"
-                      placeholder="Themen des Berufsschulunterrichts"></textarea>
+            <textarea ${lockFields} type="text" name="text3" id="text3" class="form-control input"
+                      placeholder="Themen des Berufsschulunterrichts">${text3}</textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input class="form-control " type="text" name="hours3" id="text">
+            <input ${lockFields} class="form-control " type="text" name="hours3" id="text" value="${hours3}">
           </div>
 
           <div class="form-group">
