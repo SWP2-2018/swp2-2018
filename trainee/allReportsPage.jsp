@@ -13,7 +13,6 @@
   //Setz Attribut für die navbar
   request.setAttribute("page", "allReportsPage");
 
-
   ReportService rs = new ReportService();
   UserService us = new UserService();
 
@@ -28,7 +27,8 @@
   String ausgabe = "";
 
   for (int i = 0; i < lrs.size(); i++) {
-    ausgabe = ausgabe + "<form id=\"reports\" action=\"editReport.jsp\" method=\"post\">";
+    if(lrs.get(i).getStatus() != 0){
+    ausgabe = ausgabe + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">";
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />";
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />";
     ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht vom " +
@@ -41,9 +41,8 @@
     }
     ausgabe = ausgabe + " text-center\"></form>";
   }
-
+  }
   request.setAttribute("berichte", ausgabe);
-
 %>
 
 
@@ -59,7 +58,7 @@
     <div class="inForm">
       <ul class="list-group">
 
-          ${berichte}
+        ${berichte}
 
       </ul>
     </div>
