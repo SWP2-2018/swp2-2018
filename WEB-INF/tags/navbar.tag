@@ -39,11 +39,12 @@
 </div>
 
 
+<!-----Nav Bar----->
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
 
 
-    <!-----Ueberschrift----->
+
     <a class="navbar-brand" href="">
       <jsp:invoke fragment="navText"/>
     </a>
@@ -99,8 +100,9 @@
             }
             //Einstellungen DropDown Menue und Logout Button
             ausgabe = ausgabe
-              + " <li class=\"dropdown\"> <a class=\"btn nav-link\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
-              + " <i class=\"fa fa-cogs\">Einstellungen </i> </a>"
+              + " <li class=\"dropdown\"> "
+              + " <a class=\"nav-link\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+              + " <i class=\"fa fa-cogs\"> Einstellungen </i> </a>"
               + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
               + " <a class=\"dropdown-item btn\" data-toggle=\"modal\" data-target=\"#password-modal\">Passwort erneuern</a>"
               + " </div> </li>"

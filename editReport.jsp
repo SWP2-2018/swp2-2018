@@ -1,7 +1,8 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-
+<%@page import="services.UserService" %>
+<%@page import="tablePojos.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.Report_Revision" %>
@@ -9,7 +10,15 @@
 
 <%
   //Setze Attribut page für die navbar
-  request.setAttribute("page", "editReport.jsp");
+  request.setAttribute("page", "editReport");
+
+
+
+  UserService us = new UserService();
+  User user = us.getByUserName(session.getAttribute("user").toString());
+
+
+
 
   //Lädt alle Reports_Revisions aus der Datenbank aus die zu der übertragenen ReportID gehören
   ReportRevisionService rs = new ReportRevisionService();
@@ -27,13 +36,23 @@
   Report_Revision rv = rv_List.get(0);
 
   request.setAttribute("reportRevID", rv.getId());
-
+ //Felder readonly machen in den passenden Berichten
   if (Integer.parseInt(request.getParameter("reportStatus")) == 4
     || Integer.parseInt(request.getParameter("reportStatus")) == 2) {
     request.setAttribute("lockFields", "readonly");
+
   } else {
     request.setAttribute("lockFields", "");
   }
+  //Komentarfeld readonly machen für Azubis
+  if (user.getInstructor()==0) {
+    request.setAttribute("lockComment", "invisible");
+
+  } else {
+    request.setAttribute("lockComment", "");
+  }
+
+
   request.setAttribute("date", request.getParameter("Date"));
   request.setAttribute("text1", rv.getText1());
   request.setAttribute("text2", rv.getText2());
@@ -55,7 +74,7 @@
 
     <div aria-readonly="true" class="container">
 
-      <form action="../reportCheck.jsp" method="post" autocomplete="off">
+      <form action="reportCheck.jsp" method="post" autocomplete="off">
 
         <input type="hidden" name="reportRevisionID" value="${reportRevID}"/>
 
@@ -123,9 +142,9 @@
             <hr/>
           </div>
           <!------ Kommentar ---------->
-          <div class="form-group">
+          <div class="form-group ${lockComment}">
             <label for="comment">Kommentar</label>
-            <textarea ${lockFields} type="comment" name="comment" id="comment" class="form-control input"
+            <textarea  type="comment" name="comment" id="comment" class="form-control input "
             placeholder="Kommentar">${comment}</textarea>
           </div>
 
