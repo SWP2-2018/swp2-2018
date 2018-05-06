@@ -9,23 +9,21 @@
 <%@ page import="tablePojos.User" %>
 
 
-<!-- Setzte Attribute Page für die navbar -->
 <%
+  //Setz Attribut für die navbar
   request.setAttribute("page", "allReportsPage");
+
 
   ReportService rs = new ReportService();
   UserService us = new UserService();
 
-  try {
-    User user = us.getByUserName(session.getAttribute("user").toString());
-  }catch (Exception e){
-    request.setAttribute("error", "e");
-    response.sendRedirect("error.jsp");
+  User user = us.getByUserName(session.getAttribute("user").toString());
 
-}
-
-
+  //Liste mit allen Reports des Users
   List<Report> lrs = rs.getAllByUserId(user.getId());
+
+  request.setAttribute("listReports", lrs);
+
 
   String ausgabe = "";
 
@@ -33,7 +31,8 @@
     ausgabe = ausgabe + "<form id=\"reports\" action=\"editReport.jsp\" method=\"post\">";
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />";
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />";
-    ausgabe = ausgabe + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action";
+    ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht vom " +
+      lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action";
     if(lrs.get(i).getStatus() == 2){
       ausgabe = ausgabe + " list-group-item-warning";
     }
@@ -60,7 +59,7 @@
     <div class="inForm">
       <ul class="list-group">
 
-        ${berichte}
+          ${berichte}
 
       </ul>
     </div>

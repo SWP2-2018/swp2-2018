@@ -26,7 +26,7 @@
     ausgabe = ausgabe + "<form id=\"reports\" action=\"editReport.jsp\" method=\"post\">";
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />";
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />";
-    ausgabe = ausgabe + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrs.get(i).getDate() +
+    ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht vom " + lrs.get(i).getDate() +
       "\"class=\"list-group-item list-group-item-action list-group-item-danger text-center\"></form>";
   }
 

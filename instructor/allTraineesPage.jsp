@@ -1,10 +1,32 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+<%@ page import ="java.util.List"%>
+
+<%@ page import="services.UserService" %>
+<%@ page import="tablePojos.User" %>
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page","allTraineesPage");
+
+  UserService us = new UserService();
+
+  User uInstructor = us.getByUserName(session.getAttribute("user").toString());
+
+  List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
+
+  String ausgabe = "";
+
+  for(int i = 0; i < lTraineeUsers.size(); i++) {
+    ausgabe = ausgabe + "<form id=\"users\" action=\"showTrainee.jsp\" method=\"post\">";
+    ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
+    ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
+      "\"class=\"list-group-item list-group-item-action text-center\"></form>";
+  }
+
+  request.setAttribute("trainees", ausgabe);
+
 %>
 
 
@@ -16,34 +38,12 @@
       <jsp:attribute name="navText">Auszubildende</jsp:attribute>
     </t:navbar>
 
-    <div class="panel panel-primary" id="result_panel">
-      <div class="panel-body">
-        <ul class="list-group">
-<!--
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Bericht</a>
-          <a href="#" class="list-group-item list-group-item-action">Bericht</a> -->
-        </ul>
-      </div>
+    <div class="inForm">
+      <ul class="list-group">
+
+          ${trainees}
+
+      </ul>
     </div>
   </jsp:body>
 </t:stdTempl>
