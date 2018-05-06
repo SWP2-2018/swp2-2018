@@ -19,7 +19,7 @@
   User user = us.getByUserName(session.getAttribute("user").toString());
   ReportService rs = new ReportService();
   List<Report> lrs = rs.getAllByStatusAndUserID(0,user.getId());
-  List<Report> lrsC = rs.getAllByStatusAndUserID(2,user.getId());
+  List<Report> lrsC = rs.getAllByStatusAndUserID(3,user.getId());
 
 
 //Erstellt Elemente für die noch offenen Berichte

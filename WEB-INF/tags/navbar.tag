@@ -2,8 +2,46 @@
 <%@attribute name="navText" fragment="true" %>
 
 
+<!--Modal Passwordaendern -->
+<div class="modal hide" id="password-modal">
+  <div class="container pwModal inForm">
+    <form action="" method="post">
+      <div class=" justify-content-lg-center inForm">
+        <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
+        <div class="form-group">
+          <h2 class="">Password &auml;ndern</h2>
+        </div>
+        <div class="form-group">
+          <hr/>
+        </div>
+        <!------ Passwort eingabe ---------->
+        <div class="form-group">
+          <input type="password" name="password" id="password" class="form-control "
+                 placeholder="Neues Passwort" required>
+        </div>
+        <!------ Buttons am Ende ---------->
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <button type="submit" class="btn btn-block btn-primary" name="pwSave" id="pwSave" value="Submit">Speichern
+              </button>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <button type="submit" class="btn btn-block btn-danger" data-dismiss="modal" name="close" id="close">
+              Schliessen
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
+
 
     <!-----Ueberschrift----->
     <a class="navbar-brand" href="">
@@ -20,6 +58,7 @@
 
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ml-auto">
+
 
         <%
           if (request.getAttribute("page").toString() == null) {
@@ -61,9 +100,9 @@
             //Einstellungen DropDown Menue und Logout Button
             ausgabe = ausgabe
               + " <li class=\"dropdown\"> <a class=\"btn nav-link\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
-              + " <i class=\"fa fa-cogs\">   Einstellungen </i> </a>"
+              + " <i class=\"fa fa-cogs\">Einstellungen </i> </a>"
               + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
-              + " <a class=\"dropdown-item \" data-toggle=\"modal\" data-target=\"#password_modal\">Passwort erneuern</a>"
+              + " <a class=\"dropdown-item btn\" data-toggle=\"modal\" data-target=\"#password-modal\">Passwort erneuern</a>"
               + " </div> </li>"
               + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> Logout - " + session.getAttribute("user").toString() + " </i> </a> </li>";
             request.setAttribute("anzeige", ausgabe);
@@ -76,36 +115,9 @@
 
       </ul>
     </div>
-
-    <div class="modal" id="password_modal">
-      <div class="modal-header">
-        <h3>Change Password <span class="extra-title muted"></span></h3>
-      </div>
-      <div class="modal-body form-horizontal">
-        <div class="control-group">
-          <label for="current_password" class="control-label">Current Password</label>
-          <div class="controls">
-            <input name="current_password" type="password">
-          </div>
-        </div>
-        <div class="control-group">
-          <label for="new_password" class="control-label">New Password</label>
-          <div class="controls">
-            <input name="new_password" type="password">
-          </div>
-        </div>
-        <div class="control-group">
-          <label for="confirm_password" class="control-label">Confirm Password</label>
-          <div class="controls">
-            <input name="confirm_password" type="password">
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button href="#" class="btn btn-primary" id="password_modal_save">Save changes</button>
-      </div>
-    </div>
     <jsp:doBody/>
+
   </div>
 </nav>
+
+

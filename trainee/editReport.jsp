@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-<%@ page import ="java.util.List"%>
+<%@ page import="java.util.List" %>
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.Report_Revision" %>
 
@@ -16,11 +16,11 @@
   List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
 
 
-  if(rv_List.size() < 1){
+  if (rv_List.size() < 1) {
     response.sendRedirect("error.jsp");
-  } else if( rv_List.size() < 2){
+  } else if (rv_List.size() < 2) {
     request.setAttribute("comment", "");
-  }else{
+  } else {
     request.setAttribute("comment", rv_List.get(1).getComment());
   }
 
@@ -28,18 +28,20 @@
 
   request.setAttribute("reportRevID", rv.getId());
 
-  if(Integer.parseInt(request.getParameter("reportStatus")) == 3){
+  if (Integer.parseInt(request.getParameter("reportStatus")) == 4
+    || Integer.parseInt(request.getParameter("reportStatus")) == 2) {
     request.setAttribute("lockFields", "readonly");
-  }
-  else{
+  } else {
     request.setAttribute("lockFields", "");
   }
-    request.setAttribute("text1", rv.getText1());
-    request.setAttribute("text2", rv.getText2());
-    request.setAttribute("text3", rv.getText3());
-    request.setAttribute("hours1", rv.getHours1());
-    request.setAttribute("hours2", rv.getHours2());
-    request.setAttribute("hours3", rv.getHours3());
+  request.setAttribute("date", request.getParameter("Date"));
+  request.setAttribute("text1", rv.getText1());
+  request.setAttribute("text2", rv.getText2());
+  request.setAttribute("text3", rv.getText3());
+  request.setAttribute("hours1", rv.getHours1());
+  request.setAttribute("hours2", rv.getHours2());
+  request.setAttribute("hours3", rv.getHours3());
+  request.setAttribute("comment", rv.getComment());
 %>
 
 
@@ -55,15 +57,15 @@
 
       <form action="../reportCheck.jsp" method="post" autocomplete="off">
 
-        <input type="hidden" name="reportRevisionID" value="${reportRevID}" />
+        <input type="hidden" name="reportRevisionID" value="${reportRevID}"/>
 
-        <div  class=" justify-content-lg-center inForm" >
+        <div class=" justify-content-lg-center inForm">
 
           <div class="form-group">
             <hr/>
           </div>
 
-          <div><h4>Wochenbericht von: </h4></div>
+          <div><h4>${date}</h4></div>
 
           <div class="form-group">
             <hr/>
@@ -77,30 +79,27 @@
             <label for="text1">Betriebliche Tätigkeiten</label>
 
             <textarea ${lockFields} type="text" name="text1" id="text1" class="form-control input"
-                      placeholder="Betriebliche Tätigkeiten">${text1}</textarea>
+                                    placeholder="Betriebliche Tätigkeiten">${text1}</textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
             <input ${lockFields} class="form-control" type="text" name="hours1" id="opHour" value="${hours1}">
           </div>
-
-
           <div class="form-group">
             <hr/>
           </div>
-
 
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
             <label for="text2">Unterweisungen, sonstige Schulungen</label>
             <textarea ${lockFields} type="text" name="text2" id="text2" class="form-control input"
-                      placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen">${text2}</textarea>
+                                    placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen">${text2}</textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control " type="text" name="hours2" id="otherHour"  value="${hours2}">
+            <input ${lockFields} class="form-control " type="text" name="hours2" id="otherHour" value="${hours2}">
           </div>
 
           <div class="form-group">
@@ -112,7 +111,7 @@
           <div class="form-group">
             <label for="text3">Themen des Berufsschulunterrichts</label>
             <textarea ${lockFields} type="text" name="text3" id="text3" class="form-control input"
-                      placeholder="Themen des Berufsschulunterrichts">${text3}</textarea>
+            placeholder="Themen des Berufsschulunterrichts">${text3}</textarea>
           </div>
 
           <div class="form-group form-inline">
@@ -123,7 +122,12 @@
           <div class="form-group">
             <hr/>
           </div>
-
+          <!------ Kommentar ---------->
+          <div class="form-group">
+            <label for="comment">Kommentar</label>
+            <textarea ${lockFields} type="comment" name="comment" id="comment" class="form-control input"
+            placeholder="Kommentar">${comment}</textarea>
+          </div>
 
           <!------ Buttons am Ende ---------->
 

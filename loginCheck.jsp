@@ -11,7 +11,6 @@
   if (user.getPassword().equals(request.getParameter("password"))) {
     if (user.getInstructor() == 1) {
       response.sendRedirect("instructor/userPageInstructor.jsp");
-
     } else {
       response.sendRedirect("trainee/userPageTrainee.jsp");
     }
