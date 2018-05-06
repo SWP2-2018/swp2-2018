@@ -50,6 +50,7 @@
             String[] bez = (String[]) request.getAttribute("bez");
             String[] icon = (String[]) request.getAttribute("icon");
 
+            //Alle anderen Buttons
             for (int i = 0; i < pages.length; i++) {
               ausgabe = ausgabe + "<li class=\"nav-item\"> <a class=\"nav-link";
               if (request.getAttribute("page").toString().equals(pages[i])) {
@@ -57,12 +58,12 @@
               }
               ausgabe = ausgabe + "\" href=\"" + pages[i] + ".jsp\"><i class=\"fa fa-" + icon[i] + "\">" + bez[i] + "</i></a></li>";
             }
-            //Einstellungen DropDown Menue
+            //Einstellungen DropDown Menue und Logout Button
             ausgabe = ausgabe
               + " <li class=\"dropdown\"> <a class=\"btn nav-link\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
               + " <i class=\"fa fa-cogs\">   Einstellungen </i> </a>"
               + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
-              + " <a class=\"dropdown-item \" href=\"../newPassword.jsp\">Passwort erneuern</a>"
+              + " <a class=\"dropdown-item \" data-toggle=\"modal\" data-target=\"#password_modal\">Passwort erneuern</a>"
               + " </div> </li>"
               + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> Logout - " + session.getAttribute("user").toString() + " </i> </a> </li>";
             request.setAttribute("anzeige", ausgabe);
@@ -73,8 +74,37 @@
         ${anzeige}
 
 
-
       </ul>
+    </div>
+
+    <div class="modal" id="password_modal">
+      <div class="modal-header">
+        <h3>Change Password <span class="extra-title muted"></span></h3>
+      </div>
+      <div class="modal-body form-horizontal">
+        <div class="control-group">
+          <label for="current_password" class="control-label">Current Password</label>
+          <div class="controls">
+            <input name="current_password" type="password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="new_password" class="control-label">New Password</label>
+          <div class="controls">
+            <input name="new_password" type="password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="confirm_password" class="control-label">Confirm Password</label>
+          <div class="controls">
+            <input name="confirm_password" type="password">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button href="#" class="btn btn-primary" id="password_modal_save">Save changes</button>
+      </div>
     </div>
     <jsp:doBody/>
   </div>

@@ -16,7 +16,14 @@
   ReportService rs = new ReportService();
   UserService us = new UserService();
 
-  User user = us.getByUserName(session.getAttribute("user").toString());
+  try {
+    User user = us.getByUserName(session.getAttribute("user").toString());
+  }catch (Exception e){
+    request.setAttribute("error", "e");
+    response.sendRedirect("error.jsp");
+
+}
+
 
   List<Report> lrs = rs.getAllByUserId(user.getId());
 

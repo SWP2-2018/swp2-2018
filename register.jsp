@@ -4,8 +4,8 @@
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  session.setAttribute("username", "login");
-  request.setAttribute("page", "");
+  session.setAttribute("user", "register");
+  request.setAttribute("page", "register");
 %>
 <t:stdTempl>
   <jsp:attribute name="titleText"> - register</jsp:attribute>
@@ -76,7 +76,7 @@
                 </div>
               </div>
             </div>
-            <!------ Ausbilder ID eingabe ---------->
+            <!------  eingabe ---------->
 
             <div class="form-group">
               <input class="form-control input " type="number" name="istructor_id" id="istructor_id"
@@ -86,19 +86,21 @@
             <!------ Passwort eingabe ---------->
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input type="password" name="password" id="password" class="form-control input-lg"
-                         placeholder="Passwort"  required>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input type="password" name="password_confirmation" id="password_confirmation"
-                         class="form-control input-lg" placeholder="Passwort wiederholen" required>
-                </div>
-              </div>
+            <div class="form-group">
+              <input type="password" name="password" id="password" class="form-control input-lg"
+                     placeholder="Passwort" required>
             </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control input-lg"
+                         placeholder="Passwort" required>
+                </div>
+              </div>
+
             <!------ Buttons am Ende ---------->
+            <div class="form-group">
+              <hr/>
+            </div>
             <div class="form-group">
               <button type="submit" class="btn btn-block btn-primary" name="register" id="register">Registrieren
               </button>
