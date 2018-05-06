@@ -27,10 +27,10 @@
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />";
     ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />";
     ausgabe = ausgabe + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action";
-    if(lrs.get(i).getStatus() == 1){
+    if(lrs.get(i).getStatus() == 2){
       ausgabe = ausgabe + " list-group-item-warning";
     }
-    else if(lrs.get(i).getStatus() == 2){
+    else if(lrs.get(i).getStatus() == 3){
       ausgabe = ausgabe + " list-group-item-danger";
     }
     ausgabe = ausgabe + " text-center\"></form>";

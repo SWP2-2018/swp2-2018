@@ -15,7 +15,7 @@
   rv.setHours2(Integer.parseInt(request.getParameter("hours2")));
   rv.setHours3(Integer.parseInt(request.getParameter("hours3")));
 
-  rv = rs.update(rv, rv.getId());
+  rs.update(rv, rv.getId());
 
 
   response.sendRedirect("trainee/allReportsPage.jsp");
