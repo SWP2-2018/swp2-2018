@@ -50,7 +50,7 @@
 
 
   String[] cards = new String[]{"openReports", "openCorrection", "someThing"};
-  String[] headline = new String[]{"Offene Berichte: "+ lrs.size(), "Noch zu Korregieren: "+ lrsC.size() , "someThing"};
+  String[] headline = new String[]{"Offene Berichte: "+ lrs.size(), "Noch zu Korrigieren: "+ lrsC.size() , "someThing"};
   String[] lists = new String[]{openReportsList, openCorrectionList, "someThing"};
 
   String output = "";

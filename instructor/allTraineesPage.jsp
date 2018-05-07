@@ -19,10 +19,12 @@
   String ausgabe = "";
 
   for(int i = 0; i < lTraineeUsers.size(); i++) {
-    ausgabe = ausgabe + "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">";
-    ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
-    ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
-      "\"class=\"list-group-item list-group-item-action text-center\"></form>";
+    if(lTraineeUsers.get(i).getId() != uInstructor.getId()) {
+      ausgabe = ausgabe + "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">";
+      ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
+      ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
+        "\"class=\"list-group-item list-group-item-action text-center\"></form>";
+    }
   }
 
   request.setAttribute("trainees", ausgabe);

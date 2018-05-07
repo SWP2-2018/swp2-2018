@@ -4,17 +4,21 @@
 
 
 <%
-  UserService us = new UserService();
-  User user = us.getByUserName(request.getParameter("user"));
-  session.setAttribute("user", user.getUser());
-  session.setAttribute("instructor", user.getInstructor());
-  if (user.getPassword().equals(request.getParameter("password"))) {
-    if (user.getInstructor() == 1) {
-      response.sendRedirect("instructor/userPageInstructor.jsp");
+  try {
+    UserService us = new UserService();
+    User user = us.getByUserName(request.getParameter("user"));
+    session.setAttribute("user", user.getUser());
+    session.setAttribute("instructor", user.getInstructor());
+    if (user.getPassword().equals(request.getParameter("password"))) {
+      if (user.getInstructor() == 1) {
+        response.sendRedirect("instructor/userPageInstructor.jsp");
+      } else {
+        response.sendRedirect("trainee/userPageTrainee.jsp");
+      }
     } else {
-      response.sendRedirect("trainee/userPageTrainee.jsp");
+      response.sendRedirect("error.jsp");
     }
-  } else {
+  } catch (Exception e){
     response.sendRedirect("error.jsp");
   }
 %>
