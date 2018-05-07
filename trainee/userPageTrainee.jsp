@@ -32,7 +32,7 @@
     openReportsList = openReportsList + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">"
       + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />"
       + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />"
-      + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action"
+      + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht vom " + lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action"
       + " text-center\"></form>";
   }
 
@@ -50,7 +50,7 @@
 
 
   String[] cards = new String[]{"openReports", "openCorrection", "someThing"};
-  String[] headline = new String[]{"Offene Berichte: "+ lrs.size(), "Noch zu Korregieren: "+ lrsC.size() , "someThing"};
+  String[] headline = new String[]{"Offene Berichte: "+ lrs.size(), "Noch zu Korrigieren: "+ lrsC.size() , "someThing"};
   String[] lists = new String[]{openReportsList, openCorrectionList, "someThing"};
 
   String output = "";
