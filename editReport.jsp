@@ -53,7 +53,7 @@
   }
 
 
-  request.setAttribute("date", request.getParameter("Date"));
+  request.setAttribute("headline", request.getParameter("SubmitReport"));
   request.setAttribute("text1", rv.getText1());
   request.setAttribute("text2", rv.getText2());
   request.setAttribute("text3", rv.getText3());
@@ -84,7 +84,7 @@
             <hr/>
           </div>
 
-          <div><h4>${date}</h4></div>
+          <div><h4>${headline}</h4></div>
 
           <div class="form-group">
             <hr/>

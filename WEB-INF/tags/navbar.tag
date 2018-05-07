@@ -76,7 +76,6 @@
               request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Alle Berichte", " Korrektur"});
               request.setAttribute("icon", new String[]{"user", "clipboard-list", "redo-alt"});
 
-
             } else if (session.getAttribute("instructor").toString().equals("1")) {
               request.setAttribute("pages", new String[]{"userPageInstructor", "newReportsPage", "allTraineesPage"});
               request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Neue Berichte", " Auszubildende"});
@@ -84,6 +83,16 @@
 
             } else {
               response.sendRedirect("error.jsp");
+            }
+
+            request.setAttribute("folder", "");
+
+            if(request.getAttribute("page").toString().equals("editReport")){
+              if(Integer.parseInt(session.getAttribute("instructor").toString()) == 0){
+                request.setAttribute("folder", "trainee/");
+              }else{
+                request.setAttribute("folder", "instructor/");
+              }
             }
 
             String[] pages = (String[]) request.getAttribute("pages");
@@ -96,7 +105,8 @@
               if (request.getAttribute("page").toString().equals(pages[i])) {
                 ausgabe = ausgabe + " disabled";
               }
-              ausgabe = ausgabe + "\" href=\"" + pages[i] + ".jsp\"><i class=\"fa fa-" + icon[i] + "\">" + bez[i] + "</i></a></li>";
+              ausgabe = ausgabe + "\" href=\"" + request.getAttribute("folder").toString() + pages[i] +
+                ".jsp\"><i class=\"fa fa-" + icon[i] + "\">" + bez[i] + "</i></a></li>";
             }
             //Einstellungen DropDown Menue und Logout Button
             ausgabe = ausgabe
