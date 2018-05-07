@@ -49,6 +49,9 @@
 
 
 
+
+
+
   String[] cards = new String[]{"openReports", "openCorrection", "someThing"};
   String[] headline = new String[]{"Offene Berichte: "+ lrs.size(), "Noch zu Korrigieren: "+ lrsC.size() , "someThing"};
   String[] lists = new String[]{openReportsList, openCorrectionList, "someThing"};
@@ -85,11 +88,9 @@
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Userpage</jsp:attribute>
   <jsp:body>
+
     <t:navbar>
       <jsp:attribute name="navText">&Uuml;bersicht</jsp:attribute>
-      <jsp:body>
-
-      </jsp:body>
     </t:navbar>
 
 

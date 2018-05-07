@@ -15,9 +15,9 @@
 <%
   request.setAttribute("page", "userPageInstructor");
 
-
+  try(UserService us = new UserService()) {
   ReportService rs = new ReportService();
-  UserService us = new UserService();
+
 
   User uInstructor = us.getByUserName(session.getAttribute("user").toString());
 
@@ -35,7 +35,7 @@
          + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(j).getId() + "\" />"
          + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />"
          + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht: " + lTraineeUsers.get(i).getLast_name() +
-          ", " + lrs.get(j).getDate() +  "\"class=\"list-group-item list-group-item-action list-group-item-primary text-center\"></form>";
+          ", " + lrs.get(j).getDate() +  "\"class= \"col-xs-1 list-group-item list-group-item-action list-group-item-primary text-center\"></form>";
       }
     }
   }
@@ -72,7 +72,7 @@
     ;
   }
   request.setAttribute("cards", output);
-
+  }
 %>
 
 

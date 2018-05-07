@@ -62,62 +62,65 @@
 
 
         <%
-          if (request.getAttribute("page").toString() == null) {
-            response.sendRedirect("error.jsp");
+          if (request.getAttribute("page").toString() != null) {
+            String ausgabe = "";
+
+            if (!(request.getAttribute("page").toString().equals("login") || request.getAttribute("page").toString().equals("logout"))) {
+
+
+              if (session.getAttribute("instructor").toString().equals("0")) {
+                request.setAttribute("pages", new String[]{"userPageTrainee", "allReportsPage", "allCorrectionPage"});
+                request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Alle Berichte", " Korrektur"});
+                request.setAttribute("icon", new String[]{"user", "clipboard-list", "redo-alt"});
+
+              } else if (session.getAttribute("instructor").toString().equals("1")) {
+                request.setAttribute("pages", new String[]{"userPageInstructor", "newReportsPage", "allTraineesPage"});
+                request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Neue Berichte", " Auszubildende"});
+                request.setAttribute("icon", new String[]{"user", "clipboard", "users"});
+
+              } else {
+                response.sendRedirect("error.jsp");
+              }
+
+              request.setAttribute("folder", "");
+
+              if (request.getAttribute("page").toString().equals("editReport")) {
+                if (Integer.parseInt(session.getAttribute("instructor").toString()) == 0) {
+                  request.setAttribute("folder", "trainee/");
+                } else {
+                  request.setAttribute("folder", "instructor/");
+                }
+              }
+
+              String[] pages = (String[]) request.getAttribute("pages");
+              String[] bez = (String[]) request.getAttribute("bez");
+              String[] icon = (String[]) request.getAttribute("icon");
+
+              //Alle anderen Buttons
+              for (int i = 0; i < pages.length; i++) {
+                ausgabe = ausgabe + "<li class=\"nav-item\"> <a class=\"nav-link";
+                if (request.getAttribute("page").toString().equals(pages[i])) {
+                  ausgabe = ausgabe + " disabled";
+                }
+                ausgabe = ausgabe + "\" href=\"" + request.getAttribute("folder").toString() + pages[i] +
+                  ".jsp\"><i class=\"fa fa-" + icon[i] + "\">" + bez[i] + "</i></a></li>";
+              }
+              //Einstellungen DropDown Menue und Logout Button
+              ausgabe = ausgabe
+                + " <li class=\"dropdown\"> "
+                + " <a class=\"nav-link\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+                + " <i class=\"fa fa-cogs\"> Einstellungen </i> </a>"
+                + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
+
+                + " <a class=\"dropdown-item btn\" data-toggle=\"modal\" data-target=\"#password-modal\">Passwort erneuern</a>"
+
+                + " </div> </li>"
+                + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> Logout - " + session.getAttribute("user").toString() + " </i> </a> </li>";
+              request.setAttribute("anzeige", ausgabe);
+            }
           }
-
-          String ausgabe = "";
-
-          if (!(request.getAttribute("page").toString().equals("login") || request.getAttribute("page").toString().equals("logout"))) {
-
-
-            if (session.getAttribute("instructor").toString().equals("0")) {
-              request.setAttribute("pages", new String[]{"userPageTrainee", "allReportsPage", "allCorrectionPage"});
-              request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Alle Berichte", " Korrektur"});
-              request.setAttribute("icon", new String[]{"user", "clipboard-list", "redo-alt"});
-
-            } else if (session.getAttribute("instructor").toString().equals("1")) {
-              request.setAttribute("pages", new String[]{"userPageInstructor", "newReportsPage", "allTraineesPage"});
-              request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Neue Berichte", " Auszubildende"});
-              request.setAttribute("icon", new String[]{"user", "clipboard", "users"});
-
-            } else {
-              response.sendRedirect("error.jsp");
-            }
-
-            request.setAttribute("folder", "");
-
-            if(request.getAttribute("page").toString().equals("editReport")){
-              if(Integer.parseInt(session.getAttribute("instructor").toString()) == 0){
-                request.setAttribute("folder", "trainee/");
-              }else{
-                request.setAttribute("folder", "instructor/");
-              }
-            }
-
-            String[] pages = (String[]) request.getAttribute("pages");
-            String[] bez = (String[]) request.getAttribute("bez");
-            String[] icon = (String[]) request.getAttribute("icon");
-
-            //Alle anderen Buttons
-            for (int i = 0; i < pages.length; i++) {
-              ausgabe = ausgabe + "<li class=\"nav-item\"> <a class=\"nav-link";
-              if (request.getAttribute("page").toString().equals(pages[i])) {
-                ausgabe = ausgabe + " disabled";
-              }
-              ausgabe = ausgabe + "\" href=\"" + request.getAttribute("folder").toString() + pages[i] +
-                ".jsp\"><i class=\"fa fa-" + icon[i] + "\">" + bez[i] + "</i></a></li>";
-            }
-            //Einstellungen DropDown Menue und Logout Button
-            ausgabe = ausgabe
-              + " <li class=\"dropdown\"> "
-              + " <a class=\"nav-link\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
-              + " <i class=\"fa fa-cogs\"> Einstellungen </i> </a>"
-              + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
-              + " <a class=\"dropdown-item btn\" data-toggle=\"modal\" data-target=\"#password-modal\">Passwort erneuern</a>"
-              + " </div> </li>"
-              + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> Logout - " + session.getAttribute("user").toString() + " </i> </a> </li>";
-            request.setAttribute("anzeige", ausgabe);
+          else{
+            response.sendRedirect("error.jsp");
           }
 
         %>

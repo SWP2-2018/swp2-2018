@@ -11,7 +11,7 @@
   request.setAttribute("page", "traineeProfile");
 
   ReportService rs = new ReportService();
-  List<Report> lrs = rs.getAllByStatusAndUserID(2, 11); //Integer.parseInt(request.getParameter("traineeID"))
+  List<Report> lrs = rs.getAllByStatusAndUserID(2, Integer.parseInt(request.getParameter("traineeID")));
 
 
 //Erstellt Elemente für die noch offenen Berichte

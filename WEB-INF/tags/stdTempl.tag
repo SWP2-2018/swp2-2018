@@ -19,11 +19,13 @@
   <title>Berichtsheft Digital <jsp:invoke fragment="titleText"/></title>
 
   <%
-    
-      if (session.getAttribute("user") == null && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")) {
+    try {
+      if (!(session.getAttribute("user") != null) && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")) {
         response.sendRedirect("error.jsp");
       }
-
+    } catch (Exception e){
+      out.println(session.getAttribute("user"));
+    }
   %>
 </head>
 <body>

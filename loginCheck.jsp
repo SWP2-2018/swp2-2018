@@ -2,11 +2,13 @@
 <%@ page import="tablePojos.User" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
-
 <%
+  UserService us = new UserService();
   try {
-    UserService us = new UserService();
+
     User user = us.getByUserName(request.getParameter("user"));
+    if(user != null){
+
     session.setAttribute("user", user.getUser());
     session.setAttribute("instructor", user.getInstructor());
     if (user.getPassword().equals(request.getParameter("password"))) {
@@ -18,8 +20,12 @@
     } else {
       response.sendRedirect("error.jsp");
     }
+    }
+    else {
+      response.sendRedirect("error.jsp");
+    }
   } catch (Exception e){
     response.sendRedirect("error.jsp");
   }
+  us.close();
 %>
-
