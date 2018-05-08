@@ -5,6 +5,8 @@
 
 
 <%@ page import ="java.util.List"%>
+<%@ page import="services.ReportRevisionService" %>
+<%@ page import="tablePojos.Report_Revision" %>
 
 
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
@@ -17,19 +19,17 @@
 
   try(UserService us = new UserService()) {
   ReportService rs = new ReportService();
-
-
+  ReportRevisionService rrs = new ReportRevisionService();
   User uInstructor = us.getByUserName(session.getAttribute("user").toString());
-
   List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
 
-  String openReportsList = "";
 
+  //--------------------------------- OPEN REPORTS ----------------------------------------------------
+  // status == 2
+  String openReportsList = "";
   for (int i = 0; i < lTraineeUsers.size(); i++) {
     List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
-
     if(lrs.size() > 0){
-
       for (int j = 0; j < lrs.size(); j++) {
         openReportsList = openReportsList + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">"
          + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(j).getId() + "\" />"
@@ -40,11 +40,45 @@
     }
   }
 
+    //--------------------------------- DECLINED REPORTS -------------------------------------------------
+    // status == 3
+    String declinedReportList = "";
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
+      List<Report> lrs = rs.getAllByStatusAndUserID(3, lTraineeUsers.get(i).getId());
+      if(lrs.size() > 0){
+        for (int j = 0; j < lrs.size(); j++) {
+          declinedReportList = declinedReportList + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">"
+            + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(j).getId() + "\" />"
+            + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />"
+            + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht: " + lTraineeUsers.get(i).getLast_name() +
+            ", " + lrs.get(j).getDate() +  "\"class= \"col-xs-1 list-group-item list-group-item-action list-group-item-primary text-center text-white bg-danger\"></form>";
+        }
+      }
+    }
+
+    //--------------------------------- IMPROVED REPORTS -------------------------------------------------
+    // status == 2 && rev-number > 1
+    String improvedReportList = "";
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
+      List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
+      if(lrs.size() > 0){
+        for (int j = 0; j < lrs.size(); j++) {
+          List<Report_Revision> reportRevisions = rrs.getAllByReportId(lrs.get(j).getId());
+          if(reportRevisions.size() > 1) {
+            improvedReportList = improvedReportList + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">"
+              + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(j).getId() + "\" />"
+              + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />"
+              + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht: " + lTraineeUsers.get(i).getLast_name() +
+              ", " + lrs.get(j).getDate() + "\"class= \"col-xs-1 list-group-item list-group-item-action list-group-item-primary text-center\"></form>";
+          }
+        }
+      }
+    }
 
 
-  String[] cards = new String[]{"openReports"};
-  String[] headline = new String[]{"Offene Berichte: "};
-  String[] lists = new String[]{openReportsList};
+  String[] cards = new String[]{"openReports", "declinedReports", "improvedReports"};
+  String[] headline = new String[]{"Offene Berichte: ", "Abgelehnte Berichte", "Verbesserte Berichte"};
+  String[] lists = new String[]{openReportsList, declinedReportList, improvedReportList};
 
   String output = "";
 
