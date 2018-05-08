@@ -6,6 +6,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.Report_Revision" %>
+<%@ page import="com.sun.org.apache.xpath.internal.operations.Bool" %>
+<%@ page import="tablePojos.Report" %>
+<%@ page import="services.ReportService" %>
 
 
 <%
@@ -23,7 +26,8 @@
   //Lädt alle Reports_Revisions aus der Datenbank aus die zu der übertragenen ReportID gehören
   ReportRevisionService rs = new ReportRevisionService();
   List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
-
+  ReportService reportService = new ReportService();
+  Report report = reportService.getById(Integer.parseInt(request.getParameter("reportID")));
 
   if (rv_List.size() < 1) {
     response.sendRedirect("error.jsp");
@@ -52,6 +56,23 @@
     request.setAttribute("lockComment", "");
   }
 
+  String buttons = null;
+  if((byte)session.getAttribute("instructor") == 1){
+    if (report.getStatus() != 4 && report.getStatus() != 3){
+    buttons =
+      "<div class=\"row\">\n"+
+        "<div class=\"col-md-6\">\n"+
+          "<button formaction=\"scripts/reportAccepted.jsp\" type=\"submit\" class=\"btn btn-block btn-success\" name=\"send\" id=\"send\" value=\"Submit\">Akzeptieren\n</button>\n"+
+        "</div>\n"+
+        "<div class=\"col-md-6\">\n"+
+          "<button formaction=\"scripts/reportDeclined.jsp\" type=\"submit\" class=\"btn btn-block btn-danger\" name=\"send\" id=\"send\" value=\"Submit\">Ablehnen\n</button>\n"+
+        "</div>\n"+
+      "</div>\n"
+    ;
+    }
+  } else {
+    buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\" value=\"Submit\">False\n</button>\n";
+  }
 
   request.setAttribute("headline", request.getParameter("SubmitReport"));
   request.setAttribute("text1", rv.getText1());
@@ -61,6 +82,7 @@
   request.setAttribute("hours2", rv.getHours2());
   request.setAttribute("hours3", rv.getHours3());
   request.setAttribute("comment", rv.getComment());
+  request.setAttribute("buttons", buttons);
 %>
 
 
@@ -149,13 +171,9 @@
           </div>
 
           <!------ Buttons am Ende ---------->
-
-          <div class="form-group">
-            <button type="submit" class="btn   btn-block btn-primary" name="send" id="send" value="Submit">Abschicken
-            </button>
+          <div class=\"form-group\">
+          ${buttons}
           </div>
-
-
         </div>
 
       </form>
