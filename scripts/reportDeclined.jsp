@@ -1,0 +1,36 @@
+<%@page import="services.UserService" %>
+<%@page import="tablePojos.User" %>
+<%@ page import="services.ReportRevisionService" %>
+<%@ page import="services.ReportService" %>
+<%@ page import="tablePojos.Report" %>
+<%@ page import="tablePojos.Report_Revision" %>
+<%@ page import="java.util.List" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+
+<%
+  ReportRevisionService reportRevisionService = new ReportRevisionService();
+  Report_Revision oldReportRevision = reportRevisionService.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
+  ReportService reportService = new ReportService();
+  Report report = reportService.getById(oldReportRevision.getReport_id());
+  report.setStatus(3);
+  reportService.update(report, report.getId());
+
+  List<Report_Revision> reportRevisions = reportRevisionService.getAllByReportId(report.getId());
+  Report_Revision newReportRevision = new Report_Revision();
+  newReportRevision.setText1(oldReportRevision.getText1());
+  newReportRevision.setText2(oldReportRevision.getText2());
+  newReportRevision.setText3(oldReportRevision.getText3());
+  newReportRevision.setHours1(oldReportRevision.getHours1());
+  newReportRevision.setHours2(oldReportRevision.getHours2());
+  newReportRevision.setHours3(oldReportRevision.getHours3());
+  newReportRevision.setComment(oldReportRevision.getComment());
+  reportRevisionService.create(newReportRevision, oldReportRevision.getReport_id());
+
+  if((byte)session.getAttribute("instructor") == 0){
+    response.sendRedirect("/../trainee/allReportsPage.jsp");
+  }else {
+    response.sendRedirect("/../instructor/userPageInstructor.jsp");
+  }
+%>
+
