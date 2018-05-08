@@ -71,7 +71,7 @@
     ;
     }
   } else {
-    buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\" value=\"Submit\">False\n</button>\n";
+    buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\" value=\"Submit\">Abschicken\n</button>\n";
   }
 
   request.setAttribute("headline", request.getParameter("SubmitReport"));
