@@ -16,11 +16,8 @@
   request.setAttribute("page", "editReport");
 
 
-
   UserService us = new UserService();
   User user = us.getByUserName(session.getAttribute("user").toString());
-
-
 
 
   //Lädt alle Reports_Revisions aus der Datenbank aus die zu der übertragenen ReportID gehören
@@ -29,18 +26,22 @@
   ReportService reportService = new ReportService();
   Report report = reportService.getById(Integer.parseInt(request.getParameter("reportID")));
 
+
+  request.setAttribute("commentPlaceholder","Kommentar");
+  request.setAttribute("comment", "");
   if (rv_List.size() < 1) {
     response.sendRedirect("error.jsp");
-  } else if (rv_List.size() < 2) {
-    request.setAttribute("comment", "");
-  } else {
+  } else if (rv_List.size() > 1 && Integer.parseInt(session.getAttribute("instructor").toString())==1){
+    request.setAttribute("commentPlaceholder","Letzter Kommentar: "+ rv_List.get(1).getComment());
+  }  else if(rv_List.size() > 1){
     request.setAttribute("comment", rv_List.get(1).getComment());
   }
 
-  Report_Revision rv = rv_List.get(0);
 
+  Report_Revision rv = rv_List.get(0);
   request.setAttribute("reportRevID", rv.getId());
- //Felder readonly machen in den passenden Berichten
+
+  //Felder readonly machen in den passenden Berichten
   if (Integer.parseInt(request.getParameter("reportStatus")) == 4
     || Integer.parseInt(request.getParameter("reportStatus")) == 2) {
     request.setAttribute("lockFields", "readonly");
@@ -51,7 +52,7 @@
     request.setAttribute("roComment", "readonly");
   }
   //Komentarfeld readonly machen für Azubis
-  if (user.getInstructor()==1 || Integer.parseInt(request.getParameter("reportStatus")) == 3) {
+  if (user.getInstructor() == 1 || Integer.parseInt(request.getParameter("reportStatus")) == 3) {
     request.setAttribute("lockComment", "");
 
   } else {
@@ -59,18 +60,18 @@
   }
 
   String buttons = null;
-  if((byte)session.getAttribute("instructor") == 1){
-    if (report.getStatus() != 4 && report.getStatus() != 3){
-    buttons =
-      "<div class=\"row\">\n"+
-        "<div class=\"col-md-6\">\n"+
-          "<button formaction=\"scripts/reportAccepted.jsp\" type=\"submit\" class=\"btn btn-block btn-success\" name=\"send\" id=\"send\" value=\"Submit\">Akzeptieren\n</button>\n"+
-        "</div>\n"+
-        "<div class=\"col-md-6\">\n"+
-          "<button formaction=\"scripts/reportDeclined.jsp\" type=\"submit\" class=\"btn btn-block btn-danger\" name=\"send\" id=\"send\" value=\"Submit\">Ablehnen\n</button>\n"+
-        "</div>\n"+
-      "</div>\n"
-    ;
+  if ((byte) session.getAttribute("instructor") == 1) {
+    if (report.getStatus() != 4 && report.getStatus() != 3) {
+      buttons =
+        "<div class=\"row\">\n" +
+          "<div class=\"col-md-6\">\n" +
+          "<button formaction=\"scripts/reportAccepted.jsp\" type=\"submit\" class=\"btn btn-block btn-success\" name=\"send\" id=\"send\" value=\"Submit\">Akzeptieren\n</button>\n" +
+          "</div>\n" +
+          "<div class=\"col-md-6\">\n" +
+          "<button formaction=\"scripts/reportDeclined.jsp\" type=\"submit\" class=\"btn btn-block btn-danger\" name=\"send\" id=\"send\" value=\"Submit\">Ablehnen\n</button>\n" +
+          "</div>\n" +
+          "</div>\n"
+      ;
     }
   } else {
     buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\" value=\"Submit\">Abschicken\n</button>\n";
@@ -83,8 +84,8 @@
   request.setAttribute("hours1", rv.getHours1());
   request.setAttribute("hours2", rv.getHours2());
   request.setAttribute("hours3", rv.getHours3());
-  request.setAttribute("comment", rv.getComment());
   request.setAttribute("buttons", buttons);
+
 %>
 
 
@@ -127,7 +128,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control" type="text" name="hours1" id="opHour" value="${hours1}">
+            <input ${lockFields} class="form-control" type="number" name="hours1" id="opHour" value="${hours1}">
           </div>
           <div class="form-group">
             <hr/>
@@ -142,7 +143,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control " type="text" name="hours2" id="otherHour" value="${hours2}">
+            <input ${lockFields} class="form-control " type="number" name="hours2" id="otherHour" value="${hours2}">
           </div>
 
           <div class="form-group">
@@ -154,12 +155,12 @@
           <div class="form-group">
             <label for="text3">Themen des Berufsschulunterrichts</label>
             <textarea ${lockFields} type="text" name="text3" id="text3" class="form-control input"
-            placeholder="Themen des Berufsschulunterrichts">${text3}</textarea>
+                                    placeholder="Themen des Berufsschulunterrichts">${text3}</textarea>
           </div>
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control " type="text" name="hours3" id="text" value="${hours3}">
+            <input ${lockFields} class="form-control " type="number" name="hours3" id="text" value="${hours3}">
           </div>
 
           <div class="form-group">
@@ -169,12 +170,12 @@
           <div class="form-group ${lockComment}">
             <label for="comment">Kommentar</label>
             <textarea ${roComment} type="comment" name="comment" id="comment" class="form-control input "
-            placeholder="Kommentar">${comment}</textarea>
+                                   placeholder="${commentPlaceholder}">${comment}</textarea>
           </div>
 
           <!------ Buttons am Ende ---------->
           <div class=\"form-group\">
-          ${buttons}
+              ${buttons}
           </div>
         </div>
 
