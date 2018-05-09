@@ -22,7 +22,7 @@
 
   ReportService reportService = new ReportService();
   Report report = reportService.getById(rv.getReport_id());
-  report.setStatus(2);//Wird nicht gesetzt ???
+  report.setStatus(2);
 
 
   rv.setText1(request.getParameter("text1"));
@@ -33,7 +33,7 @@
   rv.setHours3(Integer.parseInt(request.getParameter("hours3")));
 
 
-
+  reportService.update(report, report.getId());
   rs.update(rv, rv.getId());
   if (user.getInstructor() == 0) {
 //TODO zur korrektur seite zurück schicken

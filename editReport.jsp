@@ -44,16 +44,18 @@
   if (Integer.parseInt(request.getParameter("reportStatus")) == 4
     || Integer.parseInt(request.getParameter("reportStatus")) == 2) {
     request.setAttribute("lockFields", "readonly");
+    request.setAttribute("roComment", "");
 
   } else {
     request.setAttribute("lockFields", "");
+    request.setAttribute("roComment", "readonly");
   }
   //Komentarfeld readonly machen für Azubis
-  if (user.getInstructor()==0) {
-    request.setAttribute("lockComment", "invisible");
+  if (user.getInstructor()==1 || Integer.parseInt(request.getParameter("reportStatus")) == 3) {
+    request.setAttribute("lockComment", "");
 
   } else {
-    request.setAttribute("lockComment", "");
+    request.setAttribute("lockComment", "invisible");
   }
 
   String buttons = null;
@@ -166,7 +168,7 @@
           <!------ Kommentar ---------->
           <div class="form-group ${lockComment}">
             <label for="comment">Kommentar</label>
-            <textarea  type="comment" name="comment" id="comment" class="form-control input "
+            <textarea ${roComment} type="comment" name="comment" id="comment" class="form-control input "
             placeholder="Kommentar">${comment}</textarea>
           </div>
 
