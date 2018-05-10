@@ -7,7 +7,7 @@ body{
   background-color: #0080A0;
 }
 
-#test {
+.inForm {
   margin: 0 auto;
-  max-width: 70%;
+  max-width: 500px;
 }

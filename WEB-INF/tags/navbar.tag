@@ -1,6 +1,7 @@
 <%@tag description="navbar" pageEncoding="UTF-8" %>
 <%@attribute name="navText" fragment="true" %>
 
+
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
 
@@ -28,7 +29,7 @@
         <%
           }
           // Überprüfe ob der User einem Azubi (instructor == 0) enspricht
-          if (session.getAttribute("username").toString().equals("azubi")) {
+          if (session.getAttribute("instructor").toString().equals("0")) {
         %>
 
         <!-----Start eines Elements----->
@@ -36,7 +37,7 @@
           <a class="nav-link
         <%
           //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString() == "userPageT") {
+          if (request.getAttribute("page").toString().equals("userPageT")) {
         %>
           disabled
         <%
@@ -52,7 +53,7 @@
           <a class="nav-link
         <%
           //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString() == "allReportsPage") {
+          if (request.getAttribute("page").toString().equals("allReportsPage")) {
         %>
           disabled
         <%
@@ -68,20 +69,20 @@
           <a class="nav-link
         <%
           //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString() == "correctionPage") {
+          if (request.getAttribute("page").toString().equals("correctionPage")) {
         %>
           disabled
         <%
           }
         %>
-         " href=" correctionPage.jsp"><i class="fa fa-redo-alt"></i> Korrektur</a>
+         " href=" allCorrectionPage.jsp"><i class="fa fa-redo-alt"></i> Korrektur</a>
         </li>
         <!-----Ende eines Elements----->
 
 
         <%
           //Die Elemente für einen Ausbilder(instructor == 1)
-        } else if (session.getAttribute("username").toString().equals("ausbilder")) {
+        } else if (session.getAttribute("instructor").toString().equals("1")) {
 
         %>
 
@@ -91,7 +92,7 @@
           <a class="nav-link
         <%
           //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString() == "userPageI") {
+          if (request.getAttribute("page").toString().equals("userPageI")) {
         %>
           disabled
         <%
@@ -107,7 +108,7 @@
           <a class="nav-link
         <%
           //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString() == "newReports") {
+          if (request.getAttribute("page").toString().equals("newReports")) {
         %>
           disabled
         <%
@@ -123,7 +124,7 @@
           <a class="nav-link
         <%
           //Disabled Listenelemente im falle das die dazugehörende Seite angezeigt wird.
-          if (request.getAttribute("page").toString() == "allTrainees") {
+          if (request.getAttribute("page").toString().equals("allTrainees")) {
         %>
           disabled
         <%
@@ -139,7 +140,7 @@
 
         <!-----Elemente die alle benötigen----->
         <li class="nav-item">
-          <a class="nav-link " href="logout.jsp"><i class="fa fa-sign-out-alt"></i> Logout - ${name}</a>
+          <a class="nav-link " href="../logout.jsp"><i class="fa fa-sign-out-alt"></i> Logout - ${user}</a>
         </li>
 
       </ul>
