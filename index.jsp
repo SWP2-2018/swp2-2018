@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
@@ -15,7 +15,7 @@
 
       <div id="login-form">
 
-        <form action="loginCheck.jsp" method="post" autocomplete="off">
+        <form action="scripts/loginCheck.jsp" method="post" autocomplete="off">
           <div class=" justify-content-lg-center inForm" >
             <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
             <div class="form-group">

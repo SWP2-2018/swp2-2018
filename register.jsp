@@ -1,10 +1,9 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
-  session.setAttribute("user", "register");
   request.setAttribute("page", "register");
 %>
 <t:stdTempl>
@@ -15,7 +14,7 @@
 
       <div id="register-form">
 
-        <form action="registerCheck.jsp" method="post" autocomplete="off">
+        <form action="scripts/registerCheck.jsp" method="post" autocomplete="off">
 
 
           <div class="form-group">

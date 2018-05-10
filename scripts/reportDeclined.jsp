@@ -2,7 +2,6 @@
 <%@ page import="services.ReportService" %>
 <%@ page import="tablePojos.Report" %>
 <%@ page import="tablePojos.Report_Revision" %>
-<%@ page import="java.util.List" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
