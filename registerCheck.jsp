@@ -7,7 +7,6 @@
 
 <%
   UserService us = new UserService();
-  UserService us2 = new UserService();
   User user = new User();
 
   user.setUser(request.getParameter("user"));

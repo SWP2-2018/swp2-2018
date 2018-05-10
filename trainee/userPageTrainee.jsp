@@ -18,31 +18,42 @@
   UserService us = new UserService();
   User user = us.getByUserName(session.getAttribute("user").toString());
   ReportService rs = new ReportService();
-  List<Report> lrs = rs.getAllByStatusAndUserID(0,user.getId());
-  List<Report> lrsC = rs.getAllByStatusAndUserID(2,user.getId());
+  List<Report> lrs = rs.getAllByStatusAndUserID(1,user.getId());
+  List<Report> lrsC = rs.getAllByStatusAndUserID(3,user.getId());
+
+
+
+
 
 
 //Erstellt Elemente für die noch offenen Berichte
   String openReportsList = "";
   for (int i = 0; i < lrs.size(); i++) {
-    openReportsList = openReportsList
-      + "<a href=\"editReport.jsp\" class=\"list-group-item list-group-item-action"
-      + " text-center\">" + lrs.get(i).getDate() + "</a>";
+    openReportsList = openReportsList + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">"
+      + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />"
+      + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />"
+      + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht vom " + lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action"
+      + " text-center\"></form>";
   }
 
   //Erstellt Elemente für die zu Korrigierenden Berichte
   String openCorrectionList = "";
   for (int i = 0; i < lrsC.size(); i++) {
     openCorrectionList = openCorrectionList
-      + "<a href=\"editReport.jsp\" class=\"list-group-item list-group-item-action"
-      + " list-group-item-danger"
-      + " text-center\">" + lrs.get(i).getDate() + "</a>";
+      + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">"
+      + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrsC.get(i).getId() + "\" />"
+      + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrsC.get(i).getStatus() + "\" />"
+      + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrsC.get(i).getDate() + "\"class=\"list-group-item list-group-item-danger list-group-item-action"
+      + " text-center\"></form>";
   }
 
 
 
+
+
+
   String[] cards = new String[]{"openReports", "openCorrection", "someThing"};
-  String[] headline = new String[]{"Offene Berichte: "+ lrs.size(), "Noch zu Korregieren: "+lrsC.size() , "someThing"};
+  String[] headline = new String[]{"Offene Berichte: "+ lrs.size(), "Noch zu Korrigieren: "+ lrsC.size() , "someThing"};
   String[] lists = new String[]{openReportsList, openCorrectionList, "someThing"};
 
   String output = "";
@@ -77,11 +88,9 @@
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Userpage</jsp:attribute>
   <jsp:body>
+
     <t:navbar>
       <jsp:attribute name="navText">&Uuml;bersicht</jsp:attribute>
-      <jsp:body>
-
-      </jsp:body>
     </t:navbar>
 
 

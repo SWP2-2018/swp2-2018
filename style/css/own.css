@@ -25,7 +25,10 @@ body {
 
 }
 
+.pwModal{
+  padding: 30px;
+  max-height: 350px;
+  background-color: #dee2e6;
 
 
-
-
+}
