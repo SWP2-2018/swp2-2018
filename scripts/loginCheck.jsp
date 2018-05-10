@@ -13,19 +13,19 @@
     session.setAttribute("instructor", user.getInstructor());
     if (user.getPassword().equals(request.getParameter("password"))) {
       if (user.getInstructor() == 1) {
-        response.sendRedirect("instructor/userPageInstructor.jsp");
+        response.sendRedirect("../instructor/userPageInstructor.jsp");
       } else {
-        response.sendRedirect("trainee/userPageTrainee.jsp");
+        response.sendRedirect("../trainee/userPageTrainee.jsp");
       }
     } else {
-      response.sendRedirect("error.jsp");
+      response.sendRedirect("../error.jsp");
     }
     }
     else {
-      response.sendRedirect("error.jsp");
+      response.sendRedirect("../error.jsp");
     }
   } catch (Exception e){
-    response.sendRedirect("error.jsp");
+    response.sendRedirect("../error.jsp");
   }
   us.close();
 %>

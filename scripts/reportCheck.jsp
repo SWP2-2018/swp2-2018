@@ -8,7 +8,6 @@
 <%@ page import="services.ReportService" %>
 <%@ page import="tablePojos.Report" %>
 <%@ page import="tablePojos.Report_Revision" %>
-<%@ page import="java.util.List" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -37,9 +36,9 @@
   rs.update(rv, rv.getId());
   if (user.getInstructor() == 0) {
 //TODO zur korrektur seite zurück schicken
-    response.sendRedirect("trainee/allReportsPage.jsp");
+    response.sendRedirect("../trainee/allReportsPage.jsp");
   }else {
-    response.sendRedirect("instructor/allTraineesPage.jsp");
+    response.sendRedirect("../instructor/allTraineesPage.jsp");
   }
 
 %>

@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <%@page import="services.UserService" %>
@@ -6,7 +6,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.Report_Revision" %>
-<%@ page import="com.sun.org.apache.xpath.internal.operations.Bool" %>
 <%@ page import="tablePojos.Report" %>
 <%@ page import="services.ReportService" %>
 
@@ -28,7 +27,7 @@
 
 
   request.setAttribute("commentPlaceholder","Kommentar");
-  request.setAttribute("comment", "");
+ // request.setAttribute("comment", "");
   if (rv_List.size() < 1) {
     response.sendRedirect("error.jsp");
   } else if (rv_List.size() > 1 && Integer.parseInt(session.getAttribute("instructor").toString())==1){
@@ -65,16 +64,19 @@
       buttons =
         "<div class=\"row\">\n" +
           "<div class=\"col-md-6\">\n" +
-          "<button formaction=\"scripts/reportAccepted.jsp\" type=\"submit\" class=\"btn btn-block btn-success\" name=\"send\" id=\"send\" value=\"Submit\">Akzeptieren\n</button>\n" +
+          "<button formaction=\"scripts/reportAccepted.jsp\" type=\"submit\" class=\"btn btn-block btn-success\"" +
+            " name=\"send\" id=\"send\" value=\"Submit\">Akzeptieren\n</button>\n" +
           "</div>\n" +
           "<div class=\"col-md-6\">\n" +
-          "<button formaction=\"scripts/reportDeclined.jsp\" type=\"submit\" class=\"btn btn-block btn-danger\" name=\"send\" id=\"send\" value=\"Submit\">Ablehnen\n</button>\n" +
+          "<button formaction=\"scripts/reportDeclined.jsp\" type=\"submit\" class=\"btn btn-block btn-danger\"" +
+          " name=\"send\" id=\"send\" value=\"Submit\">Ablehnen\n</button>\n" +
           "</div>\n" +
           "</div>\n"
       ;
     }
   } else {
-    buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\" value=\"Submit\">Abschicken\n</button>\n";
+    buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\"" +
+      " value=\"Submit\">Abgeben\n</button>\n";
   }
 
   request.setAttribute("headline", request.getParameter("SubmitReport"));
@@ -99,7 +101,7 @@
 
     <div aria-readonly="true" class="container">
 
-      <form action="reportCheck.jsp" method="post" autocomplete="off">
+      <form action="scripts/reportCheck.jsp" method="post" autocomplete="off">
 
         <input type="hidden" name="reportRevisionID" value="${reportRevID}"/>
 
@@ -122,7 +124,7 @@
 
             <label for="text1">Betriebliche Tätigkeiten</label>
 
-            <textarea ${lockFields} type="text" name="text1" id="text1" class="form-control input"
+            <textarea ${lockFields} name="text1" id="text1" class="form-control input"
                                     placeholder="Betriebliche Tätigkeiten">${text1}</textarea>
           </div>
 
@@ -137,7 +139,7 @@
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
             <label for="text2">Unterweisungen, sonstige Schulungen</label>
-            <textarea ${lockFields} type="text" name="text2" id="text2" class="form-control input"
+            <textarea ${lockFields} name="text2" id="text2" class="form-control input"
                                     placeholder="Unterweisungen, betrieblicher Unterricht, sonstige Schulungen">${text2}</textarea>
           </div>
 
@@ -154,7 +156,7 @@
           <!------ sonstige Schulungen eingabe ---------->
           <div class="form-group">
             <label for="text3">Themen des Berufsschulunterrichts</label>
-            <textarea ${lockFields} type="text" name="text3" id="text3" class="form-control input"
+            <textarea ${lockFields} name="text3" id="text3" class="form-control input"
                                     placeholder="Themen des Berufsschulunterrichts">${text3}</textarea>
           </div>
 
@@ -169,7 +171,7 @@
           <!------ Kommentar ---------->
           <div class="form-group ${lockComment}">
             <label for="comment">Kommentar</label>
-            <textarea ${roComment} type="comment" name="comment" id="comment" class="form-control input "
+            <textarea ${roComment} name="comment" id="comment" class="form-control input "
                                    placeholder="${commentPlaceholder}">${comment}</textarea>
           </div>
 

@@ -27,10 +27,10 @@
   //Nutzer auf die error Seite um.
   if (us.create(user) == null) {
     request.setAttribute("error", "NullPointerException");
-    response.setHeader("Refresh", "0;url=error.jsp");
+    response.sendRedirect("../error.jsp");
 
   } else {
-    response.setHeader("Refresh", "3;url=index.jsp");
+    response.sendRedirect("../index.jsp");
   }
 %>
 
