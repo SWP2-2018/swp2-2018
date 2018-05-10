@@ -26,7 +26,5 @@
 
   us.create(user);
 
-
-
 %>
 

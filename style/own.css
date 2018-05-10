@@ -12,8 +12,18 @@ body {
 .inForm {
   margin: 0 auto;
   max-width: 500px;
+  padding: 10px;
+}
+.userPageList {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 10px;
 }
 
+.card-header{
+  background-color: #acacac;
+
+}
 
 
 

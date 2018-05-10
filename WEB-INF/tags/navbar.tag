@@ -6,7 +6,9 @@
   <div class="container-fluid">
 
     <!-----Ueberschrift----->
-    <a class="navbar-brand" href=""><jsp:invoke fragment="navText"/></a>
+    <a class="navbar-brand" href="">
+      <jsp:invoke fragment="navText"/>
+    </a>
 
     <div class="navbar-header">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -26,21 +28,21 @@
 
           String ausgabe = "";
 
-          if(!(request.getAttribute("page").toString().equals("login") || request.getAttribute("page").toString().equals("logout"))){
+          if (!(request.getAttribute("page").toString().equals("login") || request.getAttribute("page").toString().equals("logout"))) {
 
 
             if (session.getAttribute("instructor").toString().equals("0")) {
               request.setAttribute("pages", new String[]{"userPageTrainee", "allReportsPage", "allCorrectionPage"});
               request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Alle Berichte", " Korrektur"});
-              request.setAttribute("icon", new String[]{"user", "clipboard-list","redo-alt"});
+              request.setAttribute("icon", new String[]{"user", "clipboard-list", "redo-alt"});
 
 
-            }else if(session.getAttribute("instructor").toString().equals("1")){
+            } else if (session.getAttribute("instructor").toString().equals("1")) {
               request.setAttribute("pages", new String[]{"userPageInstructor", "newReportsPage", "allTraineesPage"});
               request.setAttribute("bez", new String[]{" &Uuml;bersicht", " Neue Berichte", " Auszubildende"});
-              request.setAttribute("icon", new String[]{"user", "clipboard","users"});
+              request.setAttribute("icon", new String[]{"user", "clipboard", "users"});
 
-            }else{
+            } else {
               response.sendRedirect("error.jsp");
             }
 
@@ -48,21 +50,29 @@
             String[] bez = (String[]) request.getAttribute("bez");
             String[] icon = (String[]) request.getAttribute("icon");
 
-              for (int i = 0; i < pages.length; i++) {
-                ausgabe = ausgabe + "<li class=\"nav-item\"> <a class=\"nav-link";
-                if (request.getAttribute("page").toString().equals(pages[i])) {
-                  ausgabe = ausgabe + " disabled";
-                }
-                ausgabe = ausgabe + "\" href=\"" + pages[i] + ".jsp\"><i class=\"fa fa-" + icon[i] + "\"></i>" + bez[i] + "</a>";
+            for (int i = 0; i < pages.length; i++) {
+              ausgabe = ausgabe + "<li class=\"nav-item\"> <a class=\"nav-link";
+              if (request.getAttribute("page").toString().equals(pages[i])) {
+                ausgabe = ausgabe + " disabled";
               }
-
-            ausgabe = ausgabe + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> </i> Logout - " + session.getAttribute("user").toString() + "</a> </li>";
+              ausgabe = ausgabe + "\" href=\"" + pages[i] + ".jsp\"><i class=\"fa fa-" + icon[i] + "\">" + bez[i] + "</i></a></li>";
+            }
+            //Einstellungen DropDown Menue
+            ausgabe = ausgabe
+              + " <li class=\"dropdown\"> <a class=\"btn nav-link\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+              + " <i class=\"fa fa-cogs\">   Einstellungen </i> </a>"
+              + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
+              + " <a class=\"dropdown-item \" href=\"../newPassword.jsp\">Passwort erneuern</a>"
+              + " </div> </li>"
+              + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> Logout - " + session.getAttribute("user").toString() + " </i> </a> </li>";
             request.setAttribute("anzeige", ausgabe);
           }
 
         %>
 
         ${anzeige}
+
+
 
       </ul>
     </div>

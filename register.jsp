@@ -71,7 +71,7 @@
               </div>
               <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group">
-                  <input class="form-control input " type="text" name="educational_year" id="educational_year"
+                  <input class="form-control input " type="number" name="educational_year" id="educational_year"
                          placeholder="Ausbildungs Jahr">
                 </div>
               </div>
@@ -79,7 +79,7 @@
             <!------ Ausbilder ID eingabe ---------->
 
             <div class="form-group">
-              <input class="form-control input " type="text" name="istructor_id" id="istructor_id"
+              <input class="form-control input " type="number" name="istructor_id" id="istructor_id"
                      placeholder="Ausbilder ID">
             </div>
 

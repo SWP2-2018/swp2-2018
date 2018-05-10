@@ -1,10 +1,10 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ page import="tablePojos.Report" %>
 
 <%@ page import ="java.util.List"%>
 
 <%@ page import="services.ReportService" %>
+<%@ page import="tablePojos.Report" %>
 <%@ page import="services.UserService" %>
 <%@ page import="tablePojos.User" %>
 
@@ -23,22 +23,21 @@
   String ausgabe = "";
 
   for (int i = 0; i < lrs.size(); i++) {
-    ausgabe = ausgabe + "<a href=\"newReport.jsp\" class=\"list-group-item list-group-item-action";
+    ausgabe = ausgabe + "<form id=\"reports\" action=\"editReport.jsp\" method=\"post\">";
+    ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />";
+    ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />";
+    ausgabe = ausgabe + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action";
     if(lrs.get(i).getStatus() == 1){
       ausgabe = ausgabe + " list-group-item-warning";
     }
     else if(lrs.get(i).getStatus() == 2){
       ausgabe = ausgabe + " list-group-item-danger";
     }
-    ausgabe = ausgabe + " text-center\">" + lrs.get(i).getDate() + "</a>";
+    ausgabe = ausgabe + " text-center\"></form>";
   }
 
   request.setAttribute("berichte", ausgabe);
 
- // request.setAttribute("bericht", "<a href=\"newReport.jsp\" class=\"list-group-item list-group-item-action\">Bericht</a>");
- // request.setAttribute("bWarning", "<a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-warning\">Bericht</a>");
- // request.setAttribute("bDanger", "<a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-danger\">Bericht</a>");
-  //col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-4
 %>
 
 
