@@ -130,7 +130,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control" type="number" name="hours1" id="opHour" value="${hours1}">
+            <input ${lockFields} class="form-control" type="number" min="0" name="hours1" id="opHour" value="${hours1}">
           </div>
           <div class="form-group">
             <hr/>
@@ -145,7 +145,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control " type="number" name="hours2" id="otherHour" value="${hours2}">
+            <input ${lockFields} class="form-control " type="number" min="0" name="hours2" id="otherHour" value="${hours2}">
           </div>
 
           <div class="form-group">
@@ -162,7 +162,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control " type="number" name="hours3" id="text" value="${hours3}">
+            <input ${lockFields} class="form-control " type="number"  min="0" name="hours3" id="text" value="${hours3}">
           </div>
 
           <div class="form-group">
