@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page errorPage="../error.jsp"%>
 
+<%@ page import="services.PasswordEncode" %>
 <%@ page import="services.UserService" %>
 <%@ page import="tablePojos.User" %>
 
@@ -10,19 +11,18 @@
     User user = us.getByUserName(request.getParameter("user"));
     if(user != null){
 
-    session.setAttribute("user", user.getUser());
-    session.setAttribute("instructor", user.getInstructor());
-    if (user.getPassword().equals(request.getParameter("password"))) {
-      if (user.getInstructor() == 1) {
-        response.sendRedirect("../instructor/userPageInstructor.jsp");
+      session.setAttribute("user", user.getUser());
+      session.setAttribute("instructor", user.getInstructor());
+      if (PasswordEncode.match(request.getParameter("password"), user.getPassword())) {
+        if (user.getInstructor() == 1) {
+          response.sendRedirect("../instructor/userPageInstructor.jsp");
+        } else {
+          response.sendRedirect("../trainee/userPageTrainee.jsp");
+        }
       } else {
-        response.sendRedirect("../trainee/userPageTrainee.jsp");
+        response.sendRedirect("../error.jsp");
       }
     } else {
-      response.sendRedirect("../error.jsp");
-    }
-    }
-    else {
       response.sendRedirect("../error.jsp");
     }
 
