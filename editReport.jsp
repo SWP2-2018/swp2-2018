@@ -58,7 +58,7 @@
     request.setAttribute("lockComment", "invisible");
   }
 
-  String buttons = null;
+  String buttons = "";
   if ((byte) session.getAttribute("instructor") == 1) {
     if (report.getStatus() != 4 && report.getStatus() != 3) {
       buttons =
