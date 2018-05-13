@@ -1,7 +1,9 @@
+<%@ page import="services.PasswordEncode" %>
 <%@ page import="services.UserService" %>
 <%@ page import="tablePojos.User" %>
-<%@ page import="java.util.Date" %>
+
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 
@@ -10,7 +12,7 @@
   User user = new User();
 
   user.setUser(request.getParameter("user"));
-  user.setPassword(request.getParameter("password"));
+  user.setPassword(services.PasswordEncode.encode(request.getParameter("password")));
   user.setInstructor(new Byte("0"));
   user.setLast_name(request.getParameter("last_name"));
   user.setFirst_name(request.getParameter("first_name"));
