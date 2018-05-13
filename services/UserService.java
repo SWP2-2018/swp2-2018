@@ -10,7 +10,13 @@ import java.util.List;
 /**
  * Class UserService provides methods to communicate with the database regarding the Users.
  */
-public class UserService {
+public class UserService implements AutoCloseable{
+
+    public Session userSession ;
+
+    public UserService() {
+        userSession = new Configuration().configure().buildSessionFactory().openSession();
+    }
 
     /**
      * Methods persists the provided user into the database.
@@ -20,12 +26,9 @@ public class UserService {
      * @return User
      */
     public User create(User user){
-        Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
-
         try {
             tx = userSession.beginTransaction();
-
             if (getByUserName(user.getUser())!=null)
             {
                 user = null;
@@ -35,14 +38,10 @@ public class UserService {
                 userSession.save(user);
                 tx.commit();
             }
-
-
         } catch (Exception e) {
             if (tx!=null) tx.rollback();
             user = null;
             e.printStackTrace();
-        } finally {
-            userSession.close();
         }
         return user;
     }
@@ -55,18 +54,12 @@ public class UserService {
      * @return User
      */
     public User getById(int userId){
-        Session userSession = null;
         User user = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
-            user = (User) userSession.get(User.class, userId);
+            user = userSession.get(User.class, userId);
         } catch (Exception e){
             user = null;
             e.printStackTrace();
-        } finally {
-            if(userSession != null && userSession.isOpen()){
-                userSession.close();
-            }
         }
         return user;
     }
@@ -79,19 +72,13 @@ public class UserService {
      * @return User
      */
     public User getByUserName(String userName){
-        Session userSession = null;
         User user = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             String query = "FROM User where user= :userName";
             user = (User)userSession.createQuery(query).setParameter("userName",userName).list().get(0);
         } catch (Exception e){
             user = null;
             e.printStackTrace();
-        } finally {
-            if(userSession != null && userSession.isOpen()){
-                userSession.close();
-            }
         }
         return user;
     }
@@ -104,19 +91,13 @@ public class UserService {
      * @return List<User>
      */
     public List<User> getAllByInstructorId(int instructor_id){
-        Session userSession = null;
         List<User> userListe = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             String query = "FROM User where instructor_id= :instructor_id";
             userListe = userSession.createQuery(query).setParameter("instructor_id",instructor_id).list();
         } catch (Exception e){
             userListe = null;
             e.printStackTrace();
-        } finally {
-            if(userSession != null && userSession.isOpen()){
-                userSession.close();
-            }
         }
         return userListe;
     }
@@ -130,15 +111,11 @@ public class UserService {
      * @return User
      */
     public User update(User user, int userId ){
-        Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
         User oldUser = null;
-
         try {
             tx = userSession.beginTransaction();
-            oldUser = (User) userSession.get(User.class, userId);
-
-            //oldUser.setUser(user.getUser());
+            oldUser = userSession.get(User.class, userId);
             if (oldUser!=null) {
                 oldUser.setPassword(user.getPassword());
                 oldUser.setInstructor(user.getInstructor());
@@ -159,11 +136,15 @@ public class UserService {
             if (tx!=null) tx.rollback();
             oldUser = null;
             e.printStackTrace();
-        } finally {
+        }
+        return oldUser;
+    }
+
+    @Override
+    public void close() {
+        if(userSession != null && userSession.isOpen()){
             userSession.close();
         }
-
-        return oldUser;
     }
 }
 

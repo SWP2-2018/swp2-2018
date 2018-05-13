@@ -11,7 +11,13 @@ import java.util.List;
 /**
  * Class ReportService provides methods to communicate with the database regarding the Reports.
  */
-public class ReportService {
+public class ReportService implements AutoCloseable {
+
+    public Session userSession;
+
+    public ReportService() {
+        userSession = new Configuration().configure().buildSessionFactory().openSession();
+    }
 
     /**
      * Methods persists the provided report into the database.
@@ -22,7 +28,6 @@ public class ReportService {
      * @return User
      */
     public Report create(Report report, int userId){
-        Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
 
         try {
@@ -42,8 +47,6 @@ public class ReportService {
             if (tx!=null) tx.rollback();
             report = null;
             e.printStackTrace();
-        } finally {
-            userSession.close();
         }
         return report;
     }
@@ -56,18 +59,12 @@ public class ReportService {
      * @return Report
      */
     public Report getById(int reportId){
-        Session userSession = null;
         Report report = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             report = (Report) userSession.get(Report.class, reportId);
         } catch (Exception e){
             report = null;
             e.printStackTrace();
-        } finally {
-            if(userSession != null && userSession.isOpen()){
-                userSession.close();
-            }
         }
         return report;
     }
@@ -80,19 +77,13 @@ public class ReportService {
      * @return List<Report>
      */
     public List<Report> getAllByUserId(int user_id){
-        Session userSession = null;
         List<Report> reportListe = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             String query = "FROM Report where user_id= :user_id order by id desc";
             reportListe = userSession.createQuery(query).setParameter("user_id",user_id).list();
         } catch (Exception e){
             reportListe = null;
             e.printStackTrace();
-        } finally {
-            if(userSession != null && userSession.isOpen()){
-                userSession.close();
-            }
         }
         return reportListe;
     }
@@ -105,19 +96,13 @@ public class ReportService {
      * @return List<Report>
      */
     public List<Report> getAllByStatus(int status){
-        Session userSession = null;
         List<Report> reportListe = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             String query = "FROM Report where status= :status order by id desc";
             reportListe = userSession.createQuery(query).setParameter("status",status).list();
         } catch (Exception e){
             reportListe = null;
             e.printStackTrace();
-        } finally {
-            if(userSession != null && userSession.isOpen()){
-                userSession.close();
-            }
         }
         return reportListe;
     }
@@ -131,19 +116,13 @@ public class ReportService {
      * @return List<Report>
      */
     public List<Report> getAllByStatusAndUserID(int status,int user_id){
-        Session userSession = null;
         List<Report> reportListe = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             String query = "FROM Report where status= :status and user_id= :user_id order by id";
             reportListe = userSession.createQuery(query).setParameter("status",status).setParameter("user_id",user_id).list();
         } catch (Exception e){
             reportListe = null;
             e.printStackTrace();
-        } finally {
-            if(userSession != null && userSession.isOpen()){
-                userSession.close();
-            }
         }
         return reportListe;
     }
@@ -157,7 +136,6 @@ public class ReportService {
      * @return Report
      */
     public Report update(Report report, int reportId){
-        Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
         Report oldReport = null;
 
@@ -181,13 +159,16 @@ public class ReportService {
             if (tx!=null) tx.rollback();
             oldReport = null;
             e.printStackTrace();
-        } finally {
-            userSession.close();
         }
-
         return oldReport;
     }
 
+    @Override
+    public void close() throws Exception {
+        if(userSession != null && userSession.isOpen()){
+            userSession.close();
+        }
+    }
 }
 
 

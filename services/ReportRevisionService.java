@@ -11,7 +11,13 @@ import java.util.List;
 /**
  * Class ReportRevisionService.java provides methods to communicate with the database regarding the ReportRevisions.
  */
-public class ReportRevisionService {
+public class ReportRevisionService implements AutoCloseable {
+
+    public Session userSession;
+
+    public ReportRevisionService() {
+        userSession = new Configuration().configure().buildSessionFactory().openSession();
+    }
 
     /**
      * Methods persists the provided reportRevision into the database.
@@ -23,7 +29,6 @@ public class ReportRevisionService {
      */
     public Report_Revision create(Report_Revision reportRevision, int reportId) {
 
-        Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
 
         try {
@@ -41,7 +46,6 @@ public class ReportRevisionService {
                 }
                 userSession.save(reportRevision);
                 tx.commit();
-                userSession.close();
 
             } else { // Kein Report Eintrag gefunden
                 reportRevision = null;
@@ -51,10 +55,7 @@ public class ReportRevisionService {
             if (tx!=null) tx.rollback();
             reportRevision = null;
             e.printStackTrace();
-        } finally {
-            userSession.close();
         }
-
         return reportRevision;
 
     }
@@ -67,18 +68,12 @@ public class ReportRevisionService {
      * @throws Exception
      */
     public Report_Revision getById(int reportRevisionId) {
-        Session userSession = null;
         Report_Revision reportRevision = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             reportRevision = (Report_Revision) userSession.get(Report_Revision.class, reportRevisionId);
         } catch (Exception e) {
             reportRevision = null;
             e.printStackTrace();
-        } finally {
-            if (userSession != null && userSession.isOpen()) {
-                userSession.close();
-            }
         }
         return reportRevision;
     }
@@ -93,19 +88,14 @@ public class ReportRevisionService {
      */
 
     public List<Report_Revision> getAllByReportId(int reportRevisionReportId) {
-        Session userSession = null;
         List<Report_Revision> reportListe = null;
         try {
-            userSession = new Configuration().configure().buildSessionFactory().openSession();
             String query = "FROM Report_Revision where report_id= :reportRevisionReportId order by number desc";
             reportListe = userSession.createQuery(query).setParameter("reportRevisionReportId", reportRevisionReportId).list();
+            //if (reportListe )
         } catch (Exception e) {
-            reportListe = null;
+            //reportListe = null;
             e.printStackTrace();
-        } finally {
-            if (userSession != null && userSession.isOpen()) {
-                userSession.close();
-            }
         }
         return reportListe;
     }
@@ -120,7 +110,6 @@ public class ReportRevisionService {
      * @throws Exception
      */
     public Report_Revision update(Report_Revision reportRevision, int reportRevisionId) {
-        Session userSession = new Configuration().configure().buildSessionFactory().openSession();
         Transaction tx = null;
         Report_Revision oldReportRevision = null;
 
@@ -146,13 +135,17 @@ public class ReportRevisionService {
             if (tx != null) tx.rollback();
             oldReportRevision = null;
             e.printStackTrace();
-        } finally {
-            userSession.close();
         }
 
         return oldReportRevision;
     }
 
+    @Override
+    public void close() {
+        if(userSession != null && userSession.isOpen()){
+            userSession.close();
+        }
+    }
 }
  
 
