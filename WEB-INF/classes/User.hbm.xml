@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name = "tablePojos.User" table = "user">
+
+    <meta attribute = "class-description">
+      This class contains the user data.
+    </meta>
+
+    <id name = "id" type = "int" column = "id">
+      <generator class="native"/>
+    </id>
+
+    <property name = "user" column = "user" type = "string"/>
+    <property name = "password" column = "password" type = "string"/>
+    <property name = "instructor" column = "instructor" type = "byte"/>
+    <property name = "first_name" column = "first_name" type = "string"/>
+    <property name = "last_name" column = "last_name" type = "string"/>
+    <property name = "job" column = "job" type = "string"/>
+    <property name = "educational_year" column = "educational_year" type = "int"/>
+    <property name = "instructor_id" column = "instructor_id" type = "int"/>
+    <property name = "start_date" column = "start_date" type = "java.util.Date"/>
+
+  </class>
+</hibernate-mapping>
