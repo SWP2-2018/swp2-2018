@@ -22,7 +22,9 @@
   ReportRevisionService rrs = new ReportRevisionService();
   User uInstructor = us.getByUserName(session.getAttribute("user").toString());
   List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
-
+  int countOpenReports = 0;
+  int countDeclinedReports = 0;
+  int countImprovedReports = 0;
 
   //--------------------------------- OPEN REPORTS ----------------------------------------------------
   // status == 2
@@ -36,6 +38,7 @@
          + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />"
          + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht: " + lTraineeUsers.get(i).getLast_name() +
           ", " + lrs.get(j).getDate() +  "\"class= \"col-xs-1 list-group-item list-group-item-action list-group-item-primary text-center\"></form>";
+        countOpenReports++;
       }
     }
   }
@@ -52,6 +55,7 @@
             + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />"
             + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht: " + lTraineeUsers.get(i).getLast_name() +
             ", " + lrs.get(j).getDate() +  "\"class= \"col-xs-1 list-group-item list-group-item-action list-group-item-primary text-center text-white bg-danger\"></form>";
+          countDeclinedReports++;
         }
       }
     }
@@ -70,6 +74,7 @@
               + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />"
               + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht: " + lTraineeUsers.get(i).getLast_name() +
               ", " + lrs.get(j).getDate() + "\"class= \"col-xs-1 list-group-item list-group-item-action list-group-item-primary text-center\"></form>";
+            countImprovedReports++;
           }
         }
       }
@@ -77,7 +82,11 @@
 
 
   String[] cards = new String[]{"openReports", "declinedReports", "improvedReports"};
-  String[] headline = new String[]{"Offene Berichte: ", "Abgelehnte Berichte", "Verbesserte Berichte"};
+  String[] headline = new String[]{
+    "Offene Berichte: " + countOpenReports,
+    "Abgelehnte Berichte: " + countDeclinedReports,
+    "Verbesserte Berichte: " + countImprovedReports
+  };
   String[] lists = new String[]{openReportsList, declinedReportList, improvedReportList};
 
   String output = "";
