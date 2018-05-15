@@ -45,18 +45,22 @@
     || Integer.parseInt(request.getParameter("reportStatus")) == 2) {
     request.setAttribute("lockFields", "readonly");
     request.setAttribute("roComment", "");
-
   } else {
     request.setAttribute("lockFields", "");
     request.setAttribute("roComment", "readonly");
   }
-  //Komentarfeld readonly machen für Azubis
+  //Kommentarfeld readonly machen für Azubis
   if (user.getInstructor() == 1 || Integer.parseInt(request.getParameter("reportStatus")) == 3) {
     request.setAttribute("lockComment", "");
-
   } else {
     request.setAttribute("lockComment", "invisible");
   }
+
+  // Felder readonly für Ausbilder...
+  if(user.getInstructor() == 1){
+    request.setAttribute("lockFields", "readonly");
+  }
+
 
   String buttons = "";
   if ((byte) session.getAttribute("instructor") == 1) {
