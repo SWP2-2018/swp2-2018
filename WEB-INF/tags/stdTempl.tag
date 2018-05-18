@@ -1,5 +1,5 @@
 <%@tag description="standard Page Template" pageEncoding="UTF-8"%>
-<%@attribute name="titleText" fragment="true" %>
+<%@attribute name="titleText"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>Berichtsheft Digital <jsp:invoke fragment="titleText"/></title>
+    <title>Berichtsheft Digital ${titleText}</title>
 
     <%
         if (!(session.getAttribute("user") != null) && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")) {

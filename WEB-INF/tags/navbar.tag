@@ -1,5 +1,5 @@
 <%@tag description="navbar" pageEncoding="UTF-8" %>
-<%@attribute name="navText" fragment="true" %>
+<%@attribute name="navText"%>
 
 
 <!--Modal Passwordaendern -->
@@ -46,7 +46,7 @@
 
 
     <a class="navbar-brand" href="">
-      <jsp:invoke fragment="navText"/>
+      ${navText}
     </a>
 
     <div class="navbar-header">

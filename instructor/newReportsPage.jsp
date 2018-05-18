@@ -3,10 +3,12 @@
 <%@ page errorPage="../error.jsp"%>
 
 <%@ page import ="java.util.List"%>
+<%@ page import="java.util.ArrayList" %>
 
 <%@ page import="services.ReportService" %>
-<%@ page import="tablePojos.Report" %>
 <%@ page import="services.UserService" %>
+
+<%@ page import="tablePojos.Report" %>
 <%@ page import="tablePojos.User" %>
 
 <!-- Setzte request Attribute "page" für die navbar -->
@@ -20,25 +22,21 @@
 
   List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
 
-  String ausgabe = "";
+
+  List<List<Report>> allListReports = new ArrayList<>();
 
   for (int i = 0; i < lTraineeUsers.size(); i++) {
+
     List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
 
     if(lrs.size() > 0){
 
-      for (int j = 0; j < lrs.size(); j++) {
-        ausgabe = ausgabe + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">";
-        ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(j).getId() + "\" />";
-        ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />";
-        ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht: " + lTraineeUsers.get(i).getLast_name() +
-          ", " + lrs.get(j).getDate() +  "\"class=\"list-group-item list-group-item-action list-group-item-primary text-center\"></form>";
-      }
+    allListReports.add(lrs);
+
+    request.setAttribute("listReports", allListReports);
+
     }
   }
-
-  request.setAttribute("berichte", ausgabe);
-
 
 %>
 
@@ -53,7 +51,9 @@
     <div class="inForm">
       <ul class="list-group">
 
-          ${berichte}
+        <t:formList>
+          <jsp:attribute name="formList">-1</jsp:attribute>
+        </t:formList>
 
       </ul>
     </div>

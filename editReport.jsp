@@ -86,6 +86,8 @@
     }
   }
 
+  //ToDo pageContext?
+
   request.setAttribute("headline", request.getParameter("SubmitReport"));
   request.setAttribute("text1", rv.getText1());
   request.setAttribute("text2", rv.getText2());
