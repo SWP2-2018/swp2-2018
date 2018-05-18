@@ -2,13 +2,14 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page errorPage="../error.jsp"%>
 
-<%@ page import="tablePojos.Report" %>
-
 <%@ page import ="java.util.List"%>
+<%@ page import="java.util.ArrayList" %>
 
 <%@ page import="services.ReportService" %>
 <%@ page import="services.UserService" %>
+
 <%@ page import="tablePojos.User" %>
+<%@ page import="tablePojos.Report" %>
 
 <!-- Setzte request Attribute "page" für die navbar -->
 <%
@@ -21,17 +22,11 @@
 
   List<Report> lrs = rs.getAllByStatusAndUserID(3, user.getId());
 
-  String ausgabe = "";
+  List<List<Report>> allListReports = new ArrayList<>();
+  allListReports.add(lrs);
 
-  for (int i = 0; i < lrs.size(); i++) {
-    ausgabe = ausgabe + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">";
-    ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />";
-    ausgabe = ausgabe + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />";
-    ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitReport\" value=\"Wochenbericht vom " + lrs.get(i).getDate() +
-      "\"class=\"list-group-item list-group-item-action list-group-item-danger text-center\"></form>";
-  }
+  request.setAttribute("listReports", allListReports);
 
-  request.setAttribute("bericht", ausgabe);
 %>
 
 
@@ -44,7 +39,9 @@
     <div class="inForm">
       <ul class="list-group">
 
-        ${bericht}
+        <t:formList>
+          <jsp:attribute name="formList">0</jsp:attribute>
+        </t:formList>
 
       </ul>
     </div>
