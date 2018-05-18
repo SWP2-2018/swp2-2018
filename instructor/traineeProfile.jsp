@@ -1,9 +1,10 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ page errorPage="../error.jsp"%>
+
 <%@ page import="services.ReportService" %>
 <%@ page import="tablePojos.Report" %>
 <%@ page import="java.util.List" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
 <!-- Setzte Attribute Page für die navbar -->

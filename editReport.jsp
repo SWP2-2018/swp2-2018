@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ page errorPage="error.jsp"%>
 
 <%@page import="services.UserService" %>
 <%@page import="tablePojos.User" %>
