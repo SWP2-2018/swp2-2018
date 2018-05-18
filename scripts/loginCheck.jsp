@@ -1,10 +1,11 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page errorPage="../error.jsp"%>
+
 <%@ page import="services.UserService" %>
 <%@ page import="tablePojos.User" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%
   UserService us = new UserService();
-  try {
 
     User user = us.getByUserName(request.getParameter("user"));
     if(user != null){
@@ -24,8 +25,6 @@
     else {
       response.sendRedirect("../error.jsp");
     }
-  } catch (Exception e){
-    response.sendRedirect("../error.jsp");
-  }
+
   us.close();
 %>

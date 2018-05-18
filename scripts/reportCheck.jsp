@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page errorPage="../error.jsp"%>
+
 <%@ page import="services.UserService" %>
 <%@ page import="services.ReportRevisionService" %>
 <%@ page import="tablePojos.User" %>
@@ -8,9 +11,6 @@
 <%@ page import="services.ReportService" %>
 <%@ page import="tablePojos.Report" %>
 <%@ page import="tablePojos.Report_Revision" %>
-
-
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%
   UserService us = new UserService();
