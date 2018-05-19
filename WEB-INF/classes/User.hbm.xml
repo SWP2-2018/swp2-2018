@@ -10,11 +10,12 @@
       This class contains the user data.
     </meta>
 
+
     <id name = "id" type = "int" column = "id">
       <generator class="native"/>
     </id>
 
-    <property name = "user" column = "user" type = "string"/>
+    <property name = "email" column = "email" type = "string"/>
     <property name = "password" column = "password" type = "string"/>
     <property name = "instructor" column = "instructor" type = "byte"/>
     <property name = "first_name" column = "first_name" type = "string"/>
