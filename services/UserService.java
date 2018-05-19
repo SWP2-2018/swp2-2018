@@ -29,7 +29,7 @@ public class UserService implements AutoCloseable{
         Transaction tx = null;
         try {
             tx = userSession.beginTransaction();
-            if (getByUserName(user.getUser())!=null)
+            if (getByUserName(user.getEmail())!=null)
             {
                 user = null;
             }
