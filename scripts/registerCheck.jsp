@@ -29,12 +29,11 @@
 
   //Falls beim erstellen des Nutzers ein Problem auftritt bekommen wir ein null zurueck und leiten
   //Nutzer auf die error Seite um.
-  if (us.create(user) == null) {
+  if (us.create(user) != null) {
+    response.sendRedirect("../login.jsp");
+  } else {
     request.setAttribute("error", "NullPointerException");
     response.sendRedirect("../error.jsp");
-
-  } else {
-    response.sendRedirect("../index.jsp");
   }
 %>
 

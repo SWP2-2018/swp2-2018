@@ -109,7 +109,7 @@
               <hr/>
             </div>
             <div class="form-group">
-              <a href="index.jsp" type="button" class="btn btn-block btn-success" name="btn-login">zum Login</a>
+              <a href="login.jsp" type="button" class="btn btn-block btn-success" name="btn-login">zum Login</a>
             </div>
           </div>
 

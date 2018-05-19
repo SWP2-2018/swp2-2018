@@ -16,8 +16,9 @@
       <jsp:body>
       </jsp:body>
     </t:navbar>
-    <h1>Logout was done successfully.</h1>
-    You will be redirected in a few seconds.
+    </br>
+    <p class="h1 text-center">Logout was done successfully.</p>
+    <p class="text-center">You will be redirected in a few seconds.</p>
   </jsp:body>
 </t:stdTempl>
 
@@ -25,5 +26,5 @@
   session.removeAttribute("user");
   session.removeAttribute("password");
   session.invalidate();
-  response.setHeader("Refresh", "3;url=index.jsp");
+  response.setHeader("Refresh", "3;url=login.jsp");
 %>
