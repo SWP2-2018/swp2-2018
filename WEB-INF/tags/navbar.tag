@@ -4,6 +4,7 @@
 <!-----Nav Bar----->
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
+
     <a class="navbar-brand" href="">
       <img src="../style/icons/icon.svg" class="img-rounded"  height="50">
       ${navText}
@@ -14,12 +15,10 @@
               aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
     </div>
 
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ml-auto">
-
 
         <%
           if (request.getAttribute("page").toString() != null) {
@@ -79,17 +78,13 @@
           else{
             response.sendRedirect("error.jsp");
           }
-
         %>
 
         ${anzeige}
 
-
       </ul>
     </div>
     <jsp:doBody/>
-
   </div>
 </nav>
-
 

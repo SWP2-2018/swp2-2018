@@ -18,57 +18,54 @@
 <%
   request.setAttribute("page", "userPageInstructor");
 
-  UserService us = new UserService();
-  ReportService rs = new ReportService();
-  ReportRevisionService rrs = new ReportRevisionService();
-  User uInstructor = us.getByUserName(session.getAttribute("user").toString());
-  List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
+  try(UserService us = new UserService(); ReportService rs = new ReportService(); ReportRevisionService rrs = new ReportRevisionService()) {
 
-  List<List<Report>> allListReports = new ArrayList<>();
+    User uInstructor = us.getByUserName(session.getAttribute("user").toString());
+    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
 
+    List<List<Report>> allListReports = new ArrayList<>();
 
-
-  //--------------------------------- OPEN REPORTS ----------------------------------------------------
-  // status == 2
-  allListReports.add(new ArrayList<>());
-  for (int i = 0; i < lTraineeUsers.size(); i++) {
-    List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
-    if (lrs.size() > 0) {
-      allListReports.get(allListReports.size() - 1).addAll(lrs);
+    //--------------------------------- OPEN REPORTS ----------------------------------------------------
+    // status == 2
+    allListReports.add(new ArrayList<>());
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
+      List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
+      if (lrs.size() > 0) {
+        allListReports.get(allListReports.size() - 1).addAll(lrs);
+      }
     }
-  }
 
     //--------------------------------- DECLINED REPORTS -------------------------------------------------
     // status == 3
-  allListReports.add(new ArrayList<>());
-  for (int i = 0; i < lTraineeUsers.size(); i++) {
-    List<Report> lrs = rs.getAllByStatusAndUserID(3, lTraineeUsers.get(i).getId());
-    if (lrs.size() > 0) {
-      allListReports.get(allListReports.size() - 1).addAll(lrs);
+    allListReports.add(new ArrayList<>());
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
+      List<Report> lrs = rs.getAllByStatusAndUserID(3, lTraineeUsers.get(i).getId());
+      if (lrs.size() > 0) {
+        allListReports.get(allListReports.size() - 1).addAll(lrs);
+      }
     }
-  }
 
     //--------------------------------- IMPROVED REPORTS -------------------------------------------------
     // status == 2 && rev-number > 1
-  allListReports.add(new ArrayList<>());
-  for (int i = 0; i < lTraineeUsers.size(); i++) {
-    List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
+    allListReports.add(new ArrayList<>());
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
+      List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
 
-    if (lrs.size() > 0) {
-      for (int j = 0; j < lrs.size(); j++) {
-        List<Report_Revision> reportRevisions = rrs.getAllByReportId(lrs.get(j).getId());
-        if (reportRevisions.size() > 1) {
-          allListReports.get(allListReports.size() - 1).add(lrs.get(j));
+      if (lrs.size() > 0) {
+        for (int j = 0; j < lrs.size(); j++) {
+          List<Report_Revision> reportRevisions = rrs.getAllByReportId(lrs.get(j).getId());
+          if (reportRevisions.size() > 1) {
+            allListReports.get(allListReports.size() - 1).add(lrs.get(j));
+          }
         }
       }
     }
+    request.setAttribute("listReports", allListReports);
+
+    pageContext.setAttribute("countOpenReports", allListReports.get(0).size());
+    pageContext.setAttribute("countDeclinedReports", allListReports.get(1).size());
+    pageContext.setAttribute("countImprovedReports", allListReports.get(2).size());
   }
-  request.setAttribute("listReports", allListReports);
-
-  pageContext.setAttribute("countOpenReports",allListReports.get(0).size());
-  pageContext.setAttribute("countDeclinedReports", allListReports.get(1).size());
-  pageContext.setAttribute("countImprovedReports", allListReports.get(2).size());
-
 %>
 
 

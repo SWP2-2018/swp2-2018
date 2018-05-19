@@ -11,25 +11,25 @@
 <%
   request.setAttribute("page","allTraineesPage");
 
-  UserService us = new UserService();
+  try(UserService us = new UserService()) {
 
-  User uInstructor = us.getByUserName(session.getAttribute("user").toString());
+    User uInstructor = us.getByUserName(session.getAttribute("user").toString());
 
-  List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
+    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
 
-  String ausgabe = "";
+    String ausgabe = "";
 
-  for(int i = 0; i < lTraineeUsers.size(); i++) {
-    if(lTraineeUsers.get(i).getId() != uInstructor.getId()) {
-      ausgabe = ausgabe + "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">";
-      ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
-      ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
-        "\"class=\"list-group-item list-group-item-action text-center\"></form>";
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
+      if (lTraineeUsers.get(i).getId() != uInstructor.getId()) {
+        ausgabe = ausgabe + "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">";
+        ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
+        ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
+          "\"class=\"list-group-item list-group-item-action text-center\"></form>";
+      }
     }
+
+    request.setAttribute("trainees", ausgabe);
   }
-
-  request.setAttribute("trainees", ausgabe);
-
 %>
 
 
