@@ -15,29 +15,25 @@
 <%
   request.setAttribute("page","newReportsPage");
 
-  ReportService rs = new ReportService();
-  UserService us = new UserService();
+  try(ReportService rs = new ReportService();  UserService us = new UserService()) {
+    User uInstructor = us.getByUserName(session.getAttribute("user").toString());
 
-  User uInstructor = us.getByUserName(session.getAttribute("user").toString());
+    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
 
-  List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
+    List<List<Report>> allListReports = new ArrayList<>();
 
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
 
-  List<List<Report>> allListReports = new ArrayList<>();
+      List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
 
-  for (int i = 0; i < lTraineeUsers.size(); i++) {
+      if (lrs.size() > 0) {
 
-    List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
+        allListReports.add(lrs);
 
-    if(lrs.size() > 0){
-
-    allListReports.add(lrs);
-
-    request.setAttribute("listReports", allListReports);
-
+        request.setAttribute("listReports", allListReports);
+      }
     }
   }
-
 %>
 
 

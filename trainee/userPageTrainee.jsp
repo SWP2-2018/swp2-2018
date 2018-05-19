@@ -14,22 +14,22 @@
 <%
   request.setAttribute("page", "userPageTrainee");
 
+  try(UserService us = new UserService(); ReportService rs = new ReportService()) {
 
-  UserService us = new UserService();
-  User user = us.getByUserName(session.getAttribute("user").toString());
-  ReportService rs = new ReportService();
-  List<Report> lrs = rs.getAllByStatusAndUserID(1,user.getId());
-  List<Report> lrsC = rs.getAllByStatusAndUserID(3,user.getId());
+    User user = us.getByUserName(session.getAttribute("user").toString());
 
-  List<List<Report>> allListReports = new ArrayList<>();
-  allListReports.add(lrs);
-  allListReports.add(lrsC);
+    List<Report> lrs = rs.getAllByStatusAndUserID(1, user.getId());
+    List<Report> lrsC = rs.getAllByStatusAndUserID(3, user.getId());
 
-  request.setAttribute("listReports", allListReports);
+    List<List<Report>> allListReports = new ArrayList<>();
+    allListReports.add(lrs);
+    allListReports.add(lrsC);
 
-  pageContext.setAttribute("countOpenReports", lrs.size());
-  pageContext.setAttribute("countCorrectedReports", lrsC.size());
+    request.setAttribute("listReports", allListReports);
 
+    pageContext.setAttribute("countOpenReports", lrs.size());
+    pageContext.setAttribute("countCorrectedReports", lrsC.size());
+  }
 %>
 
 

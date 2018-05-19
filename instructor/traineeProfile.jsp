@@ -14,15 +14,16 @@
 <%
   request.setAttribute("page", "traineeProfile");
 
-  ReportService rs = new ReportService();
-  List<Report> lrs = rs.getAllByStatusAndUserID(2, Integer.parseInt(request.getParameter("traineeID")));
+  try(ReportService rs = new ReportService()) {
+    List<Report> lrs = rs.getAllByStatusAndUserID(2, Integer.parseInt(request.getParameter("traineeID")));
 
-  List<List<Report>> allListReports = new ArrayList<>();
-  allListReports.add(lrs);
+    List<List<Report>> allListReports = new ArrayList<>();
+    allListReports.add(lrs);
 
-  request.setAttribute("listReports", allListReports);
+    request.setAttribute("listReports", allListReports);
 
-  pageContext.setAttribute("opReCount", lrs.size());
+    pageContext.setAttribute("opReCount", lrs.size());
+  }
 %>
 
 

@@ -15,19 +15,19 @@
   //Setz Attribut für die navbar
   request.setAttribute("page", "allReportsPage");
 
-  ReportService rs = new ReportService();
-  UserService us = new UserService();
+  try(ReportService rs = new ReportService(); UserService us = new UserService()) {
 
-  User user = us.getByUserName(session.getAttribute("user").toString());
 
-  //Liste mit allen Reports des Users
-  List<Report> lrs = rs.getAllByUserId(user.getId());
+    User user = us.getByUserName(session.getAttribute("user").toString());
 
-  List<List<Report>> allListReports = new ArrayList<>();
-  allListReports.add(lrs);
+    //Liste mit allen Reports des Users
+    List<Report> lrs = rs.getAllByUserId(user.getId());
 
-  request.setAttribute("listReports", allListReports);
+    List<List<Report>> allListReports = new ArrayList<>();
+    allListReports.add(lrs);
 
+    request.setAttribute("listReports", allListReports);
+  }
 %>
 
 

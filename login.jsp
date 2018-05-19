@@ -23,6 +23,9 @@
   <jsp:attribute name="titleText"> - Login</jsp:attribute>
   <jsp:body>
 
+    <t:navbar>
+      <jsp:attribute name="navText">Login</jsp:attribute>
+    </t:navbar>
 
     <div class="container inForm">
 
@@ -59,7 +62,7 @@
             <!------ Buttons am Ende ---------->
 
             <div class="form-group">
-              <button type="submit" class="btn btn-block btn-primary" name="signup" id="signup" value="Submit">Login
+              <button type="submit" class="btn btn-block btn-setting" name="signup" id="signup" value="Submit">Login
               </button>
             </div>
           </div>

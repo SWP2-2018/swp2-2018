@@ -15,18 +15,18 @@
 <%
   request.setAttribute("page","allCorrectionPage");
 
-  ReportService rs = new ReportService();
-  UserService us = new UserService();
+  try{ReportService rs = new ReportService(); UserService us = new UserService()){
 
-  User user = us.getByUserName(session.getAttribute("user").toString());
 
-  List<Report> lrs = rs.getAllByStatusAndUserID(3, user.getId());
+    User user = us.getByUserName(session.getAttribute("user").toString());
 
-  List<List<Report>> allListReports = new ArrayList<>();
-  allListReports.add(lrs);
+    List<Report> lrs = rs.getAllByStatusAndUserID(3, user.getId());
 
-  request.setAttribute("listReports", allListReports);
+    List<List<Report>> allListReports = new ArrayList<>();
+    allListReports.add(lrs);
 
+    request.setAttribute("listReports", allListReports);
+  }
 %>
 
 
