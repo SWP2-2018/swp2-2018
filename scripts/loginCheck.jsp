@@ -9,21 +9,21 @@
   UserService us = new UserService();
 
     User user = us.getByUserName(request.getParameter("user"));
-    if(user != null){
+    if(user != null && PasswordEncode.match(request.getParameter("password"), user.getPassword())){
 
       session.setAttribute("user", user.getUser());
       session.setAttribute("instructor", user.getInstructor());
-      if (PasswordEncode.match(request.getParameter("password"), user.getPassword())) {
+
         if (user.getInstructor() == 1) {
           response.sendRedirect("../instructor/userPageInstructor.jsp");
         } else {
           response.sendRedirect("../trainee/userPageTrainee.jsp");
         }
-      } else {
-        response.sendRedirect("../error.jsp");
-      }
+
     } else {
-      response.sendRedirect("../error.jsp");
+      us.close();
+      session.setAttribute("wrongData", "Falsche Daten");
+      response.sendRedirect("../login.jsp");
     }
 
   us.close();

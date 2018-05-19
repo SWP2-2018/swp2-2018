@@ -6,10 +6,11 @@
   <title>JSP Page</title>
 </head>
 <body>
-<h1>An Error has occured,Please try again later...</h1>
+</br>
+<p class="h1 text-center">An Error has occured,Please try again later...</p>
 
 <%
-  response.setHeader("Refresh", "3;url=/index.jsp");
+  response.setHeader("Refresh", "2;url=/login.jsp");
 %>
 
 </body>

@@ -1,65 +1,36 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@page errorPage="error.jsp"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" >
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style/css/own.css">
 
 
-<!-- Setzte Attribute Page für die navbar -->
-<%
-  request.setAttribute("page", "login");
-%>
-<t:stdTempl>
-  <jsp:attribute name="titleText"> - Login</jsp:attribute>
-  <jsp:body>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-    <div class="container inForm">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-      <div id="login-form">
+  <title>Berichtsheft Digital</title>
 
-        <form action="scripts/loginCheck.jsp" method="post" autocomplete="off">
-          <div class=" justify-content-lg-center inForm" >
-            <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
-            <div class="form-group">
-              <h2 class="">Anmelden</h2>
-            </div>
+</head>
+  <body>
 
-            <div class="form-group">
-              <hr/>
-            </div>
+    <div class="container-fluid  text-center">
 
-            <!------ Nutzername eingabe ---------->
+      </br>
+      <p class="display-2">Berichtsheft Digital</p>
+      <p class="h2">Cookies und so lust drauf?</p>
 
-            <div class="form-group">
-              <input type="text" name="user" id="user" class="form-control"
-                     placeholder="Nutzername" required>
-            </div>
+      </br>
+      <a class="btn btn-primary btn-lg" id="login" href="login.jsp" role="button">Weiter zur Loginseite</a>
 
-            <!------ Passwort eingabe ---------->
-
-            <div class="form-group">
-              <input type="password" name="password" id="password" class="form-control "
-                     placeholder="Passwort" required>
-            </div>
-
-            <!------ Buttons am Ende ---------->
-
-            <div class="form-group">
-              <button type="submit" class="btn btn-block btn-primary" name="signup" id="signup" value="Submit">Login
-              </button>
-            </div>
-            <div class="form-group">
-              <hr/>
-            </div>
-            <div class="form-group">
-              <a href="register.jsp" type="button" class="btn btn-block btn-success" name="btn-login">Registrierung</a>
-            </div>
-          </div>
-
-        </form>
-      </div>
     </div>
+  </body>
+</html>
 
-
-
-  </jsp:body>
-</t:stdTempl>
