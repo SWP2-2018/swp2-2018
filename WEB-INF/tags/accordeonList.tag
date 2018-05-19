@@ -6,11 +6,11 @@
 <div class="card">
   <div class="card-header btn-secondary btn" id="${title}" data-toggle="collapse" data-target="#collapse${title}" aria-expanded="false" aria-controls="collapseOpenReports">
     <a class="btn">
-      ${text}
-    </a>
-    <span class="badge badge-info badge-pill">
+    <span class="badge badge-info badge-pill float-right">
       ${anzahl}
     </span>
+      ${text}
+    </a>
   </div>
   <div id="collapse${title}" class="collapse" aria-labelledby="${title}" data-parent="#accordion">
     <div class="card-body">
@@ -18,3 +18,4 @@
     </div>
   </div>
 </div>
+
