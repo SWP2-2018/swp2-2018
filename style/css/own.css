@@ -1,12 +1,23 @@
 
 body {
-  background-color: #dee2e6;
+  background-color: #dee2e6; /*Hintergrundfarbe der Seite*/
   padding: 10px;
-
 }
-
+/*Hintergrundfarbe der Navigations Leiste*/
 .navbar-dark {
+   background-color: #0080A0;
+ }
+/*Hintergrundfarbe der Aufzaehlungen*/
+.badge {
   background-color: #0080A0;
+}
+/*Button unter einstellungen.*/
+.btn-setting {
+  background-color: #0080A0;
+  color: white;
+}
+.btn-setting:hover {
+  color: #acacac;
 }
 
 .inForm {
@@ -20,9 +31,9 @@ body {
   padding: 10px;
 }
 
+/*Hintergrundfarbe der Accordeon*/
 .card-header{
   background-color: #acacac;
-
 }
 
 .pwModal{

@@ -10,6 +10,12 @@
 <t:stdTempl>
   <jsp:attribute name="titleText"> - register</jsp:attribute>
   <jsp:body>
+    <t:navbar>
+
+      <jsp:attribute name="navText">Einstellungen</jsp:attribute>
+      <jsp:body>
+      </jsp:body>
+    </t:navbar>
 
     <div class="container inForm">
 
@@ -104,12 +110,6 @@
             <div class="form-group">
               <button type="submit" class="btn btn-block btn-primary" name="register" id="register">Registrieren
               </button>
-            </div>
-            <div class="form-group">
-              <hr/>
-            </div>
-            <div class="form-group">
-              <a href="login.jsp" type="button" class="btn btn-block btn-success" name="btn-login">zum Login</a>
             </div>
           </div>
 

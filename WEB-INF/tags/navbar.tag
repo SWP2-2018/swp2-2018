@@ -1,44 +1,6 @@
 <%@tag description="navbar" pageEncoding="UTF-8" %>
 <%@attribute name="navText"%>
 
-
-<!--Modal Passwordaendern -->
-<div class="modal hide" id="password-modal">
-  <div class="container pwModal inForm">
-    <form action="" method="post">
-      <div class=" justify-content-lg-center inForm">
-        <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
-        <div class="form-group">
-          <h2 class="">Password &auml;ndern</h2>
-        </div>
-        <div class="form-group">
-          <hr/>
-        </div>
-        <!------ Passwort eingabe ---------->
-        <div class="form-group">
-          <input type="password" name="password" id="password" class="form-control "
-                 placeholder="Neues Passwort" required>
-        </div>
-        <!------ Buttons am Ende ---------->
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group">
-              <button type="submit" class="btn btn-block btn-primary" name="pwSave" id="pwSave" value="Submit">Speichern
-              </button>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-6">
-            <button type="submit" class="btn btn-block btn-danger" data-dismiss="modal" name="close" id="close">
-              Schliessen
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-
 <!-----Nav Bar----->
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
@@ -84,7 +46,7 @@
 
               request.setAttribute("folder", "");
 
-              if (request.getAttribute("page").toString().equals("editReport")) {
+              if (request.getAttribute("page").toString().equals("editReport")||request.getAttribute("page").toString().equals("register")) {
                 if (Integer.parseInt(session.getAttribute("instructor").toString()) == 0) {
                   request.setAttribute("folder", "trainee/");
                 } else {
@@ -107,12 +69,7 @@
               }
               //Einstellungen DropDown Menue und Logout Button
               ausgabe = ausgabe
-                + " <li class=\"dropdown\"> "
-                + " <a class=\"nav-link\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
-                + " <i class=\"fa fa-cogs\"></i> Einstellungen </a>"
-                + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
-                + " <a class=\"dropdown-item btn\" data-toggle=\"modal\" data-target=\"#password-modal\">Passwort erneuern</a>"
-                + " </div> </li>"
+                + " <li class=\"nav-item\"> <a class=\"nav-link\" href=\"../settings.jsp\"><i class=\"fa fa-cogs\"> </i> Einstellungen</a> </li>"
                 + " <li class=\"nav-item\"> <a class=\"nav-link\" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> </i><strong>  Logout - " + session.getAttribute("user").toString() + " </strong></a> </li>";
               request.setAttribute("anzeige", ausgabe);
             }
