@@ -20,7 +20,7 @@
 
     <%
         if (!(session.getAttribute("user") != null) && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")) {
-          response.sendRedirect("../error.jsp");
+          response.sendRedirect("../index.jsp");
         }
     %>
   </head>
