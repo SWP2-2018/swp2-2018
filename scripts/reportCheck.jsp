@@ -23,10 +23,12 @@
   Report report = reportService.getById(rv.getReport_id());
   report.setStatus(2);
 
+  new String(request.getParameter("text1").getBytes("ISO-8859-1"), "UTF-8");
 
-  rv.setText1(request.getParameter("text1"));
-  rv.setText2(request.getParameter("text2"));
-  rv.setText3(request.getParameter("text3"));
+
+  rv.setText1( new String(request.getParameter("text1").getBytes("ISO-8859-1"), "UTF-8"));
+  rv.setText2( new String(request.getParameter("text2").getBytes("ISO-8859-1"), "UTF-8"));
+  rv.setText3( new String(request.getParameter("text3").getBytes("ISO-8859-1"), "UTF-8"));
   rv.setHours1(Integer.parseInt(request.getParameter("hours1")));
   rv.setHours2(Integer.parseInt(request.getParameter("hours2")));
   rv.setHours3(Integer.parseInt(request.getParameter("hours3")));
