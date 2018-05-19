@@ -62,12 +62,6 @@
               <button type="submit" class="btn btn-block btn-primary" name="signup" id="signup" value="Submit">Login
               </button>
             </div>
-            <div class="form-group">
-              <hr/>
-            </div>
-            <div class="form-group">
-              <a href="register.jsp" type="button" class="btn btn-block btn-success" name="btn-login">Registrierung</a>
-            </div>
           </div>
 
         </form>
