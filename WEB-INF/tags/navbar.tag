@@ -111,11 +111,9 @@
                 + " <a class=\"nav-link\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
                 + " <i class=\"fa fa-cogs\"></i> Einstellungen </a>"
                 + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
-
                 + " <a class=\"dropdown-item btn\" data-toggle=\"modal\" data-target=\"#password-modal\">Passwort erneuern</a>"
-
                 + " </div> </li>"
-                + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> Logout - " + session.getAttribute("user").toString() + " </i> </a> </li>";
+                + " <li class=\"nav-item\"> <a class=\"nav-link\" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> </i><strong>  Logout - " + session.getAttribute("user").toString() + " </strong></a> </li>";
               request.setAttribute("anzeige", ausgabe);
             }
           }
