@@ -5,6 +5,7 @@
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="">
+      <img src="../style/icons/icon.svg" class="img-rounded"  height="50">
       ${navText}
     </a>
 
