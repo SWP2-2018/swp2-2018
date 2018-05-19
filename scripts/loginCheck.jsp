@@ -1,9 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page errorPage="../error.jsp"%>
+<%@page errorPage="../error.jsp"%>
 
-<%@ page import="services.PasswordEncode" %>
-<%@ page import="services.UserService" %>
-<%@ page import="tablePojos.User" %>
+<%@page import="services.PasswordEncode" %>
+<%@page import="services.UserService" %>
+<%@page import="tablePojos.User" %>
 
 <%
   UserService us = new UserService();

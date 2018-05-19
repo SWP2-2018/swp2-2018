@@ -2,15 +2,16 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-<%@ page import ="java.util.List"%>
-<%@ page import="java.util.ArrayList" %>
+<%@page import ="java.util.List"%>
+<%@page import="java.util.ArrayList" %>
 
-<%@ page import="services.ReportService" %>
-<%@ page import="services.UserService" %>
-<%@ page import="services.ReportRevisionService" %>
-<%@ page import="tablePojos.User" %>
-<%@ page import="tablePojos.Report" %>
-<%@ page import="tablePojos.Report_Revision" %>
+<%@page import="services.ReportService" %>
+<%@page import="services.UserService" %>
+<%@page import="services.ReportRevisionService" %>
+
+<%@page import="tablePojos.User" %>
+<%@page import="tablePojos.Report" %>
+<%@page import="tablePojos.Report_Revision" %>
 
 
 <!-- Setzte Attribute Page für die navbar -->

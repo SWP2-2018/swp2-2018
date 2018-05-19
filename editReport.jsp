@@ -1,14 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ page errorPage="error.jsp"%>
+<%@page errorPage="error.jsp"%>
 
 <%@page import="services.UserService" %>
 <%@page import="tablePojos.User" %>
-<%@ page import="java.util.List" %>
-<%@ page import="services.ReportRevisionService" %>
-<%@ page import="tablePojos.Report_Revision" %>
-<%@ page import="tablePojos.Report" %>
-<%@ page import="services.ReportService" %>
+<%@page import="java.util.List" %>
+<%@page import="services.ReportRevisionService" %>
+<%@page import="tablePojos.Report_Revision" %>
+<%@page import="tablePojos.Report" %>
+<%@page import="services.ReportService" %>
 
 
 <%
@@ -28,7 +28,6 @@
 
 
   request.setAttribute("commentPlaceholder","Kommentar");
- // request.setAttribute("comment", "");
   if (rv_List.size() < 1) {
     response.sendRedirect("error.jsp");
   } else if (rv_List.size() > 1 && Integer.parseInt(session.getAttribute("instructor").toString())==1){
