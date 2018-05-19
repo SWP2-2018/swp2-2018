@@ -103,19 +103,17 @@
                   ausgabe = ausgabe + " disabled";
                 }
                 ausgabe = ausgabe + "\" href=\"" + request.getAttribute("folder").toString() + pages[i] +
-                  ".jsp\"><i class=\"fa fa-" + icon[i] + "\">" + bez[i] + "</i></a></li>";
+                  ".jsp\"><i class=\"fa fa-" + icon[i] + "\"></i>"+ bez[i] +"</a></li>";
               }
               //Einstellungen DropDown Menue und Logout Button
               ausgabe = ausgabe
                 + " <li class=\"dropdown\"> "
                 + " <a class=\"nav-link\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
-                + " <i class=\"fa fa-cogs\"> Einstellungen </i> </a>"
+                + " <i class=\"fa fa-cogs\"></i> Einstellungen </a>"
                 + " <div class=\"dropdown-menu \" aria-labelledby=\"dropdownMenuButton\">"
-
                 + " <a class=\"dropdown-item btn\" data-toggle=\"modal\" data-target=\"#password-modal\">Passwort erneuern</a>"
-
                 + " </div> </li>"
-                + " <li class=\"nav-item\"> <a class=\"nav-link \" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> Logout - " + session.getAttribute("user").toString() + " </i> </a> </li>";
+                + " <li class=\"nav-item\"> <a class=\"nav-link\" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> </i><strong>  Logout - " + session.getAttribute("user").toString() + " </strong></a> </li>";
               request.setAttribute("anzeige", ausgabe);
             }
           }
