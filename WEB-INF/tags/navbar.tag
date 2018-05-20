@@ -6,9 +6,11 @@
   <div class="container-fluid">
 
     <a class="navbar-brand" href="">
-      <img src="../style/icons/icon.svg" class="img-rounded"  height="50">
+      <img src="../style/icons/icon.svg"   height="30">
       ${navText}
     </a>
+
+
 
     <div class="navbar-header">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
