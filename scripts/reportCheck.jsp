@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page errorPage="../error.jsp"%>
+
 
 <%@page import="services.UserService" %>
 <%@page import="services.ReportRevisionService" %>
@@ -21,9 +21,11 @@
     rv.setTextOperationalActivities(new String(request.getParameter("textOperationalActivities").getBytes("ISO-8859-1"), "UTF-8"));
     rv.setTextOperationalGuidance(new String(request.getParameter("textOperationalGuidance").getBytes("ISO-8859-1"), "UTF-8"));
     rv.setTextVocationalTeaching(new String(request.getParameter("textVocationalTeaching").getBytes("ISO-8859-1"), "UTF-8"));
-    rv.setHoursOperationalActivities(Integer.parseInt(request.getParameter("hoursOperationalActivities")));
-    rv.setHoursOperationalGuidance(Integer.parseInt(request.getParameter("hoursOperationalGuidance")));
-    rv.setHoursVocationalTeaching(Integer.parseInt(request.getParameter("hoursVocationalTeaching")));
+
+    //sollte eine übergebene Stundenzahl leer sein schreibe 0 Stunden in die Datenbank
+    rv.setHoursOperationalActivities(request.getParameter("hoursOperationalActivities") != "" ? Integer.parseInt(request.getParameter("hoursOperationalActivities")) : 0);
+    rv.setHoursOperationalGuidance(request.getParameter("hoursOperationalGuidance") != "" ? Integer.parseInt(request.getParameter("hoursOperationalGuidance")) : 0);
+    rv.setHoursVocationalTeaching(request.getParameter("hoursVocationalTeaching") != "" ? Integer.parseInt(request.getParameter("hoursVocationalTeaching")) : 0);
 
     reportService.update(report, report.getId());
     rs.update(rv, rv.getId());

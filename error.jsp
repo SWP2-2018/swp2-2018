@@ -24,7 +24,6 @@
 
     <%
       session.removeAttribute("email");
-      session.removeAttribute("password");
       session.invalidate();
       response.setHeader("Refresh", "2;url=/login.jsp");
     %>
