@@ -85,7 +85,7 @@
             <!------  eingabe ---------->
 
             <div class="form-group">
-              <input class="form-control input " type="number" min="0" name="istructor_id" id="istructor_id"
+              <input class="form-control input " type="number" name="instructor_id" id="instructor_id"
                      placeholder="Ausbilder ID">
             </div>
 

@@ -18,7 +18,7 @@
   try(ReportService rs = new ReportService();  UserService us = new UserService()) {
     User uInstructor = us.getByEmail(session.getAttribute("email").toString());
 
-    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
+    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getInstructor_id());
 
     List<List<Report>> allListReports = new ArrayList();
 
