@@ -7,16 +7,20 @@
 <%
   request.setAttribute("page", "login");
 
-  String wrong = (String) session.getAttribute("wrongData");
 
-  if(wrong != null){
-
-    String warning = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\"><strong>Username</strong> oder <strong>Passwort</strong> war falsch!"
-      + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>"
-      + "</button></div>";
-
-    pageContext.setAttribute("warning", warning);
+  //Mitteilung falls Daten beim einloggen nicht gepasst haben.
+  String data = (String) session.getAttribute("messageData");
+  String message="";
+  if (data != null) {
+    if (data.equals("badData")) {//Bei schlechten Daten
+      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\"><strong>Username</strong> oder <strong>Passwort</strong> war falsch!"
+        + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>"
+        + "</button></div>";
+    }
   }
+  pageContext.setAttribute("message", message);
+  session.setAttribute("messageData", null);//Daten nach Prüfung auf leeren.
+
 
 %>
 <t:stdTempl>
@@ -43,7 +47,7 @@
               <hr/>
             </div>
 
-            ${warning}
+            ${message}
 
             <!------ Nutzername eingabe ---------->
 

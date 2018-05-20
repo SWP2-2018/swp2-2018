@@ -22,7 +22,7 @@
 
     } else {
       us.close();
-      session.setAttribute("wrongData", "Falsche Daten");
+      session.setAttribute("messageData", "badData");
       response.sendRedirect("../login.jsp");
     }
   }
