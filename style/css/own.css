@@ -19,7 +19,6 @@ body {
 .btn-setting:hover {
   color: #acacac;
 }
-
 .inForm {
   margin: 0 auto;
   max-width: 500px;
@@ -30,7 +29,6 @@ body {
   max-width: 800px;
   padding: 10px;
 }
-
 /*Hintergrundfarbe der Accordeon*/
 .card-header{
   background-color: #acacac;

@@ -24,12 +24,12 @@
 
       </br>
       <p class="display-2">Berichtsheft Digital</p>
-      <img src="style/icons/icon.svg" class="img-rounded" width="300" height="300">
+      <img src="style/icons/icon.svg"width="300" height="300">
       </br>
       <p class="h2">Cookies und so lust drauf?</p>
       </br>
 
-      <a class="btn btn-primary btn-lg" id="login" href="login.jsp" role="button">Weiter zur Loginseite</a>
+      <a class="btn btn-primary btn-lg" id="login" href="login.jsp" role="button">Ja Mann, weiter zur Loginseite</a>
 
     </div>
   </body>
