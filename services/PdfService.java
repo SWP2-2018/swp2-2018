@@ -21,10 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import tablePojos.Report;
-import tablePojos.Report_Revision;
-import tablePojos.User;
-
 
 public class PdfService {
 

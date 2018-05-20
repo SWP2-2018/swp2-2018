@@ -18,12 +18,12 @@
     Report report = reportService.getById(rv.getReport_id());
     report.setStatus(2);
 
-    rv.setText1(new String(request.getParameter("text1").getBytes("ISO-8859-1"), "UTF-8"));
-    rv.setText2(new String(request.getParameter("text2").getBytes("ISO-8859-1"), "UTF-8"));
-    rv.setText3(new String(request.getParameter("text3").getBytes("ISO-8859-1"), "UTF-8"));
-    rv.setHours1(Integer.parseInt(request.getParameter("hours1")));
-    rv.setHours2(Integer.parseInt(request.getParameter("hours2")));
-    rv.setHours3(Integer.parseInt(request.getParameter("hours3")));
+    rv.getTextOperationalActivities(new String(request.getParameter("textOperationalActivities").getBytes("ISO-8859-1"), "UTF-8"));
+    rv.getTextOperationalGuidance(new String(request.getParameter("textOperationalGuidance").getBytes("ISO-8859-1"), "UTF-8"));
+    rv.getTextVocationalTeaching(new String(request.getParameter("textVocationalTeaching").getBytes("ISO-8859-1"), "UTF-8"));
+    rv.getHoursOperationalActivities(Integer.parseInt(request.getParameter("hoursOperationalActivities")));
+    rv.getHoursOperationalGuidance(Integer.parseInt(request.getParameter("hoursOperationalGuidance")));
+    rv.getHoursVocationalTeaching(Integer.parseInt(request.getParameter("hoursVocationalTeaching")));
 
     reportService.update(report, report.getId());
     rs.update(rv, rv.getId());

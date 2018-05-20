@@ -31,7 +31,7 @@
                 if (lrs.get(j).getStatus() != 0) {
 
                   if (session.getAttribute("instructor").toString().equals("1")) {
-                    reportData = "Wochenbericht von " + us.getById(lrs.get(j).getUser_id()).getUser() + "\n";
+                    reportData = "Wochenbericht von " + us.getById(lrs.get(j).getUser_id()).getEmail() + "\n";
                   }
 
                   //Form für die Postmethode erstellen um Daten weiter an die editReport.jsp zu senden

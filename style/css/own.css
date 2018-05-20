@@ -49,3 +49,12 @@ body {
   max-height: 350px;
   background-color: #dee2e6;
 }
+
+#textER{
+  height:100%;
+  -webkit-transition:height 0.3s ease-in-out;
+}
+#textED:focus{
+  height:200px;
+  -webkit-transition:height 0.2s ease-in-out;
+}

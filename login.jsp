@@ -7,7 +7,6 @@
 <%
   request.setAttribute("page", "login");
 
-
   //Mitteilung falls Daten beim einloggen nicht gepasst haben.
   String data = (String) session.getAttribute("messageData");
   String message="";
@@ -19,8 +18,7 @@
     }
   }
   pageContext.setAttribute("message", message);
-  session.setAttribute("messageData", null);//Daten nach Prüfung auf leeren.
-
+  session.removeAttribute("messageData");//Daten nach Prüfung löschen.
 
 %>
 <t:stdTempl>
@@ -80,6 +78,3 @@
   </jsp:body>
 </t:stdTempl>
 
-<%
-  session.removeAttribute("wrongData");
-%>
