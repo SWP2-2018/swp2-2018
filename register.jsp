@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <input type="password" name="confirmPassword" id="confirmPassword" class="form-control input-lg"
-                         placeholder="Passwort" required>
+                         placeholder="Passwort wiederholen" required>
                 </div>
               </div>
 
