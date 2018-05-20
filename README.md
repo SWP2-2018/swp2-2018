@@ -8,6 +8,8 @@ Die passende IP könnt ihr ermitteln, indem ihr mit `docker ps` eure laufenden C
 und hier die Container ID von der "mariadb" kopiert und anschliesend mit `docker inspect [Container ID]` 
 im untern Teil eine Zeile findet in der die IP Adresse steht: ` "IPAddress": "172.18.0.3", `.
 
+## Informationen zum PDF Service noch in Arbeit
+## Beispiel JSPs noch nicht kompatibel mit den erneuerten Services
 
 Aktuell ist das Hibernate auf die drei POJOs 'User' 'Report' und 'Report_Revision' 
 eingestellt. Falls Änderungen an jenen Java Dateien durch geführt werden,
