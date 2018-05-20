@@ -117,6 +117,7 @@ public class UserService implements AutoCloseable{
             tx = userSession.beginTransaction();
             oldUser = userSession.get(User.class, userId);
             if (oldUser!=null) {
+                oldUser.setEmail(user.getEmail());
                 oldUser.setPassword(user.getPassword());
                 oldUser.setInstructor(user.getInstructor());
                 oldUser.setLast_name(user.getLast_name());

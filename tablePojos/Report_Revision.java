@@ -53,6 +53,21 @@ public class Report_Revision {
         this.number = number;
     }
 
+    public String getText(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return textOperationalActivities;
+            case 1:
+                return textOperationalGuidance;
+            case 2:
+                return textVocationalTeaching;
+            default:
+                return null;
+        }
+    }
+
     public String getTextOperationalActivities() {
         return textOperationalActivities;
     }
@@ -75,6 +90,21 @@ public class Report_Revision {
 
     public void setTextVocationalTeaching(String textVocationalTeaching) {
         this.textVocationalTeaching = textVocationalTeaching;
+    }
+
+    public int getHour(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return hoursOperationalActivities;
+            case 1:
+                return hoursOperationalGuidance;
+            case 2:
+                return hoursVocationalTeaching;
+            default:
+                return 0;
+        }
     }
 
     public int getHoursOperationalActivities() {
