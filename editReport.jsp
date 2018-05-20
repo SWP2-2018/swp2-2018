@@ -20,8 +20,7 @@
 
   try(UserService us = new UserService(); ReportRevisionService rs = new ReportRevisionService();   ReportService reportService = new ReportService()) {
 
-    User user = us.getByUserName(session.getAttribute("user").toString());
-
+    User user = us.getByEmail(session.getAttribute("email").toString());
 
     //Lädt alle Reports_Revisions aus der Datenbank aus die zu der übertragenen ReportID gehören
 
@@ -32,15 +31,13 @@
     String commentPlaceholder = "Kommentar";
     String comment = "";
 
-
     if (rv_List.size() < 1) {
       response.sendRedirect("error.jsp");
     } else if (rv_List.size() > 1 && Integer.parseInt(session.getAttribute("instructor").toString()) == 1) {
-     commentPlaceholder = "Letzter Kommentar: " + rv_List.get(1).getComment());
+     commentPlaceholder = "Letzter Kommentar: " + rv_List.get(1).getComment();
     } else if (rv_List.size() > 1) {
       comment = rv_List.get(1).getComment();
     }
-
 
     Report_Revision rv = rv_List.get(0);
 
@@ -79,16 +76,16 @@
     for (int i = 0; i < labels.length; i++){
 
       ausgabe += "<div class=\"form-group\"><label for=\""+ idTextfields[i] + "\">" + labels[i] + "</label>"
-        + "<textarea "+ lockFields + " name=\"" + idTextfields[i] + "\" id=\"textER\" class=\"form-control input\""
-        + "placeholder=\"" + labels[i] + "\">"+ rv.getText(i) + "</textarea></div><div class=\"form-group form-inline\">"
-        + "<label class=\"control-label col-4\">Stunden</label><input " + lockFields + " class=\"form-control\" type=\"number\" name=\""
-        + idHours[i] + "\" id=\"" + idHours[i] + "\" value=\"" + rv.getHour(i) + "\">"
-        + "</div><div class=\"form-group\"><hr/></div>";
+        + "<textarea "+ lockFields + " name=\"" + idTextfields[i] + "\" id=\"textER\" class=\"form-control input\" rows=\"3\""
+        + "placeholder=\"" + labels[i] + "\">"+ rv.getText(i) + "</textarea></div>"
+        + "<div class=\"form-group form-inline\"><label class=\"control-label col-4\">Stunden</label><input "
+        + lockFields + " class=\"form-control\" type=\"number\" name=\"" + idHours[i] + "\" id=\""
+        + idHours[i] + "\" value=\"" + rv.getHour(i) + "\"></div><div class=\"form-group\"><hr/></div>";
     }
     //Kommentarfeld erstellen
     ausgabe += "<div class=\"form-group " + hideComment + "\"><label for=\"comment\">Kommentar</label>"
-      + "<textarea " + lockComment + " name=\"comment\" id=\"comment\" class=\"form-control input \"placeholder=\"" + commentPlaceholder + "\">" + comment
-      + "</textarea></div>";
+      + "<textarea " + lockComment + " name=\"comment\" id=\"comment\" class=\"form-control input\" placeholder=\""
+      + commentPlaceholder + "\">" + comment + "</textarea></div>";
 
     ausgabe += "<div class=\"form-group\">";
 
@@ -112,7 +109,7 @@
       //Erstelle Buttons für Trainee
       //Wenn Status 4 dann erstelle PDF, bei Status 1 und 3 erstelle Button Abgeben
       if (report.getStatus() == 4){
-        ausgabe += "<button formaction=\"scripts/pdfCreate.jsp\" type=\"submit\" class=\"btn btn-block btn-primary\" name=\"send\" id=\"send\"" +
+        ausgabe += "<button formaction=\"scripts/createPDF.jsp\" type=\"submit\" class=\"btn btn-block btn-primary\" name=\"send\" id=\"send\"" +
           " value=\"Submit\">PDF erstellen\n</button>\n";
 
       } else if (report.getStatus() != 2){

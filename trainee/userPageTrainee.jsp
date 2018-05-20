@@ -16,12 +16,12 @@
 
   try(UserService us = new UserService(); ReportService rs = new ReportService()) {
 
-    User user = us.getByUserName(session.getAttribute("user").toString());
+    User user = us.getByEmail(session.getAttribute("email").toString());
 
     List<Report> lrs = rs.getAllByStatusAndUserID(1, user.getId());
     List<Report> lrsC = rs.getAllByStatusAndUserID(3, user.getId());
 
-    List<List<Report>> allListReports = new ArrayList<>();
+    List<List<Report>> allListReports = new ArrayList();
     allListReports.add(lrs);
     allListReports.add(lrsC);
 

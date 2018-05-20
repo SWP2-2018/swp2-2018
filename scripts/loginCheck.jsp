@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page errorPage="../error.jsp" %>
 
 <%@page import="services.PasswordEncode" %>
 <%@page import="services.UserService" %>
@@ -8,12 +8,11 @@
 <%
   try(UserService us = new UserService()) {
 
-    User user = us.getByUserName(request.getParameter("user"));
-    out.println(request.getParameter("user"));
-    out.println(user);
+    User user = us.getByEmail(request.getParameter("email"));
+
     if (user != null && PasswordEncode.match(request.getParameter("password"), user.getPassword())) {
 
-      session.setAttribute("user", user.getEmail());
+      session.setAttribute("email", user.getEmail());
       session.setAttribute("instructor", user.getInstructor());
 
       if (user.getInstructor() == 1) {
@@ -24,7 +23,7 @@
 
     } else {
       session.setAttribute("messageData", "badData");
- //     response.sendRedirect("../login.jsp");
+      response.sendRedirect("../login.jsp");
     }
   }
 %>

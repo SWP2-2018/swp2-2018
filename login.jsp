@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-
+<%@page errorPage="error.jsp" %>
 
 
 <!-- Setzte Attribute Page für die navbar -->
@@ -50,8 +50,8 @@
             <!------ Nutzername eingabe ---------->
 
             <div class="form-group">
-              <input type="text" name="user" id="user" class="form-control"
-                     placeholder="Nutzername" required>
+              <input type="text" name="email" id="user" class="form-control"
+                     placeholder="Email" required>
             </div>
 
             <!------ Passwort eingabe ---------->

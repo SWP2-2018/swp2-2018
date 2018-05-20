@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-
+<%@page errorPage="../error.jsp"%>
 
 <%@page import ="java.util.List"%>
 <%@page import="java.util.ArrayList" %>
@@ -20,14 +20,14 @@
 
   try(UserService us = new UserService(); ReportService rs = new ReportService(); ReportRevisionService rrs = new ReportRevisionService()) {
 
-    User uInstructor = us.getByUserName(session.getAttribute("user").toString());
+    User uInstructor = us.getByEmail(session.getAttribute("email").toString());
     List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
 
-    List<List<Report>> allListReports = new ArrayList<>();
+    List<List<Report>> allListReports = new ArrayList();
 
     //--------------------------------- OPEN REPORTS ----------------------------------------------------
     // status == 2
-    allListReports.add(new ArrayList<>());
+    allListReports.add(new ArrayList());
     for (int i = 0; i < lTraineeUsers.size(); i++) {
       List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
       if (lrs.size() > 0) {
@@ -37,7 +37,7 @@
 
     //--------------------------------- DECLINED REPORTS -------------------------------------------------
     // status == 3
-    allListReports.add(new ArrayList<>());
+    allListReports.add(new ArrayList());
     for (int i = 0; i < lTraineeUsers.size(); i++) {
       List<Report> lrs = rs.getAllByStatusAndUserID(3, lTraineeUsers.get(i).getId());
       if (lrs.size() > 0) {
@@ -47,7 +47,7 @@
 
     //--------------------------------- IMPROVED REPORTS -------------------------------------------------
     // status == 2 && rev-number > 1
-    allListReports.add(new ArrayList<>());
+    allListReports.add(new ArrayList());
     for (int i = 0; i < lTraineeUsers.size(); i++) {
       List<Report> lrs = rs.getAllByStatusAndUserID(2, lTraineeUsers.get(i).getId());
 

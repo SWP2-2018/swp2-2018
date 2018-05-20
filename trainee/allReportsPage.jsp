@@ -17,13 +17,12 @@
 
   try(ReportService rs = new ReportService(); UserService us = new UserService()) {
 
-
-    User user = us.getByUserName(session.getAttribute("user").toString());
+    User user = us.getByEmail(session.getAttribute("email").toString());
 
     //Liste mit allen Reports des Users
     List<Report> lrs = rs.getAllByUserId(user.getId());
 
-    List<List<Report>> allListReports = new ArrayList<>();
+    List<List<Report>> allListReports = new ArrayList();
     allListReports.add(lrs);
 
     request.setAttribute("listReports", allListReports);

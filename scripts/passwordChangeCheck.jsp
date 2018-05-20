@@ -8,7 +8,7 @@
 <%
   try (UserService us = new UserService()) {
     //wrongData auf null setzen
-    User user = us.getByUserName(session.getAttribute("user").toString());
+    User user = us.getByEmail(session.getAttribute("email").toString());
     //Falls das alte Passwort mit dem Nutzerpassword uebereinsimmt wird das neue Passwort beim user geupdatet
     if (user != null && PasswordEncode.match(request.getParameter("oldpassword"), user.getPassword())
       && request.getParameter("password").toString().equals(request.getParameter("confirmPassword").toString())){

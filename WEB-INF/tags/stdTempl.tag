@@ -19,7 +19,7 @@
     <title>Berichtsheft Digital ${titleText}</title>
 
     <%
-        if (!(session.getAttribute("user") != null) && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")) {
+        if (!(session.getAttribute("email") != null) && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")) {
           response.sendRedirect("../login.jsp");
         }
     %>

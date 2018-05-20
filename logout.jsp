@@ -23,8 +23,8 @@
 </t:stdTempl>
 
 <%
-  session.removeAttribute("user");
+  session.removeAttribute("email");
   session.removeAttribute("password");
   session.invalidate();
-  response.setHeader("Refresh", "3;url=login.jsp");
+  response.setHeader("Refresh", "2;url=login.jsp");
 %>
