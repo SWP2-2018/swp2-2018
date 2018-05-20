@@ -7,12 +7,14 @@ public class Report {
     private Date date;
     private int status;
     private int user_id;
+    private int reportCount;
 
-    public Report(int id, Date date, int status, int user_id) {
+    public Report(int id, Date date, int status, int user_id, int reportCount) {
         this.id = id;
         this.date = date;
         this.status = status;
         this.user_id = user_id;
+        this.reportCount = reportCount;
     }
     public Report() {
     }
@@ -47,5 +49,13 @@ public class Report {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public int getReportCount() {
+        return reportCount;
+    }
+
+    public void setReportCount(int reportCount) {
+        this.reportCount = reportCount;
     }
 }

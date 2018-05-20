@@ -79,7 +79,7 @@ public class ReportService implements AutoCloseable {
     public List<Report> getAllByUserId(int user_id){
         List<Report> reportListe = null;
         try {
-            String query = "FROM Report where user_id= :user_id order by id desc";
+            String query = "FROM Report where user_id= :user_id order by date desc";
             reportListe = userSession.createQuery(query).setParameter("user_id",user_id).list();
         } catch (Exception e){
             reportListe = null;
@@ -147,6 +147,7 @@ public class ReportService implements AutoCloseable {
             {
                 oldReport.setDate(report.getDate());
                 oldReport.setStatus(report.getStatus());
+                oldReport.setReportCount(report.getReportCount());
                 userSession.update(oldReport);
                 tx.commit();
             }

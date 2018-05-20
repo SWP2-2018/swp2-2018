@@ -17,13 +17,13 @@
     <property name = "report_id" column = "report_id" type = "int"/>
     <property name = "number" column = "number" type = "int"/>
 
-    <property name = "text1" column = "text1" type = "string"/>
-    <property name = "text2" column = "text2" type = "string"/>
-    <property name = "text3" column = "text3" type = "string"/>
+    <property name = "textOperationalActivities" column = "textOperationalActivities" type = "string"/>
+    <property name = "textOperationalGuidance" column = "textOperationalGuidance" type = "string"/>
+    <property name = "textVocationalTeaching" column = "textVocationalTeaching" type = "string"/>
 
-    <property name = "hours1" column = "hours1" type = "int"/>
-    <property name = "hours2" column = "hours2" type = "int"/>
-    <property name = "hours3" column = "hours3" type = "int"/>
+    <property name = "hoursOperationalActivities" column = "hoursOperationalActivities" type = "int"/>
+    <property name = "hoursOperationalGuidance" column = "hoursOperationalGuidance" type = "int"/>
+    <property name = "hoursVocationalTeaching" column = "hoursVocationalTeaching" type = "int"/>
 
     <property name = "comment" column = "comment" type = "string"/>
 

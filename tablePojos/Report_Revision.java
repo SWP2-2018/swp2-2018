@@ -5,26 +5,26 @@ public class Report_Revision {
     private int id;
     private int report_id;
     private int number;
-    private String text1;
-    private String text2;
-    private String text3;
-    private int hours1;
-    private int hours2;
-    private int hours3;
+    private String textOperationalActivities;
+    private String textOperationalGuidance;
+    private String textVocationalTeaching;
+    private int hoursOperationalActivities;
+    private int hoursOperationalGuidance;
+    private int hoursVocationalTeaching;
     private String comment;
 
     public Report_Revision() {
     }
 
-    public Report_Revision(int report_id, int number, String text1, String text2, String text3, int hours1, int hours2, int hours3, String comment) {
+    public Report_Revision(int report_id, int number, String textOperationalActivities, String textOperationalGuidance, String textVocationalTeaching, int hoursOperationalActivities, int hoursOperationalGuidance, int hoursVocationalTeaching, String comment) {
         this.report_id = report_id;
         this.number = number;
-        this.text1 = text1;
-        this.text2 = text2;
-        this.text3 = text3;
-        this.hours1 = hours1;
-        this.hours2 = hours2;
-        this.hours3 = hours3;
+        this.textOperationalActivities = textOperationalActivities;
+        this.textOperationalGuidance = textOperationalGuidance;
+        this.textVocationalTeaching = textVocationalTeaching;
+        this.hoursOperationalActivities = hoursOperationalActivities;
+        this.hoursOperationalGuidance = hoursOperationalGuidance;
+        this.hoursVocationalTeaching = hoursVocationalTeaching;
         this.comment = comment;
     }
 
@@ -53,52 +53,52 @@ public class Report_Revision {
         this.number = number;
     }
 
-    public String getText1() {
-        return text1;
+    public String getTextOperationalActivities() {
+        return textOperationalActivities;
     }
 
-    public void setText1(String text1) {
-        this.text1 = text1;
+    public void setTextOperationalActivities(String textOperationalActivities) {
+        this.textOperationalActivities = textOperationalActivities;
     }
 
-    public String getText2() {
-        return text2;
+    public String getTextOperationalGuidance() {
+        return textOperationalGuidance;
     }
 
-    public void setText2(String text2) {
-        this.text2 = text2;
+    public void setTextOperationalGuidance(String textOperationalGuidance) {
+        this.textOperationalGuidance = textOperationalGuidance;
     }
 
-    public String getText3() {
-        return text3;
+    public String getTextVocationalTeaching() {
+        return textVocationalTeaching;
     }
 
-    public void setText3(String text3) {
-        this.text3 = text3;
+    public void setTextVocationalTeaching(String textVocationalTeaching) {
+        this.textVocationalTeaching = textVocationalTeaching;
     }
 
-    public int getHours1() {
-        return hours1;
+    public int getHoursOperationalActivities() {
+        return hoursOperationalActivities;
     }
 
-    public void setHours1(int hours1) {
-        this.hours1 = hours1;
+    public void setHoursOperationalActivities(int hoursOperationalActivities) {
+        this.hoursOperationalActivities = hoursOperationalActivities;
     }
 
-    public int getHours2() {
-        return hours2;
+    public int getHoursOperationalGuidance() {
+        return hoursOperationalGuidance;
     }
 
-    public void setHours2(int hours2) {
-        this.hours2 = hours2;
+    public void setHoursOperationalGuidance(int hoursOperationalGuidance) {
+        this.hoursOperationalGuidance = hoursOperationalGuidance;
     }
 
-    public int getHours3() {
-        return hours3;
+    public int getHoursVocationalTeaching() {
+        return hoursVocationalTeaching;
     }
 
-    public void setHours3(int hours3) {
-        this.hours3 = hours3;
+    public void setHoursVocationalTeaching(int hoursVocationalTeaching) {
+        this.hoursVocationalTeaching = hoursVocationalTeaching;
     }
 
     public String getComment() {

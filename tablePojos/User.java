@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
 
     private int id;
-    private String user;
+    private String email;
     private String password;
     private byte instructor;
     private String last_name;
@@ -18,8 +18,8 @@ public class User {
     public User() {
     }
 
-    public User(String user, String password, byte instructor, String last_name, String first_name, String job, int educational_year, int instructor_id, Date start_date) {
-        this.user = user;
+    public User(String email, String password, byte instructor, String last_name, String first_name, String job, int educational_year, int instructor_id, Date start_date) {
+        this.email = email;
         this.password = password;
         this.instructor = instructor;
         this.last_name = last_name;
@@ -38,13 +38,13 @@ public class User {
         this.id = id;
     }
 
-    public String getUser() {
+    public String getEmail() {
 
-        return user;
+        return email;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
