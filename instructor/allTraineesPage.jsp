@@ -15,12 +15,12 @@
 
     User uInstructor = us.getByEmail(session.getAttribute("email").toString());
 
-    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
+    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getInstructor_id());
 
     String ausgabe = "";
 
     for (int i = 0; i < lTraineeUsers.size(); i++) {
-      if (lTraineeUsers.get(i).getId() != uInstructor.getId()) {
+      if (lTraineeUsers.get(i).getInstructor() != new Byte("1")) {
         ausgabe = ausgabe + "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">";
         ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
         ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
