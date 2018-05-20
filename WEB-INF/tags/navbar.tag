@@ -6,7 +6,7 @@
   <div class="container-fluid">
 
     <a class="navbar-brand" href="">
-      <img src="../style/icons/icon.svg"   height="30">
+      <img src="../style/icons/icon.svg"   width="60">
       ${navText}
     </a>
 

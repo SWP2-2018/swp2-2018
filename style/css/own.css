@@ -18,6 +18,16 @@ body {
 }
 .btn-setting:hover {
   color: #acacac;
+  background-color: #0080A0;
+}
+.IndexPanel{
+  background-color: #0080A0;
+  width:350px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 5px solid #bfdfe7;
+  box-shadow: inset 0 1px 1px;
+  padding:  10px 10px;
 }
 .inForm {
   margin: 0 auto;
