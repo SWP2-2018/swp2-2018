@@ -23,13 +23,20 @@
     <div class="container-fluid  text-center">
 
       </br>
-      <p class="display-2">Berichtsheft Digital</p>
-      <img src="style/icons/icon.svg"width="300" height="300">
+      <p class="display-2"><strong>B</strong>erichtsheft <strong>D</strong>igital</p>
+      <div  >
+        <img class="IndexPanel" src="style/icons/icon.svg" >
+      </div>
+
       </br>
       <p class="h2">Cookies und so lust drauf?</p>
       </br>
 
-      <a class="btn btn-primary btn-lg" id="login" href="login.jsp" role="button">Ja Mann, weiter zur Loginseite</a>
+      <a class="btn btn-setting btn-lg" id="login" href="login.jsp" role="button">Ja Mann, weiter zur Loginseite</a>
+
+
+
+
 
     </div>
   </body>
