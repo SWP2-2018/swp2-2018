@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page errorPage="../error.jsp"%>
 
 <%@page import="services.UserService" %>
 <%@page import="services.ReportRevisionService" %>
