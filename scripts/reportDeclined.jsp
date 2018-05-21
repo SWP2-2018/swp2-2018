@@ -15,7 +15,7 @@
     report.setStatus(3);
     reportService.update(report, report.getId());
 
-    oldReportRevision.setComment(request.getParameter("comment"));
+    oldReportRevision.setComment(new String(request.getParameter("comment").getBytes("ISO-8859-1"), "UTF-8"));
 
     reportRevisionService.update(oldReportRevision, oldReportRevision.getId());
 
