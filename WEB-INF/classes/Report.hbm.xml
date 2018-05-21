@@ -17,6 +17,8 @@
     <property name = "date" column = "date" type = "date"/>
     <property name = "status" column = "status" type = "int"/>
     <property name = "user_id" column = "user_id" type = "int"/>
+    <property name = "reportCount" column = "reportCount" type = "int"/>
+
 
   </class>
 </hibernate-mapping>
