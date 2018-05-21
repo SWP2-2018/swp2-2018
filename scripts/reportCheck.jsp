@@ -1,16 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page errorPage="../error.jsp"%>
+<%@page errorPage="../error.jsp"%>
 
-<%@ page import="services.UserService" %>
-<%@ page import="services.ReportRevisionService" %>
-<%@ page import="tablePojos.User" %>
-<%@ page import="tablePojos.Report" %>
-<%@ page import="tablePojos.Report_Revision" %>
+<%@page import="services.UserService" %>
+<%@page import="services.ReportRevisionService" %>
+<%@page import="services.ReportService" %>
 
-<%@ page import="services.ReportRevisionService" %>
-<%@ page import="services.ReportService" %>
-<%@ page import="tablePojos.Report" %>
-<%@ page import="tablePojos.Report_Revision" %>
+<%@page import="tablePojos.User" %>
+<%@page import="tablePojos.Report" %>
+<%@page import="tablePojos.Report_Revision" %>
 
 <%
   UserService us = new UserService();
