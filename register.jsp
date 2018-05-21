@@ -6,6 +6,11 @@
 <!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page", "register");
+
+  if(session.getAttribute("instructor").toString().equals("0")) {
+    response.sendRedirect("error.jsp");
+  }
+
 %>
 <t:stdTempl>
   <jsp:attribute name="titleText"> - register</jsp:attribute>

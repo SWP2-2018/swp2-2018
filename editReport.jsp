@@ -66,26 +66,26 @@
     String[] idTextfields = {"textOperationalActivities", "textOperationalGuidance", "textVocationalTeaching"};
     String[] idHours = {"hoursOperationalActivities", "hoursOperationalGuidance", "hoursVocationalTeaching"};
 
-    String ausgabe = "<div aria-readonly=\"true\" class=\"container\"> <form action=\"scripts/reportCheck.jsp\" method=\"post\" autocomplete=\"off\">"
-      + "<input type=\"hidden\" name=\"reportRevisionID\" value=\"" + rv.getId() + "\"/><div class=\" justify-content-lg-center inForm\">";
+    String ausgabe = "<div aria-readonly=\"true\" class=\"container\">\n<form action=\"scripts/reportCheck.jsp\" method=\"post\" autocomplete=\"off\">\n"
+      + "<input type=\"hidden\" name=\"reportRevisionID\" value=\"" + rv.getId() + "\"/>\n<div class=\" justify-content-lg-center inForm\">\n";
 
-    ausgabe += "<div class=\"form-group\"><hr/></div><div><h4>" + request.getParameter("SubmitReport").toString()
-      + "</h4></div><div class=\"form-group\"><hr/></div>";
+    ausgabe += "<div class=\"form-group\"><hr/>\n</div>\n<div>\n<h4>" + request.getParameter("SubmitReport").toString()
+      + "</h4>\n</div>\n<div class=\"form-group\">\n<hr/>\n</div>\n";
 
     //Textfelder und Stundenfelder erstellen
     for (int i = 0; i < labels.length; i++){
 
-      ausgabe += "<div class=\"form-group\"><label for=\""+ idTextfields[i] + "\">" + labels[i] + "</label>"
+      ausgabe += "<div class=\"form-group\">\n<label for=\""+ idTextfields[i] + "\">" + labels[i] + "\n</label>\n"
         + "<textarea "+ lockFields + " name=\"" + idTextfields[i] + "\" id=\"textER\" class=\"form-control input\" rows=\"3\""
-        + "placeholder=\"" + labels[i] + "\">"+ rv.getText(i) + "</textarea></div>"
-        + "<div class=\"form-group form-inline\"><label class=\"control-label col-4\">Stunden</label><input "
+        + "placeholder=\"" + labels[i] + "\">\n"+ rv.getText(i) + "\n</textarea>\n</div>\n"
+        + "<div class=\"form-group form-inline\">\n<label class=\"control-label col-4\">\nStunden\n</label>\n<input "
         + lockFields + " class=\"form-control\" type=\"number\" min=\"0\" name=\"" + idHours[i] + "\" id=\""
-        + idHours[i] + "\" value=\"" + rv.getHour(i) + "\"></div><div class=\"form-group\"><hr/></div>";
+        + idHours[i] + "\" value=\"" + rv.getHour(i) + "\">\n</div>\n<div class=\"form-group\">\n<hr/>\n</div>";
     }
     //Kommentarfeld erstellen
-    ausgabe += "<div class=\"form-group " + hideComment + "\"><label for=\"comment\">Kommentar</label>"
+    ausgabe += "<div class=\"form-group " + hideComment + "\">\n<label for=\"comment\">\nKommentar\n</label>\n"
       + "<textarea " + lockComment + " name=\"comment\" id=\"comment\" class=\"form-control input\" placeholder=\""
-      + commentPlaceholder + "\">" + comment + "</textarea></div>";
+      + commentPlaceholder + "\">\n" + comment + "\n</textarea>\n</div>\n";
 
     ausgabe += "<div class=\"form-group\">";
 
@@ -118,7 +118,7 @@
       }
     }
 
-    ausgabe += "</div></div></form></div>";
+    ausgabe += "</div>\n</div>\n</form>\n</div>\n";
 
     pageContext.setAttribute("ausgabe", ausgabe);
   }

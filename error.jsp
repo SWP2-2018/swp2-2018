@@ -23,11 +23,16 @@
       <p class="h1 text-center">An Error has occured,Please try again later...</p>
 
     <%
-      session.removeAttribute("email");
-      session.invalidate();
-      response.setHeader("Refresh", "2;url=/login.jsp");
+      if(session.getAttribute("instructor").toString().equals("0")) {
+        response.setHeader("Refresh", "2;url=/trainee/userPageTrainee.jsp");
+      } else if (session.getAttribute("instructor").toString().equals("1")) {
+        response.setHeader("Refresh", "2;url=/trainee/userPageInstructor.jsp");
+      } else{
+        session.removeAttribute("email");
+        session.invalidate();
+        response.setHeader("Refresh", "2;url=/login.jsp");
+      }
     %>
-
   </body>
 </html>
 
