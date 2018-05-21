@@ -66,18 +66,17 @@
 
                 //Alle anderen Buttons
                 for (int i = 0; i < pages.length; i++) {
-                  ausgabe = ausgabe + "<li class=\"nav-item\"> <a class=\"nav-link";
+                  ausgabe += "<li class=\"nav-item\">\n<a class=\"nav-link";
                   if (request.getAttribute("page").toString().equals(pages[i])) {
-                    ausgabe = ausgabe + " disabled";
+                    ausgabe += " disabled";
                   }
-                  ausgabe = ausgabe + "\" href=\"" + request.getAttribute("folder").toString() + pages[i] +
-                    ".jsp\"><i class=\"fa fa-" + icon[i] + "\"></i>" + bez[i] + "</a></li>";
+                  ausgabe += "\" href=\"" + request.getAttribute("folder").toString() + pages[i] +
+                    ".jsp\">\n<i class=\"fa fa-" + icon[i] + "\">\n</i>" + bez[i] + "</a>\n</li>";
                 }
                 //Einstellungen DropDown Menue und Logout Button
-                ausgabe = ausgabe
-                  + " <li class=\"nav-item\"> <a class=\"nav-link\" href=\"../settings.jsp\"><i class=\"fa fa-cogs\"> </i> Einstellungen</a> </li>"
-                  + " <li class=\"nav-item\"> <a class=\"nav-link\" href=\"../logout.jsp\"><i class=\"fa fa-sign-out-alt\"> </i><strong>  Logout - "
-                  + user.getLast_name() + " </strong></a> </li>";
+                ausgabe += " <li class=\"nav-item\">\n <a class=\"nav-link\" href=\"../settings.jsp\"><i class=\"fa fa-cogs\"> </i> Einstellungen</a>\n </li>\n"
+                  + " <li class=\"nav-item\">\n <a class=\"nav-link\" href=\"../logout.jsp\">\n<i class=\"fa fa-sign-out-alt\">\n</i>\n<strong>  Logout - "
+                  + user.getLast_name() + " </strong>\n</a>\n</li>\n";
                 request.setAttribute("anzeige", ausgabe);
               }
             }

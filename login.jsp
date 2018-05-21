@@ -12,9 +12,9 @@
   String message="";
   if (data != null) {
     if (data.equals("badData")) {//Bei schlechten Daten
-      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\"><strong>Username</strong> oder <strong>Passwort</strong> war falsch!"
-        + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>"
-        + "</button></div>";
+      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n<strong>Username</strong> oder <strong>Passwort</strong> war falsch!"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
     }
   }
   pageContext.setAttribute("message", message);

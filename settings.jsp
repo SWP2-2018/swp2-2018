@@ -10,7 +10,7 @@
   //Registerbutton nur beim Ausbilder erstellen
   pageContext.setAttribute("register", "");
   if (Integer.parseInt(session.getAttribute("instructor").toString()) == 1) {
-    pageContext.setAttribute("register", "<a href=\"register.jsp\" type=\"button\" class=\"btn btn-block btn-setting\" name=\"btn-register\">Registrierung</a>");
+    pageContext.setAttribute("register", "<a href=\"register.jsp\" type=\"button\" class=\"btn btn-block btn-setting\" name=\"btn-register\">\nRegistrierung\n</a>\n");
   }
 
   //Mitteilung ob eim aendern des Passwortes erfolgreich wer oder nicht.
@@ -18,15 +18,15 @@
   String message="";
   if (data != null) {
     if (data.equals("badData")) {//Bei schlechten Daten
-      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">Ein <strong>Passwort</strong> war falsch!"
-        + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>"
-        + "</button></div>";
+      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\nEin <strong>Passwort</strong> war falsch!"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
     }
     else if(data.equals("goodData"))//Bei guten Daten
     {
-      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">Passwort erfolgreich ge&aumldert"
-        + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>"
-        + "</button></div>";
+      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nPasswort erfolgreich ge&aumldert"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
     }
 
   }
