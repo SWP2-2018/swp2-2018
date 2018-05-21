@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name = "tablePojos.Report" table = "report">
+
+    <meta attribute = "class-description">
+      This class contains reports.
+    </meta>
+
+    <id name = "id" type = "int" column = "id">
+      <generator class="native"/>
+    </id>
+
+    <property name = "date" column = "date" type = "date"/>
+    <property name = "status" column = "status" type = "int"/>
+    <property name = "user_id" column = "user_id" type = "int"/>
+    <property name = "reportCount" column = "reportCount" type = "int"/>
+
+
+  </class>
+</hibernate-mapping>
