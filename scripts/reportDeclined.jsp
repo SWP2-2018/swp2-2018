@@ -21,12 +21,12 @@
 
     Report_Revision newReportRevision = new Report_Revision();
 
-    newReportRevision.setText1(oldReportRevision.getText1());
-    newReportRevision.setText2(oldReportRevision.getText2());
-    newReportRevision.setText3(oldReportRevision.getText3());
-    newReportRevision.setHours1(oldReportRevision.getHours1());
-    newReportRevision.setHours2(oldReportRevision.getHours2());
-    newReportRevision.setHours3(oldReportRevision.getHours3());
+    newReportRevision.setTextOperationalActivities(oldReportRevision.getTextOperationalActivities());
+    newReportRevision.setTextOperationalGuidance(oldReportRevision.getTextOperationalGuidance());
+    newReportRevision.setTextVocationalTeaching(oldReportRevision.getTextVocationalTeaching());
+    newReportRevision.setHoursOperationalActivities(oldReportRevision.getHoursOperationalActivities());
+    newReportRevision.setHoursOperationalGuidance(oldReportRevision.getHoursOperationalGuidance());
+    newReportRevision.setHoursVocationalTeaching(oldReportRevision.getHoursVocationalTeaching());
     newReportRevision.setComment("");
     newReportRevision.setNumber(oldReportRevision.getNumber());
     newReportRevision.setId(oldReportRevision.getId());

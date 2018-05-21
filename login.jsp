@@ -1,12 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-
+<%@page errorPage="error.jsp" %>
 
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page", "login");
-
 
   //Mitteilung falls Daten beim einloggen nicht gepasst haben.
   String data = (String) session.getAttribute("messageData");
@@ -19,8 +18,7 @@
     }
   }
   pageContext.setAttribute("message", message);
-  session.setAttribute("messageData", null);//Daten nach Prüfung auf leeren.
-
+  session.removeAttribute("messageData");//Daten nach Prüfung löschen.
 
 %>
 <t:stdTempl>
@@ -52,8 +50,8 @@
             <!------ Nutzername eingabe ---------->
 
             <div class="form-group">
-              <input type="text" name="user" id="user" class="form-control"
-                     placeholder="Nutzername" required>
+              <input type="text" name="email" id="user" class="form-control"
+                     placeholder="Email" required>
             </div>
 
             <!------ Passwort eingabe ---------->
@@ -80,6 +78,3 @@
   </jsp:body>
 </t:stdTempl>
 
-<%
-  session.removeAttribute("wrongData");
-%>

@@ -23,6 +23,9 @@
       <p class="h1 text-center">An Error has occured,Please try again later...</p>
 
     <%
+      session.removeAttribute("email");
+      session.removeAttribute("password");
+      session.invalidate();
       response.setHeader("Refresh", "2;url=/login.jsp");
     %>
 

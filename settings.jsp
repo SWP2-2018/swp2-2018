@@ -35,52 +35,6 @@
 
 %>
 
-<!--Modal Passwordaendern -->
-<div class="modal hide" id="password-modal">
-  <div class="container pwModal inForm">
-    <form action="scripts/passwordChangeCheck.jsp" method="post" autocomplete="off">
-      <div class=" justify-content-lg-center inForm">
-        <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
-        <div class="form-group">
-          <h2 class="">Password &auml;ndern</h2>
-        </div>
-        <div class="form-group">
-          <hr/>
-        </div>
-        <!------ Passwort eingabe ---------->
-        <div class="form-group">
-          <input type="password" name="oldpassword" class="form-control "
-                 placeholder="Altes Passwort" required>
-        </div>
-        <div class="form-group">
-          <input type="password" name="password" class="form-control "
-                 placeholder="Neues Passwort" required>
-        </div>
-        <div class="form-group">
-          <input type="password" name="confirmPassword" class="form-control "
-                 placeholder="Wiederhole Passwort" required>
-        </div>
-
-
-        <!------ Buttons am Ende ---------->
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group">
-              <button type="submit" class="btn btn-block btn-setting" name="pwSave" id="pwSave" value="Submit">Speichern
-              </button>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-6">
-            <button type="submit" class="btn btn-block btn-danger" data-dismiss="modal" name="close" id="close">
-              Schliessen
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
 
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Einstellungen</jsp:attribute>
@@ -97,6 +51,52 @@
         ${message}
 
 
+    </div>
+
+    <!--Modal Passwordaendern -->
+    <div class="modal hide" id="password-modal">
+      <div class="container pwModal inForm">
+        <form action="scripts/passwordChangeCheck.jsp" method="post" autocomplete="off">
+          <div class=" justify-content-lg-center inForm">
+            <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
+            <div class="form-group">
+              <h2 class="">Password &auml;ndern</h2>
+            </div>
+            <div class="form-group">
+              <hr/>
+            </div>
+            <!------ Passwort eingabe ---------->
+            <div class="form-group">
+              <input type="password" name="oldpassword" class="form-control "
+                     placeholder="Altes Passwort" required>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control "
+                     placeholder="Neues Passwort" required>
+            </div>
+            <div class="form-group">
+              <input type="password" name="confirmPassword" class="form-control "
+                     placeholder="Wiederhole Passwort" required>
+            </div>
+
+
+            <!------ Buttons am Ende ---------->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-block btn-setting" name="pwSave" id="pwSave" value="Submit">Speichern
+                  </button>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <button type="submit" class="btn btn-block btn-danger" data-dismiss="modal" name="close" id="close">
+                  Schliessen
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
 
   </jsp:body>

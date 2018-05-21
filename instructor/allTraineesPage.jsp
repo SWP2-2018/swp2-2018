@@ -13,7 +13,7 @@
 
   try(UserService us = new UserService()) {
 
-    User uInstructor = us.getByUserName(session.getAttribute("user").toString());
+    User uInstructor = us.getByEmail(session.getAttribute("email").toString());
 
     List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
 

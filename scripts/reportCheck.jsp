@@ -11,19 +11,19 @@
 
 <%
   try(UserService us = new UserService(); ReportRevisionService rs = new ReportRevisionService(); ReportService reportService = new ReportService();) {
-    User user = us.getByUserName(session.getAttribute("user").toString());
+    User user = us.getByEmail(session.getAttribute("email").toString());
 
     Report_Revision rv = rs.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
 
     Report report = reportService.getById(rv.getReport_id());
     report.setStatus(2);
 
-    rv.setText1(new String(request.getParameter("text1").getBytes("ISO-8859-1"), "UTF-8"));
-    rv.setText2(new String(request.getParameter("text2").getBytes("ISO-8859-1"), "UTF-8"));
-    rv.setText3(new String(request.getParameter("text3").getBytes("ISO-8859-1"), "UTF-8"));
-    rv.setHours1(Integer.parseInt(request.getParameter("hours1")));
-    rv.setHours2(Integer.parseInt(request.getParameter("hours2")));
-    rv.setHours3(Integer.parseInt(request.getParameter("hours3")));
+    rv.setTextOperationalActivities(new String(request.getParameter("textOperationalActivities").getBytes("ISO-8859-1"), "UTF-8"));
+    rv.setTextOperationalGuidance(new String(request.getParameter("textOperationalGuidance").getBytes("ISO-8859-1"), "UTF-8"));
+    rv.setTextVocationalTeaching(new String(request.getParameter("textVocationalTeaching").getBytes("ISO-8859-1"), "UTF-8"));
+    rv.setHoursOperationalActivities(Integer.parseInt(request.getParameter("hoursOperationalActivities")));
+    rv.setHoursOperationalGuidance(Integer.parseInt(request.getParameter("hoursOperationalGuidance")));
+    rv.setHoursVocationalTeaching(Integer.parseInt(request.getParameter("hoursVocationalTeaching")));
 
     reportService.update(report, report.getId());
     rs.update(rv, rv.getId());

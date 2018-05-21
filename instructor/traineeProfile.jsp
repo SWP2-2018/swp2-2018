@@ -17,7 +17,7 @@
   try(ReportService rs = new ReportService()) {
     List<Report> lrs = rs.getAllByStatusAndUserID(2, Integer.parseInt(request.getParameter("traineeID")));
 
-    List<List<Report>> allListReports = new ArrayList<>();
+    List<List<Report>> allListReports = new ArrayList();
     allListReports.add(lrs);
 
     request.setAttribute("listReports", allListReports);
