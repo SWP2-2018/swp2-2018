@@ -28,7 +28,7 @@
                 if (lrs.get(j).getStatus() != 0) {
 
                   if (session.getAttribute("instructor").toString().equals("1")) {
-                    reportData = "\n" + us.getById(lrs.get(j).getUser_id()).getEmail();
+                    reportData = "\n" + us.getById(lrs.get(j).getUser_id()).getLast_name() + ", " + us.getById(lrs.get(j).getUser_id()).getFirst_name();
                   }
 
                   //Form für die Postmethode erstellen um Daten weiter an die editReport.jsp zu senden
@@ -41,7 +41,7 @@
                   ausgabe += "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />\n";
 
                   //Listenelement als Submitbutton ausweißen
-                  ausgabe += "<input type =\"Submit\" name=\"SubmitReport\" id=\"reportText\" value=\"Bericht vom "
+                  ausgabe += "<input type =\"Submit\" name=\"SubmitReport\" id=\"reportText\" value=\"Bericht: "
                     + lrs.get(j).getDate() + reportData + " \"class=\"list-group-item list-group-item-action";
 
                   //Listenelement je nach Status und User färben
