@@ -4,9 +4,6 @@
 <!-----Nav Bar----->
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
-
-
-
     <a class="navbar-brand" href="">
       ${navText}
     </a>
@@ -46,7 +43,11 @@
 
               request.setAttribute("folder", "");
 
-              if (request.getAttribute("page").toString().equals("editReport")||request.getAttribute("page").toString().equals("register")) {
+              if (request.getAttribute("page").toString().equals("editReport")
+                ||request.getAttribute("page").toString().equals("register")
+                ||request.getAttribute("page").toString().equals("settings"))
+              {
+
                 if (Integer.parseInt(session.getAttribute("instructor").toString()) == 0) {
                   request.setAttribute("folder", "trainee/");
                 } else {
