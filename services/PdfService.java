@@ -110,7 +110,7 @@ public class PdfService {
 
         // Tabelle mit Bericht Stunden fuellen
         tableAddCell("Betriebliche Tätigkeiten",textFliedMiddleHigh,null,bgColorGray);
-        tableAddCell("Stunden",textFliedMiddleHigh,null,bgColorGray);
+        tableAddCell("Stunden",textFliedMiddleHigh,null,null);
         tableAddCell(reportRevision.getTextOperationalActivities() + "",textFliedHigh,null,null);
         tableAddCell(reportRevision.getHoursOperationalActivities() + "",null,null,null);
         tableAddCell("Unterweisungen, betrieblicher Unterricht, sonstige Schulungen",textFliedMiddleHigh,null,bgColorGray);
