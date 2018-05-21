@@ -21,10 +21,10 @@
 
     for (int i = 0; i < lTraineeUsers.size(); i++) {
       if (lTraineeUsers.get(i).getInstructor() != new Byte("1")) {
-        ausgabe = ausgabe + "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">";
-        ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
-        ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
-          "\"class=\"list-group-item list-group-item-action text-center\"></form>";
+        ausgabe += "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">\n";
+        ausgabe += "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />\n";
+        ausgabe += "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
+          "\"class=\"list-group-item list-group-item-action text-center\">\n</form>\n";
       }
     }
 
