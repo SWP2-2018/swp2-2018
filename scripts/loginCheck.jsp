@@ -8,7 +8,7 @@
 <%
   try(UserService us = new UserService()) {
 
-    User user = us.getByEmail(request.getParameter("email"));
+    User user = us.getByEmail(new String(request.getParameter("email").getBytes("ISO-8859-1"), "UTF-8"));
 
     if (user != null && PasswordEncode.match(request.getParameter("password"), user.getPassword())) {
 

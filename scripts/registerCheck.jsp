@@ -16,9 +16,9 @@
     user.setEmail(request.getParameter("user"));
     user.setPassword(PasswordEncode.encode(request.getParameter("password")));
     user.setInstructor(new Byte(request.getParameter("options").toString().equals("trainee") ? "0" : "1"));
-    user.setLast_name(request.getParameter("last_name"));
-    user.setFirst_name(request.getParameter("first_name"));
-    user.setJob(request.getParameter("job"));
+    user.setLast_name(new String(request.getParameter("last_name").getBytes("ISO-8859-1"), "UTF-8"));
+    user.setFirst_name(new String(request.getParameter("first_name").getBytes("ISO-8859-1"), "UTF-8"));
+    user.setJob(new String(request.getParameter("job").getBytes("ISO-8859-1"), "UTF-8"));
     user.setEducational_year(Integer.parseInt(request.getParameter("educational_year")));
     user.setInstructor_id(Integer.parseInt(request.getParameter("instructor_id")));
 
