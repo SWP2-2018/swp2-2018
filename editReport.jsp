@@ -126,10 +126,10 @@
 
 
 <t:stdTempl>
-  <jsp:attribute name="titleText"> - Neuer Bericht</jsp:attribute>
+  <jsp:attribute name="titleText"> - Bericht bearbeiten</jsp:attribute>
   <jsp:body>
     <t:navbar>
-      <jsp:attribute name="navText">Neuer Bericht</jsp:attribute>
+      <jsp:attribute name="navText">Bericht bearbeiten</jsp:attribute>
     </t:navbar>
 
     ${ausgabe}

@@ -24,7 +24,7 @@
     }
     else if(data.equals("goodData"))//Bei guten Daten
     {
-      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nPasswort erfolgreich ge&aumldert"
+      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nPasswort erfolgreich ge&aumlndert"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
     }
