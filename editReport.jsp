@@ -13,18 +13,17 @@
 <%
   //Setze Attribut page für die navbar
   request.setAttribute("page", "editReport");
+  int reportID = Integer.parseInt(request.getParameter("reportID"));
 
 
   UserService us = new UserService();
   User user = us.getByUserName(session.getAttribute("user").toString());
 
-
   //Lädt alle Reports_Revisions aus der Datenbank aus die zu der übertragenen ReportID gehören
   ReportRevisionService rs = new ReportRevisionService();
-  List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
+  List<Report_Revision> rv_List = rs.getAllByReportId(reportID);
   ReportService reportService = new ReportService();
-  Report report = reportService.getById(Integer.parseInt(request.getParameter("reportID")));
-
+  Report report = reportService.getById(reportID);
 
   request.setAttribute("commentPlaceholder","Kommentar");
  // request.setAttribute("comment", "");
@@ -36,27 +35,26 @@
     request.setAttribute("comment", rv_List.get(1).getComment());
   }
 
-
   Report_Revision rv = rv_List.get(0);
   request.setAttribute("reportRevID", rv.getId());
 
   //Felder readonly machen in den passenden Berichten
-  if (Integer.parseInt(request.getParameter("reportStatus")) == 4
-    || Integer.parseInt(request.getParameter("reportStatus")) == 2) {
+  if (report.getStatus() == 4 || report.getStatus() == 2) {
     request.setAttribute("lockFields", "readonly");
     request.setAttribute("roComment", "");
-
   } else {
     request.setAttribute("lockFields", "");
     request.setAttribute("roComment", "readonly");
   }
+
   //Komentarfeld readonly machen für Azubis
-  if (user.getInstructor() == 1 || Integer.parseInt(request.getParameter("reportStatus")) == 3) {
+  if (user.getInstructor() == 1 || report.getStatus() == 3) {
     request.setAttribute("lockComment", "");
 
   } else {
     request.setAttribute("lockComment", "invisible");
   }
+
 
   String buttons = "";
   if ((byte) session.getAttribute("instructor") == 1) {
@@ -75,7 +73,7 @@
       ;
     }
   } else {
-    if(Integer.parseInt(request.getParameter("reportStatus")) != 2 && Integer.parseInt(request.getParameter("reportStatus")) != 4) {
+    if(report.getStatus() != 2 && report.getStatus() != 4) {
       buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\"" +
         " value=\"Submit\">Abgeben\n</button>\n";
     }

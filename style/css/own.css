@@ -1,8 +1,6 @@
 
 body {
   background-color: #dee2e6;
-  padding: 10px;
-
 }
 
 .navbar-dark {
@@ -14,21 +12,28 @@ body {
   max-width: 500px;
   padding: 10px;
 }
+
 .userPageList {
-  margin: 0 auto;
+  margin: 50px auto;
   max-width: 800px;
   padding: 10px;
 }
 
-.card-header{
-  background-color: #acacac;
+.card-header {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
 
+.card-header .right {
+  float: right;
+}
+
+.card-header:hover {
+  background-color: #c4c4c4;
 }
 
 .pwModal{
   padding: 30px;
   max-height: 350px;
   background-color: #dee2e6;
-
-
 }

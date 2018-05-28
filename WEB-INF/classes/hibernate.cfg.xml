@@ -7,7 +7,7 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://172.18.0.2:3306/swp</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">G8jAwwzzGV3kH1vQGYpUiWpt3DNeGFMe</property>
+    <property name="hibernate.connection.password">i8IPLq9Zo6RKsGu9O6dAtNl5xLFL89OM</property>
     <property name="hibernate.connection.pool_size">1</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>

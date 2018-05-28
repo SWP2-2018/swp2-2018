@@ -91,7 +91,7 @@ public class User {
         return educational_year;
     }
 
-    public void setEducational_year(Integer educational_year) {
+    public void setEducational_year(int educational_year) {
         this.educational_year = educational_year;
     }
 

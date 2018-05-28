@@ -6,17 +6,17 @@
 <%
   request.setAttribute("page", "login");
 %>
+
+
+
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Login</jsp:attribute>
   <jsp:body>
 
-
     <div class="container inForm">
-
       <div id="login-form">
-
         <form action="scripts/loginCheck.jsp" method="post" autocomplete="off">
-          <div class=" justify-content-lg-center inForm" >
+          <div class=" justify-content-lg-center inForm">
             <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
             <div class="form-group">
               <h2 class="">Anmelden</h2>
@@ -25,7 +25,6 @@
             <div class="form-group">
               <hr/>
             </div>
-
             <!------ Nutzername eingabe ---------->
 
             <div class="form-group">
@@ -53,11 +52,9 @@
               <a href="register.jsp" type="button" class="btn btn-block btn-success" name="btn-login">Registrierung</a>
             </div>
           </div>
-
         </form>
       </div>
     </div>
-
 
 
   </jsp:body>
