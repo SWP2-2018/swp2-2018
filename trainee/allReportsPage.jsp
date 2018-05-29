@@ -48,7 +48,21 @@
 
 
       </ul>
+      <div>
+        <br><br><hr>
+      </div>
+      <div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <p class="list-group-item-primary">Offene Berichte</p>
+          <p class="list-group-item-danger">Abgelehnte Berichte</p>
+          <p class="list-group-item-warning">Abgegebene Berichte</p>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
     </div>
+
   </jsp:body>
 </t:stdTempl>
 
