@@ -1,5 +1,7 @@
 package tablePojos;
 
+import java.sql.Timestamp;
+
 public class Report_Revision {
 
     private int id;
@@ -12,6 +14,7 @@ public class Report_Revision {
     private int hoursOperationalGuidance;
     private int hoursVocationalTeaching;
     private String comment;
+    private Timestamp timeStamp;
 
     public Report_Revision() {
     }
@@ -137,5 +140,13 @@ public class Report_Revision {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Timestamp getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
     }
 }

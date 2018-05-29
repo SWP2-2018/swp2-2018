@@ -27,6 +27,9 @@
 
     <property name = "comment" column = "comment" type = "string"/>
 
+    <property name = "timeStamp" column = "timeStamp" type = "timestamp" insert="false" update="false"/>
+
+
 
   </class>
 </hibernate-mapping>
