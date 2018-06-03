@@ -79,7 +79,7 @@
         + "<textarea "+ lockFields + " name=\"" + idTextfields[i] + "\" id=\"textER\" class=\"form-control input\" rows=\"3\""
         + "placeholder=\"" + labels[i] + "\">\n"+ rv.getText(i) + "\n</textarea>\n</div>\n"
         + "<div class=\"form-group form-inline\">\n<label class=\"control-label col-4\">\nStunden\n</label>\n<input "
-        + lockFields + " class=\"form-control\" type=\"number\" min=\"0\" name=\"" + idHours[i] + "\" id=\""
+        + lockFields + " class=\"form-control\" type=\"number\" min=\"0\" max=\"100\" name=\"" + idHours[i] + "\" id=\""
         + idHours[i] + "\" value=\"" + rv.getHour(i) + "\">\n</div>\n<div class=\"form-group\">\n<hr/>\n</div>";
     }
     //Kommentarfeld erstellen
