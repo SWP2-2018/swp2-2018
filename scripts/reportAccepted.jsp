@@ -7,12 +7,12 @@
 <%@page import="tablePojos.Report_Revision" %>
 
 <%
-  try(ReportRevisionService reportRevisionService = new ReportRevisionService(); ReportService reportService = new ReportService()) {
-    Report_Revision reportRevision = reportRevisionService.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
+  try(ReportRevisionService rrs = new ReportRevisionService(); ReportService rs = new ReportService()) {
+    Report_Revision reportRevision = rrs.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
 
-    Report report = reportService.getById(reportRevision.getReport_id());
+    Report report = rs.getById(reportRevision.getReport_id());
     report.setStatus(4);
-    reportService.update(report, report.getId());
+    rs.update(report, report.getId());
 
     if ((byte) session.getAttribute("instructor") == 0) {
       response.sendRedirect("/../trainee/allReportsPage.jsp");

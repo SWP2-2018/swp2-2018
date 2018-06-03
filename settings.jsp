@@ -31,7 +31,7 @@
 
   }
   pageContext.setAttribute("message", message);
-  session.setAttribute("messageData", null);//Daten nach Prüfung auf leeren.
+  session.removeAttribute("messageData");//Daten nach Prüfung leeren.
 
 %>
 

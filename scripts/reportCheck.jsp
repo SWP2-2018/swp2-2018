@@ -10,7 +10,7 @@
 <%@page import="tablePojos.Report_Revision" %>
 
 <%
-  try(UserService us = new UserService(); ReportRevisionService rs = new ReportRevisionService(); ReportService reportService = new ReportService();) {
+  try(UserService us = new UserService(); ReportRevisionService rs = new ReportRevisionService(); ReportService reportService = new ReportService()) {
     User user = us.getByEmail(session.getAttribute("email").toString());
 
     Report_Revision rv = rs.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
