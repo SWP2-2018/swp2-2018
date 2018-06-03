@@ -58,7 +58,7 @@
     request.setAttribute("lockComment", "invisible");
   }
 
-  String buttons = null;
+  String buttons = "";
   if ((byte) session.getAttribute("instructor") == 1) {
     if (report.getStatus() != 4 && report.getStatus() != 3) {
       buttons =
@@ -75,8 +75,10 @@
       ;
     }
   } else {
-    buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\"" +
-      " value=\"Submit\">Abgeben\n</button>\n";
+    if(Integer.parseInt(request.getParameter("reportStatus")) != 2 && Integer.parseInt(request.getParameter("reportStatus")) != 4) {
+      buttons = "<button type=\"submit\" class=\"btn   btn-block btn-primary\" name=\"send\" id=\"send\"" +
+        " value=\"Submit\">Abgeben\n</button>\n";
+    }
   }
 
   request.setAttribute("headline", request.getParameter("SubmitReport"));
@@ -130,7 +132,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control" type="number" name="hours1" id="opHour" value="${hours1}">
+            <input ${lockFields} class="form-control" type="number" min="0" name="hours1" id="opHour" value="${hours1}">
           </div>
           <div class="form-group">
             <hr/>
@@ -145,7 +147,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control " type="number" name="hours2" id="otherHour" value="${hours2}">
+            <input ${lockFields} class="form-control " type="number" min="0" name="hours2" id="otherHour" value="${hours2}">
           </div>
 
           <div class="form-group">
@@ -162,7 +164,7 @@
 
           <div class="form-group form-inline">
             <label class="control-label col-4">Stunden</label>
-            <input ${lockFields} class="form-control " type="number" name="hours3" id="text" value="${hours3}">
+            <input ${lockFields} class="form-control " type="number"  min="0" name="hours3" id="text" value="${hours3}">
           </div>
 
           <div class="form-group">
