@@ -69,7 +69,7 @@
     String ausgabe = "<div aria-readonly=\"true\" class=\"container\">\n<form action=\"scripts/reportCheck.jsp\" method=\"post\" autocomplete=\"off\">\n"
       + "<input type=\"hidden\" name=\"reportRevisionID\" value=\"" + rv.getId() + "\"/>\n<div class=\" justify-content-lg-center inForm\">\n";
 
-    ausgabe += "<div class=\"form-group\"><hr/>\n</div>\n<div>\n<h4>" + request.getParameter("SubmitReport").toString()
+    ausgabe += "<div class=\"form-group\"><hr/>\n</div>\n<div>\n<h4>" + new String(request.getParameter("SubmitReport").getBytes("ISO-8859-1"), "UTF-8")
       + "</h4>\n</div>\n<div class=\"form-group\">\n<hr/>\n</div>\n";
 
     //Textfelder und Stundenfelder erstellen
