@@ -77,7 +77,7 @@
 
       ausgabe += "<div class=\"form-group\">\n<label for=\""+ idTextfields[i] + "\">" + labels[i] + "\n</label>\n"
         + "<textarea "+ lockFields + " name=\"" + idTextfields[i] + "\" id=\"textER\" class=\"form-control input\" rows=\"3\""
-        + "placeholder=\"" + labels[i] + "\">\n"+ rv.getText(i) + "\n</textarea>\n</div>\n"
+        + "placeholder=\"" + labels[i] + "\">" + rv.getText(i) + "</textarea>\n</div>\n"
         + "<div class=\"form-group form-inline\">\n<label class=\"control-label col-4\">\nStunden\n</label>\n<input "
         + lockFields + " class=\"form-control\" type=\"number\" min=\"0\" max=\"100\" name=\"" + idHours[i] + "\" id=\""
         + idHours[i] + "\" value=\"" + rv.getHour(i) + "\">\n</div>\n<div class=\"form-group\">\n<hr/>\n</div>";
@@ -96,11 +96,11 @@
           "<div class=\"row\">\n" +
             "<div class=\"col-md-6\">\n" +
             "<button formaction=\"scripts/reportAccepted.jsp\" type=\"submit\" class=\"btn btn-block btn-success\"" +
-            " name=\"send\" id=\"send\" value=\"Submit\">Akzeptieren\n</button>\n" +
+            " name=\"send\" id=\"send\" value=\"Submit\">Akzeptieren</button>\n" +
             "</div>\n" +
             "<div class=\"col-md-6\">\n" +
             "<button formaction=\"scripts/reportDeclined.jsp\" type=\"submit\" class=\"btn btn-block btn-danger\"" +
-            " name=\"send\" id=\"send\" value=\"Submit\">Ablehnen\n</button>\n" +
+            " name=\"send\" id=\"send\" value=\"Submit\">Ablehnen</button>\n" +
             "</div>\n" +
             "</div>\n"
         ;
@@ -110,13 +110,13 @@
       //Wenn Status 4 dann erstelle PDF, bei Status 1 und 3 erstelle Button Abgeben
       if (report.getStatus() == 4){
         ausgabe += "<button formaction=\"scripts/createPDF.jsp\" type=\"submit\" class=\"btn btn-block btn-primary\" name=\"send\" id=\"send\"" +
-          " value=\"Submit\">PDF erstellen\n</button>\n";
+          " value=\"Submit\">PDF erstellen</button>\n";
 
       } else if (report.getStatus() != 2){
         ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-success\" name=\"submitInfo\" id=\"send\"" +
-          " value=\"save\">Speichern\n</button>\n";
+          " value=\"save\">Speichern</button>\n";
         ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-primary\" name=\"submitInfo\" id=\"send\"" +
-          " value=\"submit\">Abgeben\n</button>\n";
+          " value=\"submit\">Abgeben</button>\n";
       }
     }
 
