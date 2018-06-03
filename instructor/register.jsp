@@ -87,7 +87,7 @@
             </div>
             <div class="form-group">
               <input type="text" name="user" id="user" class="form-control input"
-                     placeholder="Nutzername" required>
+                     placeholder="e-Mail" required>
             </div>
 
             <!------ Startdatum eingabe und Ausbildungs Jahr ---------->

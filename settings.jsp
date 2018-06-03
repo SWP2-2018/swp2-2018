@@ -35,7 +35,7 @@
     }
   }
   pageContext.setAttribute("message", message);
-  session.removeAttribute("messageData");//Daten nach Prüfung leeren.
+  session.removeAttribute("settingsData");//Daten nach Prüfung leeren.
 %>
 
 
