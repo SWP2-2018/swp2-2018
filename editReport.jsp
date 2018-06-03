@@ -84,8 +84,8 @@
     }
     //Kommentarfeld erstellen
     ausgabe += "<div class=\"form-group " + hideComment + "\">\n<label for=\"comment\">\nKommentar\n</label>\n"
-      + "<textarea " + lockComment + " name=\"comment\" id=\"comment\" class=\"form-control input\" placeholder=\""
-      + commentPlaceholder + "\">\n" + comment + "\n</textarea>\n</div>\n";
+      + "<textarea " + lockComment + " name=\"comment\" id=\"textER\" class=\"form-control input\" placeholder=\""
+      + commentPlaceholder + "\">" + comment + "</textarea>\n</div>\n";
 
     ausgabe += "<div class=\"form-group\">";
 
