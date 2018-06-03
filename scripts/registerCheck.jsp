@@ -32,15 +32,16 @@
       //Falls beim erstellen des Nutzers ein Problem auftritt bekommen wir ein null zurueck und leiten
       //Nutzer auf die error Seite um.
       if (us.create(user) != null) {
+        session.setAttribute("settingsData", "goodREGData");
         response.sendRedirect("../settings.jsp");
       } else {
         session.setAttribute("error", "userERROR");
-        response.sendRedirect("../error.jsp");
+        response.sendRedirect("../instructor/register.jsp");
       }
     }
   } else{
     session.setAttribute("error", "pwERROR");
-    response.sendRedirect("../register.jsp");
+    response.sendRedirect("../instructor/register.jsp");
   }
 %>
 

@@ -10,29 +10,32 @@
   //Registerbutton nur beim Ausbilder erstellen
   pageContext.setAttribute("register", "");
   if (Integer.parseInt(session.getAttribute("instructor").toString()) == 1) {
-    pageContext.setAttribute("register", "<a href=\"register.jsp\" type=\"button\" class=\"btn btn-block btn-setting\" name=\"btn-register\">\nRegistrierung\n</a>\n");
+    pageContext.setAttribute("register", "<a href=\"instructor/register.jsp\" type=\"button\" "
+      + "class=\"btn btn-block btn-setting\" name=\"btn-register\">\nRegistrierung\n</a>\n");
   }
 
   //Mitteilung ob eim aendern des Passwortes erfolgreich wer oder nicht.
-  String data = (String) session.getAttribute("messageData");
-  String message="";
+  String data = (String) session.getAttribute("settingsData");
+  String message = "";
   if (data != null) {
-    if (data.equals("badData")) {//Bei schlechten Daten
+    if (data.equals("badPWData")) {//Bei schlechten Daten beim PW Change
       message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\nEin <strong>Passwort</strong> war falsch!"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
-    }
-    else if(data.equals("goodData"))//Bei guten Daten
+    } else if (data.equals("goodPWData"))//Bei guten Daten beim PW Change
     {
       message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nPasswort erfolgreich ge&aumlndert"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
+    } else if (data.equals("goodREGData"))//Bei erfolgreichen Regestrieren
+    {
+      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nUser erfolgreich Regestriert"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
     }
-
   }
   pageContext.setAttribute("message", message);
   session.removeAttribute("messageData");//Daten nach Prüfung leeren.
-
 %>
 
 
@@ -44,13 +47,10 @@
     </t:navbar>
 
     <div class="container inForm">
-        ${register}
-
-      <a href="register.jsp" type="button" class="btn btn-block  btn-setting" data-toggle="modal"
-         data-target="#password-modal" name="btn-changePw">Passwort &aumlndern</a>
         ${message}
-
-
+        ${register}
+          <a href="instructor/register.jsp" type="button" class="btn btn-block btn-setting" data-toggle="modal"
+             data-target="#password-modal" name="btn-changePw">Passwort &aumlndern</a>
     </div>
 
     <!--Modal Passwordaendern -->
@@ -84,7 +84,8 @@
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group">
-                  <button type="submit" class="btn btn-block btn-setting" name="pwSave" id="pwSave" value="Submit">Speichern
+                  <button type="submit" class="btn btn-block btn-setting" name="pwSave" id="pwSave" value="Submit">
+                    Speichern
                   </button>
                 </div>
               </div>

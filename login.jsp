@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@page errorPage="error.jsp" %>
+
 
 
 <!-- Setzte Attribute Page für die navbar -->
@@ -10,16 +10,20 @@
   //Mitteilung falls Daten beim einloggen nicht gepasst haben.
   String data = (String) session.getAttribute("messageData");
   String message="";
-  if (data != null) {
+  if(session.isNew()){
+    message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nSie wurden erfolgreich Ausgeloggt!"
+      + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+      + "</button>\n</div>\n";
+  }
+  else if (data != null || session.isNew()) {
     if (data.equals("badData")) {//Bei schlechten Daten
       message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n<strong>Username</strong> oder <strong>Passwort</strong> war falsch!"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
     }
   }
-  pageContext.setAttribute("message", message);
   session.removeAttribute("messageData");//Daten nach Prüfung löschen.
-
+  pageContext.setAttribute("message", message);
 %>
 <t:stdTempl>
   <jsp:attribute name="titleText"> - Login</jsp:attribute>

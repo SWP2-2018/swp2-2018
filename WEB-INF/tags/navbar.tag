@@ -75,7 +75,7 @@
                 }
                 //Einstellungen DropDown Menue und Logout Button
                 ausgabe += " <li class=\"nav-item\">\n <a class=\"nav-link\" href=\"../settings.jsp\"><i class=\"fa fa-cogs\"> </i> Einstellungen</a>\n </li>\n"
-                  + " <li class=\"nav-item\">\n <a class=\"nav-link\" href=\"../logout.jsp\">\n<i class=\"fa fa-sign-out-alt\">\n</i>\n<strong>  Logout - "
+                  + " <li class=\"nav-item\">\n <a class=\"nav-link\" href=\"../scripts/logout.jsp\">\n<i class=\"fa fa-sign-out-alt\">\n</i>\n<strong>  Logout - "
                   + user.getLast_name() + " </strong>\n</a>\n</li>\n";
                 request.setAttribute("anzeige", ausgabe);
               }

@@ -18,7 +18,7 @@
   //Setze Attribut page für die navbar
   request.setAttribute("page", "editReport");
 
-  try(UserService us = new UserService(); ReportRevisionService rrs = new ReportRevisionService();   ReportService rs = new ReportService()) {
+  try(UserService us = new UserService(); ReportRevisionService rrs = new ReportRevisionService(); ReportService rs = new ReportService()) {
 
     User user = us.getByEmail(session.getAttribute("email").toString());
 
@@ -113,8 +113,10 @@
           " value=\"Submit\">PDF erstellen\n</button>\n";
 
       } else if (report.getStatus() != 2){
-        ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-primary\" name=\"send\" id=\"send\"" +
-          " value=\"Submit\">Abgeben\n</button>\n";
+        ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-success\" name=\"submitInfo\" id=\"send\"" +
+          " value=\"save\">Speichern\n</button>\n";
+        ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-primary\" name=\"submitInfo\" id=\"send\"" +
+          " value=\"submit\">Abgeben\n</button>\n";
       }
     }
 
