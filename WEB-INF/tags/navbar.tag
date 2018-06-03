@@ -82,7 +82,6 @@
           }else {
             response.sendRedirect("error.jsp");
           }
-
         %>
 
         ${anzeige}

@@ -17,6 +17,7 @@
   //Mitteilung ob eim aendern des Passwortes erfolgreich wer oder nicht.
   String data = (String) session.getAttribute("settingsData");
   String message = "";
+  out.println(data);
   if (data != null) {
     if (data.equals("badPWData")) {//Bei schlechten Daten beim PW Change
       message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\nEin <strong>Passwort</strong> war falsch!"
@@ -35,7 +36,7 @@
     }
   }
   pageContext.setAttribute("message", message);
-  session.removeAttribute("messageData");//Daten nach Prüfung leeren.
+  session.removeAttribute("settingsData");//Daten nach Prüfung leeren.
 %>
 
 
