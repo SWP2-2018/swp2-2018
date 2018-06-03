@@ -37,6 +37,7 @@ public class ReportRevisionService implements AutoCloseable {
                 String query = "FROM Report_Revision where report_id= :report_id order by number desc";
                 List<Report_Revision> rrL = userSession.createQuery(query).setParameter("report_id", reportId).list();
 
+
                 if (rrL.size() > 0) { // Pruefe ob min. 1 Revision vorhanden ist
                     reportRevision.setNumber(rrL.get(0).getNumber() + 1);
                 }
