@@ -7,17 +7,17 @@
 <%@page import="tablePojos.Report_Revision" %>
 
 <%
-  try(ReportRevisionService reportRevisionService = new ReportRevisionService(); ReportService reportService = new ReportService();) {
-    Report_Revision oldReportRevision = reportRevisionService.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
+  try(ReportRevisionService rrs = new ReportRevisionService(); ReportService rs = new ReportService()) {
+    Report_Revision oldReportRevision = rrs.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
 
 
-    Report report = reportService.getById(oldReportRevision.getReport_id());
+    Report report = rs.getById(oldReportRevision.getReport_id());
     report.setStatus(3);
-    reportService.update(report, report.getId());
+    rs.update(report, report.getId());
 
     oldReportRevision.setComment(new String(request.getParameter("comment").getBytes("ISO-8859-1"), "UTF-8"));
 
-    reportRevisionService.update(oldReportRevision, oldReportRevision.getId());
+    rrs.update(oldReportRevision, oldReportRevision.getId());
 
     Report_Revision newReportRevision = new Report_Revision();
 
@@ -32,7 +32,7 @@
     newReportRevision.setId(oldReportRevision.getId());
     newReportRevision.setReport_id(oldReportRevision.getReport_id());
 
-    reportRevisionService.create(newReportRevision, oldReportRevision.getReport_id());
+    rrs.create(newReportRevision, oldReportRevision.getReport_id());
 
 
     if ((byte) session.getAttribute("instructor") == 0) {

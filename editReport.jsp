@@ -18,15 +18,15 @@
   //Setze Attribut page für die navbar
   request.setAttribute("page", "editReport");
 
-  try(UserService us = new UserService(); ReportRevisionService rs = new ReportRevisionService();   ReportService reportService = new ReportService()) {
+  try(UserService us = new UserService(); ReportRevisionService rrs = new ReportRevisionService(); ReportService rs = new ReportService()) {
 
     User user = us.getByEmail(session.getAttribute("email").toString());
 
     //Lädt alle Reports_Revisions aus der Datenbank aus die zu der übertragenen ReportID gehören
 
-    List<Report_Revision> rv_List = rs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
+    List<Report_Revision> rv_List = rrs.getAllByReportId(Integer.parseInt(request.getParameter("reportID")));
 
-    Report report = reportService.getById(Integer.parseInt(request.getParameter("reportID")));
+    Report report = rs.getById(Integer.parseInt(request.getParameter("reportID")));
 
     String commentPlaceholder = "Kommentar";
     String comment = "";
@@ -113,8 +113,10 @@
           " value=\"Submit\">PDF erstellen\n</button>\n";
 
       } else if (report.getStatus() != 2){
-        ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-primary\" name=\"send\" id=\"send\"" +
-          " value=\"Submit\">Abgeben\n</button>\n";
+        ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-success\" name=\"submitInfo\" id=\"send\"" +
+          " value=\"save\">Speichern\n</button>\n";
+        ausgabe += "<button type=\"submit\" class=\"btn btn-block btn-primary\" name=\"submitInfo\" id=\"send\"" +
+          " value=\"submit\">Abgeben\n</button>\n";
       }
     }
 

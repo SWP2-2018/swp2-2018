@@ -15,10 +15,10 @@
         user.setPassword(PasswordEncode.encode(request.getParameter("password")));
         us.update(user, user.getId());
         response.sendRedirect("../settings.jsp");
-        session.setAttribute("messageData", "goodData");
+        session.setAttribute("settingsData", "goodPWData");
     } else { //Falls das alte Passwort nicht mit dem Nutzerpassword uebereinsimmt wird das wrongData gesetzt.
       us.close();
-      session.setAttribute("messageData", "badData");
+      session.setAttribute("settingsData", "badPWData");
       response.sendRedirect("../settings.jsp");
     }
   }
