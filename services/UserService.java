@@ -29,7 +29,7 @@ public class UserService implements AutoCloseable{
         Transaction tx = null;
         try {
             tx = userSession.beginTransaction();
-            if (getByUserName(user.getUser())!=null)
+            if (getByEmail(user.getEmail())!=null)
             {
                 user = null;
             }
@@ -67,15 +67,15 @@ public class UserService implements AutoCloseable{
     /**
      * Method provides a User object based on the provided user(name).
      *
-     * @param String userName
+     * @param String email
      * @throws Exception
      * @return User
      */
-    public User getByUserName(String userName){
+    public User getByEmail(String email){
         User user = null;
         try {
-            String query = "FROM User where user= :userName";
-            user = (User)userSession.createQuery(query).setParameter("userName",userName).list().get(0);
+            String query = "FROM User where email= :email";
+            user = (User)userSession.createQuery(query).setParameter("email",email).list().get(0);
         } catch (Exception e){
             user = null;
             e.printStackTrace();
@@ -117,6 +117,7 @@ public class UserService implements AutoCloseable{
             tx = userSession.beginTransaction();
             oldUser = userSession.get(User.class, userId);
             if (oldUser!=null) {
+                oldUser.setEmail(user.getEmail());
                 oldUser.setPassword(user.getPassword());
                 oldUser.setInstructor(user.getInstructor());
                 oldUser.setLast_name(user.getLast_name());

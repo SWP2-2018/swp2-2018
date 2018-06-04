@@ -1,61 +1,29 @@
-<%@ page import="services.ReportService" %>
-<%@ page import="tablePojos.Report" %>
-<%@ page import="java.util.List" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@page errorPage="../error.jsp"%>
+
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
+
+<%@page import="services.ReportService" %>
+<%@page import="tablePojos.Report" %>
+
 
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page", "traineeProfile");
 
-  ReportService rs = new ReportService();
-  List<Report> lrs = rs.getAllByStatusAndUserID(2, Integer.parseInt(request.getParameter("traineeID")));
+  try(ReportService rs = new ReportService()) {
+    List<Report> lrs = rs.getAllByStatusAndUserID(2, Integer.parseInt(request.getParameter("traineeID")));
 
+    List<List<Report>> allListReports = new ArrayList();
+    allListReports.add(lrs);
 
-//Erstellt Elemente für die noch offenen Berichte
-  String openReportsList = "";
-  for (int i = 0; i < lrs.size(); i++) {
-    openReportsList = openReportsList
-      + "<form id=\"reports\" action=\"../editReport.jsp\" method=\"post\">"
-      + "<input type=\"hidden\" name=\"reportID\" value=\"" + lrs.get(i).getId() + "\" />"
-      + "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(i).getStatus() + "\" />"
-      + "<input type =\"Submit\" name=\"Date\" value=\"Wochenbericht vom " + lrs.get(i).getDate() + "\"class=\"list-group-item list-group-item-action"
-      + " text-center\"></form>";
+    request.setAttribute("listReports", allListReports);
+
+    pageContext.setAttribute("opReCount", lrs.size());
   }
-
-
-  String[] cards = new String[]{"openReports"};
-  String[] headline = new String[]{"Berichte zur Abnahme: " + lrs.size()};
-  String[] lists = new String[]{openReportsList};
-
-  String output = "";
-
-
-  //Accordeon Abschnitt zusammen setzen
-  for (int i = 0; i <= cards.length - 1; i++) {
-    output = output
-      + "<div class=\"card\">"
-      + "<div class=\"card-header btn-secondary btn\" id=\""
-      + cards[i]
-      + "\" data-toggle=\"collapse\" data-target=\"#collapse"
-      + cards[i]
-      + "\" aria-expanded=\"false\" aria-controls=\"collapseOpenReports\">"
-      + "<a class=\"btn \">"
-      + headline[i]
-      + "</a></div>"
-      + "<div id=\"collapse"
-      + cards[i]
-      + "\" class=\"collapse\" aria-labelledby=\""
-      + cards[i]
-      + "\" data-parent=\"#accordion\">"
-      + "<div class=\"card-body\">"
-      + lists[i]
-      + "</div></div></div>"
-    ;
-  }
-  request.setAttribute("cards", output);
 %>
 
 
@@ -71,7 +39,16 @@
 
     <div id="accordion">
       <div class="userPageList">
-          ${cards}
+        <t:accordeonList>
+          <jsp:attribute name="title">openReports</jsp:attribute>
+          <jsp:attribute name="text">Berichte zur Abnahme</jsp:attribute>
+          <jsp:attribute name="anzahl">${opReCount}</jsp:attribute>
+          <jsp:body>
+            <t:formList>
+              <jsp:attribute name="formList">0</jsp:attribute>
+            </t:formList>
+          </jsp:body>
+        </t:accordeonList>
       </div>
     </div>
 

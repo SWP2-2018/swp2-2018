@@ -1,31 +1,29 @@
-<%@ page import="services.UserService" %>
-<%@ page import="tablePojos.User" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
+
+<%@page import="services.PasswordEncode" %>
+<%@page import="services.UserService" %>
+<%@page import="tablePojos.User" %>
+
 <%
-  UserService us = new UserService();
-  try {
+  try(UserService us = new UserService()) {
 
-    User user = us.getByUserName(request.getParameter("user"));
-    if(user != null){
+    User user = us.getByEmail(new String(request.getParameter("email").getBytes("ISO-8859-1"), "UTF-8"));
 
-    session.setAttribute("user", user.getUser());
-    session.setAttribute("instructor", user.getInstructor());
-    if (user.getPassword().equals(request.getParameter("password"))) {
+    if (user != null && PasswordEncode.match(request.getParameter("password"), user.getPassword())) {
+
+      session.setAttribute("email", user.getEmail());
+      session.setAttribute("instructor", user.getInstructor());
+
       if (user.getInstructor() == 1) {
         response.sendRedirect("../instructor/userPageInstructor.jsp");
       } else {
         response.sendRedirect("../trainee/userPageTrainee.jsp");
       }
+
     } else {
-      response.sendRedirect("../error.jsp");
+      session.setAttribute("messageData", "badData");
+      response.sendRedirect("../login.jsp");
     }
-    }
-    else {
-      response.sendRedirect("../error.jsp");
-    }
-  } catch (Exception e){
-    response.sendRedirect("../error.jsp");
   }
-  us.close();
 %>

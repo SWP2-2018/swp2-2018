@@ -37,6 +37,7 @@ public class ReportRevisionService implements AutoCloseable {
                 String query = "FROM Report_Revision where report_id= :report_id order by number desc";
                 List<Report_Revision> rrL = userSession.createQuery(query).setParameter("report_id", reportId).list();
 
+
                 if (rrL.size() > 0) { // Pruefe ob min. 1 Revision vorhanden ist
                     reportRevision.setNumber(rrL.get(0).getNumber() + 1);
                 }
@@ -92,8 +93,9 @@ public class ReportRevisionService implements AutoCloseable {
         try {
             String query = "FROM Report_Revision where report_id= :reportRevisionReportId order by number desc";
             reportListe = userSession.createQuery(query).setParameter("reportRevisionReportId", reportRevisionReportId).list();
+            //if (reportListe )
         } catch (Exception e) {
-            reportListe = null;
+            //reportListe = null;
             e.printStackTrace();
         }
         return reportListe;
@@ -118,12 +120,12 @@ public class ReportRevisionService implements AutoCloseable {
 
             if (oldReportRevision!=null)
             {
-                oldReportRevision.setText1(reportRevision.getText1());
-                oldReportRevision.setText2(reportRevision.getText2());
-                oldReportRevision.setText3(reportRevision.getText3());
-                oldReportRevision.setHours1(reportRevision.getHours1());
-                oldReportRevision.setHours2(reportRevision.getHours2());
-                oldReportRevision.setHours3(reportRevision.getHours3());
+                oldReportRevision.setTextOperationalActivities(reportRevision.getTextOperationalActivities());
+                oldReportRevision.setTextOperationalGuidance(reportRevision.getTextOperationalGuidance());
+                oldReportRevision.setTextVocationalTeaching(reportRevision.getTextVocationalTeaching());
+                oldReportRevision.setHoursOperationalActivities(reportRevision.getHoursOperationalActivities());
+                oldReportRevision.setHoursOperationalGuidance(reportRevision.getHoursOperationalGuidance());
+                oldReportRevision.setHoursVocationalTeaching(reportRevision.getHoursVocationalTeaching());
                 oldReportRevision.setComment(reportRevision.getComment());
                 userSession.update(oldReportRevision);
                 tx.commit();

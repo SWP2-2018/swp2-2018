@@ -1,43 +1,35 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@page errorPage="../error.jsp"%>
 
-<%@ page import ="java.util.List"%>
+<%@page import ="java.util.List"%>
 
-<%@ page import="services.UserService" %>
-<%@ page import="tablePojos.User" %>
+<%@page import="services.UserService" %>
+<%@page import="tablePojos.User" %>
 
 <!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page","allTraineesPage");
 
-try(UserService us = new UserService()) {
+  try(UserService us = new UserService()) {
 
-  if (session.getAttribute("user") != null) {
+    User uInstructor = us.getByEmail(session.getAttribute("email").toString());
 
-    User uInstructor = us.getByUserName(session.getAttribute("user").toString());
-
-    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getId());
+    List<User> lTraineeUsers = us.getAllByInstructorId(uInstructor.getInstructor_id());
 
     String ausgabe = "";
 
-    for(int i = 0; i < lTraineeUsers.size(); i++) {
-      if(lTraineeUsers.get(i).getId() != uInstructor.getId()) {
-        ausgabe = ausgabe + "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">";
-        ausgabe = ausgabe + "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />";
-        ausgabe = ausgabe + "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
-          "\"class=\"list-group-item list-group-item-action text-center\"></form>";
+    for (int i = 0; i < lTraineeUsers.size(); i++) {
+      if (lTraineeUsers.get(i).getInstructor() != new Byte("1")) {
+        ausgabe += "<form id=\"users\" action=\"traineeProfile.jsp\" method=\"post\">\n";
+        ausgabe += "<input type=\"hidden\" name=\"traineeID\" value=\"" + lTraineeUsers.get(i).getId() + "\" />\n";
+        ausgabe += "<input type =\"Submit\" name=\"SubmitTrainee\" value=\"Azubi: " + lTraineeUsers.get(i).getLast_name() +
+          "\"class=\"list-group-item list-group-item-action text-center\">\n</form>\n";
       }
     }
 
     request.setAttribute("trainees", ausgabe);
   }
-  else
-  {
-    response.sendRedirect("error.jsp");
-  }
-
-  }
-
 %>
 
 
