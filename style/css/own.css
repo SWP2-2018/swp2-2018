@@ -22,13 +22,29 @@ body {
 }
 .IndexPanel{
   background-color: #0080A0;
-  width:350px;
+  max-width: 400px;
   margin: 0 auto;
   border-radius: 10px;
   border: 5px solid #bfdfe7;
   box-shadow: inset 0 1px 1px;
   padding:  10px 10px;
 }
+@media screen and (max-width: 600px) {
+  .IndexPanel {
+    width:200px;
+  }
+}
+.title{
+  font-size: 5.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 50px;
+  }
+}
+
 .inForm {
   margin: 0 auto;
   max-width: 500px;
