@@ -1,27 +1,25 @@
-
+/*Hintergrundfarbe der Seite*/
 body {
-  background-color: #dee2e6; /*Hintergrundfarbe der Seite*/
+  background-color: #dee2e6;
   padding: 10px;
 }
-/*Hintergrundfarbe der Navigations Leiste*/
-.navbar-dark {
-   background-color: #0080A0;
- }
-/*Hintergrundfarbe der Aufzaehlungen*/
-.badge {
+/*Hintergrundfarbe der Elemente*/
+.navbar-dark, .badge, .btn-setting, .btn-setting:hover, .IndexPanel{
   background-color: #0080A0;
 }
-/*Button unter einstellungen.*/
-.btn-setting {
-  background-color: #0080A0;
+
+/*Button der Einstellungen.*/
+.btn-setting{
   color: white;
 }
+
+/*Button der Einstellungen hover.*/
 .btn-setting:hover {
   color: #acacac;
-  background-color: #0080A0;
 }
+
+/*Logo Hintergrund Index Seite*/
 .IndexPanel{
-  background-color: #0080A0;
   max-width: 400px;
   margin: 0 auto;
   border-radius: 10px;
@@ -34,6 +32,7 @@ body {
     width:200px;
   }
 }
+/*Titel Text Index Seite*/
 .title{
   font-size: 5.5rem;
   font-weight: 300;
@@ -45,31 +44,34 @@ body {
   }
 }
 
+/*Formen*/
 .inForm {
   margin: 0 auto;
   max-width: 500px;
   padding: 10px;
 }
+/*Listen*/
 .userPageList {
   margin: 0 auto;
   max-width: 800px;
   padding: 10px;
 }
+
 /*Hintergrundfarbe der Accordeon*/
 .card-header{
   background-color: #acacac;
 }
 
+/*PasswortModal*/
 .pwModal{
   padding: 30px;
   max-height: 350px;
   background-color: #dee2e6;
 }
-
+/*PasswortModal*/
 #reportText{
   font-size: small;
 }
-
 #textER:focus{
   height:207px;
 }
