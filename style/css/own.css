@@ -52,7 +52,10 @@ body {
   }
 }
 
-
+/*Navbar*/
+.navbar-title{
+  color: #FFFFFF;
+}
 
 /*Formen*/
 .inForm {
