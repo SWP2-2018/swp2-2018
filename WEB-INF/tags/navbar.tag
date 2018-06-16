@@ -8,9 +8,11 @@
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="">
-      <img src="../style/icons/icon.svg"   width="60">
-      ${navText}
+    <a class="navbar-brand" >
+      <div class="navbar-title">
+        <img src="../style/icons/icon.svg"   width="60">
+        ${navText}
+      </div>
     </a>
 
 
