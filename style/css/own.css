@@ -27,22 +27,32 @@ body {
   box-shadow: inset 0 1px 1px;
   padding:  10px 10px;
 }
-@media screen and (max-width: 600px) {
-  .IndexPanel {
-    width:200px;
-  }
-}
+
 /*Titel Text Index Seite*/
 .title{
   font-size: 5.5rem;
   font-weight: 300;
   line-height: 1.2;
 }
+.legalTitle{
+  font-size: 50px;
+  text-align: center;
+}
+
+
 @media screen and (max-width: 600px) {
   .title {
     font-size: 50px;
   }
+  .legalTitle {
+    font-size: 30px;
+  }
+  .IndexPanel {
+    width:200px;
+  }
 }
+
+
 
 /*Formen*/
 .inForm {
@@ -75,3 +85,21 @@ body {
 #textER:focus{
   height:207px;
 }
+
+footer {
+  color: #acacac;
+  background-color: #dee2e6;
+  height:20px;
+  font-size:15px;
+  position: fixed;
+  width: 100%;
+  left: 5px;
+  bottom: 5px;
+  overflow: hidden;
+
+}
+
+a{
+  color: #0080A0;
+}
+/*-------------------------*/

@@ -50,7 +50,8 @@
                 request.setAttribute("folder", "");
 
                 if (request.getAttribute("page").toString().equals("editReport")
-                  || request.getAttribute("page").toString().equals("settings")) {
+                  || request.getAttribute("page").toString().equals("settings")
+                  || request.getAttribute("page").toString().equals("legalNotice")){
 
                   if (Integer.parseInt(session.getAttribute("instructor").toString()) == 0) {
                     request.setAttribute("folder", "trainee/");

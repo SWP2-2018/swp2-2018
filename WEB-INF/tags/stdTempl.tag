@@ -19,7 +19,7 @@
     <title>Berichtsheft Digital ${titleText}</title>
 
     <%
-        if (!(session.getAttribute("email") != null) && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")) {
+        if (!(session.getAttribute("email") != null) && !request.getAttribute("page").toString().equals("login") && !request.getAttribute("page").toString().equals("register")&& !request.getAttribute("page").toString().equals("legalNotice")) {
           response.sendRedirect("../login.jsp");
         }
     %>
@@ -28,4 +28,8 @@
 
     <jsp:doBody/>
   </body>
+  <footer>
+    <p>Build 1.0 | <a href="/legalNotice.jsp">Impressum</a> </p>
+  </footer>
+
 </html>
