@@ -29,7 +29,7 @@
     <jsp:doBody/>
   </body>
   <footer>
-    <p>Build 1.0 | <a href="/legalNotice.jsp">Impressum</a> </p>
+    <p><a href="/legalNotice.jsp">Impressum</a> </p>
   </footer>
 
 </html>
