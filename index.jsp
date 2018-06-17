@@ -33,8 +33,9 @@
     </div>
     </div>
   </body>
+
 <footer>
-  <p><a href="/legalNotice.jsp">Impressum</a> </p>
+  <p><a href="/legalNotice.jsp">Impressum</a> Master - v1.0 - 2018-05-14T15:45:00</p>
 </footer>
 
 </html>

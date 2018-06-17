@@ -30,7 +30,7 @@
           response.setHeader("Refresh", "2;url=/trainee/userPageInstructor.jsp");
         }
       }
-      response.setHeader("Refresh", "2;url=scripts/login.jsp");
+      response.setHeader("Refresh", "2;url=/login.jsp");
     %>
   </body>
 </html>
