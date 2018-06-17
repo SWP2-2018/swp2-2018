@@ -56,7 +56,7 @@ public class PdfService {
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String startDateStr = dateFormat.format(report.getDate());
         // Name der PDF erstellen und speicherort /code angeben
-        String fileName = "/code/Berichtsheft-" + user.getEmail() + "-" + startDateStr  +".pdf";
+        String fileName = "/code/PDF/Berichtsheft-" + user.getEmail() + "-" + startDateStr  +".pdf";
 
         // Neue Instanz eines PdfWriters welcher das Document und speichertOrt bzw FileOutStream bekommt
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -72,7 +72,7 @@ public class PdfService {
         table.setWidthPercentage(85);
         //Image img = Image.getInstance("/code/logo_tn.jpg");
         //img.scaleAbsolute(100,200);
-        table.addCell(Image.getInstance("/code/logo_tn.jpg"));
+        table.addCell(Image.getInstance("/code/PDF/logo/logo.jpg"));
         PdfPCell cell = new PdfPCell(Phrase.getInstance("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage"));
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cell.setBorder(0);
