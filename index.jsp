@@ -33,5 +33,9 @@
     </div>
     </div>
   </body>
+<footer>
+  <p><a href="/legalNotice.jsp">Impressum</a> </p>
+</footer>
+
 </html>
 
