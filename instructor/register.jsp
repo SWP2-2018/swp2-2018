@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@page errorPage="../error.jsp"%>
+<%//@page errorPage="../error.jsp"%>
 
 
 <!-- Setzte Attribute Page für die navbar -->
@@ -35,29 +35,12 @@
       "<input type=\"hidden\" name=\"educational_year\" id=\"educational_year\" value=\"0\">");
   }
 
-  String data = (String) session.getAttribute("error");
-  String message="";
-  if (data != null) {
-    if (data.equals("pwERROR")) {//Passwort stimmt nicht mit Passwortwiederholen überein
-      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n<strong>Passwort</strong> wurde falsch wiederholt!"
-        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
-        + "</button>\n</div>\n";
-    } else if(data.equals("userERROR")){//User könnte nicht Erstellt werden
-      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n"
-        + "<strong>Regestrierung</strong> des Users fehlgeschlagen!\nBitte wiederholen!"
-        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
-        + "</button>\n</div>\n";
-    }
-  }
-  pageContext.setAttribute("message", message);
-  session.removeAttribute("error");
-
 %>
 <t:stdTempl>
   <jsp:attribute name="titleText"> - register</jsp:attribute>
   <jsp:body>
+    
     <t:navbar>
-
       <jsp:attribute name="navText">Einstellungen</jsp:attribute>
       <jsp:body>
       </jsp:body>
@@ -75,8 +58,6 @@
           </div>
           <!------ Auswahl Azubi/Ausbilder ---------->
           <input type="hidden" name="type" id="educational_year" value="${type}">
-            ${message}
-
             <!------ Vor-Nachname eingabe ---------->
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">

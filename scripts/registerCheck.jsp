@@ -36,12 +36,12 @@
         response.sendRedirect("../settings.jsp");
       } else {
         session.setAttribute("error", "userERROR");
-        response.sendRedirect("../instructor/register.jsp");
+        response.sendRedirect("../settings.jsp");
       }
     }
   } else{
     session.setAttribute("error", "pwERROR");
-    response.sendRedirect("../instructor/register.jsp");
+    response.sendRedirect("../settings.jsp");
   }
 %>
 

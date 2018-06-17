@@ -38,8 +38,24 @@
         + "</button>\n</div>\n";
     }
   }
+
+  String errdata = (String) session.getAttribute("error");
+  if (errdata != null) {
+    if (errdata.equals("pwERROR")) {//Passwort stimmt nicht mit Passwortwiederholen überein
+      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n<strong>Passwort</strong> wurde falsch wiederholt!"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
+    } else if(errdata.equals("userERROR")){//User könnte nicht Erstellt werden
+      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n"
+        + "<strong>Regestrierung</strong> des Users fehlgeschlagen!\nBitte wiederholen!"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
+    }
+  }
+
   pageContext.setAttribute("message", message);
   session.removeAttribute("settingsData");//Daten nach Prüfung leeren.
+  session.removeAttribute("error");
 %>
 
 
