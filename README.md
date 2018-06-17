@@ -8,7 +8,11 @@ Die passende IP könnt ihr ermitteln, indem ihr mit `docker ps` eure laufenden C
 und hier die Container ID von der "mariadb" kopiert und anschliesend mit `docker inspect [Container ID]` 
 im untern Teil eine Zeile findet in der die IP Adresse steht: ` "IPAddress": "172.18.0.3", `.
 
-## Informationen zum PDF Service noch in Arbeit
+## Informationen zum PDF Service 
+
+PDF Beispiel in der Datei testpdf.jsp
+JSP zeigt keine Infos an, PDF wird im code gespeichert.
+
 ## Beispiel JSPs noch nicht kompatibel mit den erneuerten Services
 
 Aktuell ist das Hibernate auf die drei POJOs 'User' 'Report' und 'Report_Revision' 
@@ -39,7 +43,6 @@ Um die Services zu nutzen müsst ihr in einer JSP Imports durchführen:
   
  Innerhalb des Java Codes einer JSP könnt dann einfach eine Instanz jenes benötigten Service erstellen und somit auf die Methonden zugreifen.
  
- Mit der `test.jsp ` könnt ihr ein paar einfache Beispiele testen. 
 
 
 
