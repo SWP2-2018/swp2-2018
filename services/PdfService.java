@@ -6,6 +6,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
@@ -13,13 +14,20 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import java.awt.Color;
+
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import com.sun.scenario.effect.ImageData;
+import tablePojos.Report;
+import tablePojos.Report_Revision;
+import tablePojos.User;
 
 
 public class PdfService {
@@ -38,7 +46,7 @@ public class PdfService {
     public PdfService() {
     }
 
-    public PdfService(User user,Report report,Report_Revision reportRevision) throws FileNotFoundException, DocumentException {
+    public PdfService(User user,Report report,Report_Revision reportRevision) throws IOException, DocumentException {
 
 
         //<editor-fold desc="Initiale Einstellungen">
@@ -57,12 +65,17 @@ public class PdfService {
         //</editor-fold>
 
         //<editor-fold desc="Ueberschrift der PDF erstellen">
+        Image img = Image.getInstance("/code/logo_tn.jpg");
+        document.add(img);
         Chunk chunk1 = new Chunk("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage");
         chunk1.setUnderline(1.0f, -1.4f);
         chunk1.setFont(FontFactory.getFont("Arial", 13, Font.BOLD));
         Paragraph p = new Paragraph(chunk1);
         p.setAlignment(Element.ALIGN_CENTER);
         document.add(p);
+
+
+
         //</editor-fold>
 
         document.add(new Paragraph(Chunk.NEWLINE));
@@ -82,7 +95,7 @@ public class PdfService {
 
         // Tablle der Azubi Daten befuellen
         tableAddCell("Name des/der Auszubildenden:", null,null, bgColorBrightGray);
-        tableAddCell(user.getFirst_name() + " " + user.getLast_name(), textFliedMiddleHigh, 2, bgColorBrightGray);
+        tableAddCell(user.getFirst_name() + " " + user.getLast_name(), textFliedMiddleHigh, 2, null);
         tableAddCell("Bericht Nr.:", null,null, bgColorBrightGray);
         tableAddCell(report.getReportCount() + "", null,null, null);
         tableAddCell("Ausbildungsjahr:", textFliedMiddleHigh, null, bgColorBrightGray);
@@ -106,7 +119,7 @@ public class PdfService {
 
         // Tabelle mit Bericht Stunden fuellen
         tableAddCell("Betriebliche Tätigkeiten",textFliedMiddleHigh,null,bgColorGray);
-        tableAddCell("Stunden",textFliedMiddleHigh,null,bgColorGray);
+        tableAddCell("Stunden",textFliedMiddleHigh,null,null);
         tableAddCell(reportRevision.getTextOperationalActivities() + "",textFliedHigh,null,null);
         tableAddCell(reportRevision.getHoursOperationalActivities() + "",null,null,null);
         tableAddCell("Unterweisungen, betrieblicher Unterricht, sonstige Schulungen",textFliedMiddleHigh,null,bgColorGray);
@@ -130,7 +143,7 @@ public class PdfService {
         table.setWidthPercentage(85);
 
         // Kommeantar einfuegen
-        tableAddCell("Kommentar des Ausbilders",textFliedMiddleHigh,null,bgColorGray);
+        tableAddCell("Kommentar des Ausbilders Zeitstempel:" + reportRevision.getTimeStamp(),textFliedMiddleHigh,null,bgColorGray);
         tableAddCell(reportRevision.getComment() + "",textFliedHigh,null,null);
         document.add(table);
         //</editor-fold>

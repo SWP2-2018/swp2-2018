@@ -39,7 +39,6 @@ body {
   text-align: center;
 }
 
-
 @media screen and (max-width: 600px) {
   .title {
     font-size: 50px;
@@ -97,9 +96,8 @@ footer {
   position: fixed;
   width: 100%;
   left: 5px;
-  bottom: 5px;
+  bottom: 0px;
   overflow: hidden;
-
 }
 
 a{
