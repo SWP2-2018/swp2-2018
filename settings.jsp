@@ -14,7 +14,7 @@
       + "class=\"btn btn-block btn-setting\" name=\"btn-register\">\nRegistrierung\n</a>\n");
   }
 
-  //Mitteilung ob eim aendern des Passwortes erfolgreich wer oder nicht.
+  //Mitteilung ob eine aendern des Passwortes erfolgreich wer oder nicht.
   String data = (String) session.getAttribute("settingsData");
   String message = "";
   if (data != null) {
@@ -49,8 +49,8 @@
     <div class="container inForm">
         ${message}
         ${register}
-          <a href="instructor/register.jsp" type="button" class="btn btn-block btn-setting" data-toggle="modal"
-             data-target="#password-modal" name="btn-changePw">Passwort &aumlndern</a>
+          <button type="button" class="btn btn-block btn-setting" data-toggle="modal"
+             data-target="#password-modal" name="btn-changePw">Passwort &aumlndern</button>
     </div>
 
     <!--Modal Passwordaendern -->
