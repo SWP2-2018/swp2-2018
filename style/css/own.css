@@ -46,6 +46,9 @@ body {
   .legalTitle {
     font-size: 30px;
   }
+  .modaltitle{
+    font-size: 20px;
+  }
   .IndexPanel {
     width:200px;
   }
@@ -83,7 +86,7 @@ body {
 /*PasswortModal*/
 .pwModal{
   padding: 30px;
-  max-height: 350px;
+  max-height: 370px;
   background-color: #dee2e6;
 }
 /*PasswortModal*/

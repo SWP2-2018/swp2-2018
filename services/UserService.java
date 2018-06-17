@@ -46,6 +46,25 @@ public class UserService implements AutoCloseable{
         return user;
     }
 
+
+    /**
+     * Method provides all User objects.
+     *
+     * @throws Exception
+     * @return List<User>
+     */
+    public List<User> getAll(){
+        List<User> userListe = null;
+        try {
+            String query = "FROM User";
+            userListe = userSession.createQuery(query).list();
+        } catch (Exception e){
+            userListe = null;
+            e.printStackTrace();
+        }
+        return userListe;
+    }
+
     /**
      * Method provides a User object based on the provided userId.
      *

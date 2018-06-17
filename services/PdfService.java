@@ -53,10 +53,10 @@ public class PdfService {
         // Neues Document erstellen mit Ausmasen einer DIN A4 Seite und Abstandsangaben fuer oben,unten,links,rechts
         Document document = new Document(PageSize.A4, 20f, 20f, 20f, 20f);
         // Format fuer die Datums festlegen
-        DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String startDateStr = dateFormat.format(report.getDate());
         // Name der PDF erstellen und speicherort /code angeben
-        String fileName = "/code/Berichtsheft-" + user.getEmail() + "-" + startDateStr  +".pdf";
+        String fileName = "/code/PDF/Berichtsheft-" + user.getEmail() + "-" + startDateStr  +".pdf";
 
         // Neue Instanz eines PdfWriters welcher das Document und speichertOrt bzw FileOutStream bekommt
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -65,14 +65,29 @@ public class PdfService {
         //</editor-fold>
 
         //<editor-fold desc="Ueberschrift der PDF erstellen">
-        Image img = Image.getInstance("/code/logo_tn.jpg");
-        document.add(img);
-        Chunk chunk1 = new Chunk("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage");
-        chunk1.setUnderline(1.0f, -1.4f);
-        chunk1.setFont(FontFactory.getFont("Arial", 13, Font.BOLD));
-        Paragraph p = new Paragraph(chunk1);
-        p.setAlignment(Element.ALIGN_CENTER);
-        document.add(p);
+
+
+        table = new PdfPTable(new float[]{20,80});
+        table.getDefaultCell().setBorder(0);
+        table.setWidthPercentage(85);
+        //Image img = Image.getInstance("/code/logo_tn.jpg");
+        //img.scaleAbsolute(100,200);
+        table.addCell(Image.getInstance("/code/PDF/logo/logo.jpg"));
+        PdfPCell cell = new PdfPCell(Phrase.getInstance("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage"));
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setBorder(0);
+        table.addCell(cell);
+        document.add(table);
+
+
+        //Image img = Image.getInstance("/code/logo_tn.jpg");
+        //document.add(img);
+        //Chunk chunk1 = new Chunk("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage");
+        //chunk1.setUnderline(1.0f, -1.4f);
+        //chunk1.setFont(FontFactory.getFont("Arial", 13, Font.BOLD));
+        //Paragraph p = new Paragraph(chunk1);
+        //p.setAlignment(Element.ALIGN_CENTER);
+        //document.add(p);
 
 
 
@@ -100,8 +115,8 @@ public class PdfService {
         tableAddCell(report.getReportCount() + "", null,null, null);
         tableAddCell("Ausbildungsjahr:", textFliedMiddleHigh, null, bgColorBrightGray);
         tableAddCell(user.getEducational_year() + "", textFliedMiddleHigh, null, null);
-        tableAddCell("Ausbildungs Abt.:", textFliedMiddleHigh, 2, bgColorBrightGray);
-        tableAddCell(user.getJob() + "", null, null, null);
+        tableAddCell("Beruf:", textFliedMiddleHigh, null, bgColorBrightGray);
+        tableAddCell(user.getJob() + "", null, 2, null);
         tableAddCell("Ausbildungswoche von:", textFliedMiddleHigh, null, bgColorBrightGray);
         tableAddCell(startDateStr + "", textFliedMiddleHigh, null, null);
         tableAddCell("bis:", textFliedMiddleHigh, null, bgColorBrightGray);
@@ -119,7 +134,7 @@ public class PdfService {
 
         // Tabelle mit Bericht Stunden fuellen
         tableAddCell("Betriebliche Tätigkeiten",textFliedMiddleHigh,null,bgColorGray);
-        tableAddCell("Stunden",textFliedMiddleHigh,null,null);
+        tableAddCell("Stunden",textFliedMiddleHigh,null,bgColorGray);
         tableAddCell(reportRevision.getTextOperationalActivities() + "",textFliedHigh,null,null);
         tableAddCell(reportRevision.getHoursOperationalActivities() + "",null,null,null);
         tableAddCell("Unterweisungen, betrieblicher Unterricht, sonstige Schulungen",textFliedMiddleHigh,null,bgColorGray);
@@ -143,7 +158,7 @@ public class PdfService {
         table.setWidthPercentage(85);
 
         // Kommeantar einfuegen
-        tableAddCell("Kommentar des Ausbilders Zeitstempel:" + reportRevision.getTimeStamp(),textFliedMiddleHigh,null,bgColorGray);
+        tableAddCell("Kommentar des Ausbilders Zeitstempel: " + reportRevision.getTimeStamp(),textFliedMiddleHigh,null,bgColorGray);
         tableAddCell(reportRevision.getComment() + "",textFliedHigh,null,null);
         document.add(table);
         //</editor-fold>

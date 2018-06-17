@@ -92,14 +92,14 @@
       </div>
 
 
-      <!--Modal Passwordaendern -->
+      <!--Modal Password neu Senden -->
       <div class="modal hide" id="password-modal">
         <div class="container pwModal inForm">
           <form action="scripts/resendPassword.jsp" method="post" autocomplete="off">
             <div class=" justify-content-lg-center inForm">
               <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
               <div class="form-group">
-                <h2 class="">Password neu Senden</h2>
+                <h2 class="modaltitle">Password neu Senden</h2>
               </div>
               <div class="form-group">
                 <hr/>
