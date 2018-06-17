@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%//@page errorPage="error.jsp" %>
+<%@page errorPage="error.jsp" %>
 
 
 <!-- Setzte Attribute Page für die navbar -->
