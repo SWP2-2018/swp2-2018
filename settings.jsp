@@ -64,7 +64,7 @@
           <div class=" justify-content-lg-center inForm">
             <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
             <div class="form-group">
-              <h2 class="">Password &auml;ndern</h2>
+              <h2 class="modaltitle">Password &auml;ndern</h2>
             </div>
             <div class="form-group">
               <hr/>
