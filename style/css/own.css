@@ -49,6 +49,12 @@ body {
   .IndexPanel {
     width:200px;
   }
+  .foot{
+    font-size: 13px;
+  }
+  #reportText{
+    font-size: 13px;
+  }
 }
 
 /*Navbar*/
@@ -81,9 +87,7 @@ body {
   background-color: #dee2e6;
 }
 /*PasswortModal*/
-#reportText{
-  font-size: small;
-}
+
 #textER:focus{
   height:207px;
 }

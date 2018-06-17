@@ -12,7 +12,7 @@
             //Erstellte Liste der aktiven Seite in lrs schreiben
             List<List<Report>> allReportLists = (List<List<Report>>) request.getAttribute("listReports");
             String ausgabe = "";
-            String reportData = "";
+            String reportUserData = "";
 
 
             //Es sollen nur die Elemente durchgegangen werden die Benötigt werden
@@ -28,7 +28,7 @@
                 if (lrs.get(j).getStatus() != 0) {
 
                   if (session.getAttribute("instructor").toString().equals("1")) {
-                    reportData = us.getById(lrs.get(j).getUser_id()).getLast_name() + ", " + us.getById(lrs.get(j).getUser_id()).getFirst_name();
+                    reportUserData = us.getById(lrs.get(j).getUser_id()).getLast_name() + ", " + us.getById(lrs.get(j).getUser_id()).getFirst_name();
                   }
 
                   //Form für die Postmethode erstellen um Daten weiter an die editReport.jsp zu senden
@@ -41,7 +41,7 @@
                   ausgabe += "<input type=\"hidden\" name=\"reportStatus\" value=\"" + lrs.get(j).getStatus() + "\" />\n";
 
                   //Listenelement als Submitbutton ausweißen
-                  ausgabe += "<input type =\"Submit\" name=\"SubmitReport\" id=\"reportText\" value=\""+ reportData + "\nBericht: "
+                  ausgabe += "<input type =\"Submit\" name=\"SubmitReport\" id=\"reportText\" value=\"" + reportUserData + "\nBericht: "
                     + lrs.get(j).getDate() + " \"class=\"list-group-item list-group-item-action";
 
                   //Listenelement je nach Status und User färben
