@@ -35,7 +35,7 @@
   </body>
 
 <footer class="foot">
-  <p><a href="/legalNotice.jsp">Impressum</a> Master - v1.0 - 2018-05-14T15:45:00</p>
+  <p><a href="/legalNotice.jsp">Impressum</a> Master - v2.0 - 2018-06-17T22:30:00</p>
 </footer>
 
 </html>
