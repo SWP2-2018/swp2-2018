@@ -39,7 +39,7 @@ public class PdfService {
     public static final Color bgColorBrightGray = new Color(240, 240, 240);
     // Hoehen von Zellen
     public static final Float textFliedMiddleHigh = 20f;
-    public static final Float textFliedHigh = 120f;
+    public static final Float textFliedHigh = 150f;
 
 
 
@@ -150,7 +150,7 @@ public class PdfService {
         document.add(table);
         //</editor-fold>
 
-        document.add(new Paragraph(Chunk.NEWLINE));
+        //document.add(new Paragraph(Chunk.NEWLINE));
 
         //<editor-fold desc="Ausbilder Kommentar">
         // Ausbilder Kommenatar Tabelle erstellen das Float Array beschreibt die Anzahl und Breite der Spalten
@@ -158,8 +158,8 @@ public class PdfService {
         table.setWidthPercentage(85);
 
         // Kommeantar einfuegen
-        tableAddCell("Kommentar des Ausbilders Zeitstempel: " + reportRevision.getTimeStamp(),textFliedMiddleHigh,null,bgColorGray);
-        tableAddCell(reportRevision.getComment() + "",textFliedHigh,null,null);
+        tableAddCell("Zeitstempel der Abnahme: " + reportRevision.getTimeStamp(),textFliedMiddleHigh,null,bgColorGray);
+        //tableAddCell(reportRevision.getComment() + "",textFliedHigh,null,null);
         document.add(table);
         //</editor-fold>
 
