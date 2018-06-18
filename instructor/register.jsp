@@ -11,8 +11,8 @@
     response.sendRedirect("error.jsp");
   }
 
-  if(request.getParameter("SubmitType").toString().equals("Azubi Regestrieren")){
-    pageContext.setAttribute("type", "Azubi");
+  if(request.getParameter("SubmitType").toString().equals("Azubi Registrieren")){
+    pageContext.setAttribute("type", "trainee");
     pageContext.setAttribute("eduYears", "<div class=\"row\">\n" +
       "              <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
       "                <div class=\"form-group form-inline\">\n" +
@@ -30,7 +30,7 @@
       "              </div>\n" +
       "            </div>");
   }else{
-    pageContext.setAttribute("type", "Ausbilder");
+    pageContext.setAttribute("type", "instructor");
     pageContext.setAttribute("eduYears", "<input type=\"hidden\" name=\"start_date\" id=\"start_date\" value=\"1900-01-01\" >\n" +
       "<input type=\"hidden\" name=\"educational_year\" id=\"educational_year\" value=\"0\">");
   }
@@ -39,7 +39,7 @@
 <t:stdTempl>
   <jsp:attribute name="titleText"> - register</jsp:attribute>
   <jsp:body>
-    
+
     <t:navbar>
       <jsp:attribute name="navText">Einstellungen</jsp:attribute>
       <jsp:body>
@@ -57,7 +57,7 @@
             <h2 class="">Neuen ${type} Anlegen</h2>
           </div>
           <!------ Auswahl Azubi/Ausbilder ---------->
-          <input type="hidden" name="type" id="educational_year" value="${type}">
+          <input type="hidden" name="type" id="type_User" value="${type}">
             <!------ Vor-Nachname eingabe ---------->
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">

@@ -13,8 +13,8 @@
   pageContext.setAttribute("register", "");
   if (Integer.parseInt(session.getAttribute("instructor").toString()) == 1) {
     pageContext.setAttribute("register", "<form id=\"register\" action=\"instructor/register.jsp\" method=\"post\">\n" +
-      "  <input type =\"Submit\" name=\"SubmitType\" id=\"trainee\" value=\"Azubi Regestrieren\" class=\"btn btn-block btn-setting\">\n" +
-      "  <input type =\"Submit\" name=\"SubmitType\" id=\"instructor\" value=\"Ausbilder Regestrieren\" class=\"btn btn-block btn-setting\">\n" +
+      "  <input type =\"Submit\" name=\"SubmitType\" id=\"trainee\" value=\"Azubi Registrieren\" class=\"btn btn-block btn-setting\">\n" +
+      "  <input type =\"Submit\" name=\"SubmitType\" id=\"instructor\" value=\"Ausbilder Registrieren\" class=\"btn btn-block btn-setting\">\n" +
       "</form></br>");
   }
 
@@ -31,9 +31,9 @@
       message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nPasswort erfolgreich ge&aumlndert"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
-    } else if (data.equals("goodREGData"))//Bei erfolgreichen Regestrieren
+    } else if (data.equals("goodREGData"))//Bei erfolgreichen Registrieren
     {
-      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n<strong>User</strong> erfolgreich Regestriert"
+      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n<strong>User</strong> erfolgreich Registriert"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
     }
