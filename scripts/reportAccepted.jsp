@@ -10,6 +10,11 @@
   try(ReportRevisionService rrs = new ReportRevisionService(); ReportService rs = new ReportService()) {
     Report_Revision reportRevision = rrs.getById(Integer.parseInt(request.getParameter("reportRevisionID")));
 
+
+    reportRevision.setComment(new String(request.getParameter("comment").getBytes("ISO-8859-1"), "UTF-8"));
+
+    rrs.update(reportRevision, reportRevision.getId());
+
     Report report = rs.getById(reportRevision.getReport_id());
     report.setStatus(4);
     rs.update(report, report.getId());
