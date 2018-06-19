@@ -47,7 +47,7 @@
         + "</button>\n</div>\n";
     } else if(errdata.equals("userERROR")){//User könnte nicht Erstellt werden
       message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n"
-        + "<strong>Regestrierung</strong> des Users fehlgeschlagen!\nBitte wiederholen!"
+        + "<strong>Registrierung</strong> des Users fehlgeschlagen!\nBitte wiederholen!"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
     }
