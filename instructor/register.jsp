@@ -12,7 +12,7 @@
   }
 
   if(request.getParameter("SubmitType").toString().equals("Azubi Registrieren")){
-    pageContext.setAttribute("type", "trainee");
+    pageContext.setAttribute("type", "Azubi");
     pageContext.setAttribute("eduYears", "<div class=\"row\">\n" +
       "              <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
       "                <div class=\"form-group form-inline\">\n" +
@@ -30,7 +30,7 @@
       "              </div>\n" +
       "            </div>");
   }else{
-    pageContext.setAttribute("type", "instructor");
+    pageContext.setAttribute("type", "Ausbilder");
     pageContext.setAttribute("eduYears", "<input type=\"hidden\" name=\"start_date\" id=\"start_date\" value=\"1900-01-01\" >\n" +
       "<input type=\"hidden\" name=\"educational_year\" id=\"educational_year\" value=\"0\">");
   }

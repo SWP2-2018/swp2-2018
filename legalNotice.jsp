@@ -41,10 +41,13 @@
                   <p>MIT (X11-Lizenz)</br>
                     BSD (modified)</br>
                     Apache 2.0</br>
+                    GPL 2.0</br>
+                    GPL 1.1</br>
                     LGPL</br>
+                    LGPL 2.1</br>
                     MPL 1.1</br>
                     SIL. OFL 1.1</br>
-                    GPL 2.0</br>
+
                     </br>
                     <b>Lizenzierung der Software unter GPLv3</b>
                   </p>
