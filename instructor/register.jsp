@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%//@page errorPage="../error.jsp"%>
+<%@page errorPage="../error.jsp"%>
 
 
 <!-- Setzte Attribute Page für die navbar -->
@@ -8,7 +8,7 @@
   request.setAttribute("page", "register");
 
   if(session.getAttribute("instructor").toString().equals("0")) {
-    response.sendRedirect("error.jsp");
+    response.sendRedirect("../error.jsp");
   }
 
   if(request.getParameter("SubmitType").toString().equals("Azubi Registrieren")){
