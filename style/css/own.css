@@ -1,59 +1,118 @@
 
+
+/*Hintergrundfarbe der Seite*/
 body {
-  background-color: #dee2e6; /*Hintergrundfarbe der Seite*/
+  background-color: #dee2e6;
   padding: 10px;
 }
-/*Hintergrundfarbe der Navigations Leiste*/
-.navbar-dark {
-   background-color: #0080A0;
- }
-/*Hintergrundfarbe der Aufzaehlungen*/
-.badge {
+/*Hintergrundfarbe der Elemente*/
+.navbar-dark, .badge, .btn-setting, .btn-setting:hover, .IndexPanel{
   background-color: #0080A0;
 }
-/*Button unter einstellungen.*/
-.btn-setting {
-  background-color: #0080A0;
+
+/*Button der Einstellungen.*/
+.btn-setting{
   color: white;
 }
+
+/*Button der Einstellungen hover.*/
 .btn-setting:hover {
   color: #acacac;
-  background-color: #0080A0;
 }
+
+/*Logo Hintergrund Index Seite*/
 .IndexPanel{
-  background-color: #0080A0;
-  width:350px;
+  max-width: 400px;
   margin: 0 auto;
   border-radius: 10px;
   border: 5px solid #bfdfe7;
   box-shadow: inset 0 1px 1px;
   padding:  10px 10px;
 }
+
+/*Titel Text Index Seite*/
+.title{
+  font-size: 5.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+.legalTitle{
+  font-size: 50px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 50px;
+  }
+  .legalTitle {
+    font-size: 30px;
+  }
+  .modaltitle{
+    font-size: 20px;
+  }
+  .IndexPanel {
+    width:200px;
+  }
+  .foot{
+    font-size: 13px;
+  }
+  #reportText{
+    font-size: 13px;
+  }
+}
+
+/*Navbar*/
+.navbar-title{
+  color: #FFFFFF;
+}
+
+/*Formen*/
 .inForm {
   margin: 0 auto;
   max-width: 500px;
   padding: 10px;
 }
+/*Listen*/
 .userPageList {
   margin: 0 auto;
   max-width: 800px;
   padding: 10px;
 }
+
 /*Hintergrundfarbe der Accordeon*/
 .card-header{
   background-color: #acacac;
 }
 
+/*PasswortModal*/
 .pwModal{
   padding: 30px;
-  max-height: 350px;
+  max-height: 370px;
   background-color: #dee2e6;
 }
-
-#reportText{
-  font-size: small;
-}
+/*PasswortModal*/
 
 #textER:focus{
   height:207px;
 }
+
+footer {
+  color: #acacac;
+  background-color: #dee2e6;
+  text-align: center;
+  height:20px;
+  font-size:15px;
+  position: fixed;
+  width: 100%;
+  left: 5px;
+  bottom: 0px;
+  overflow: hidden;
+}
+
+a{
+  color: #0080A0;
+}
+
+
+/*-------------------------*/

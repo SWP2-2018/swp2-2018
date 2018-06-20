@@ -6,6 +6,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
@@ -13,13 +14,20 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import java.awt.Color;
+
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import com.sun.scenario.effect.ImageData;
+import tablePojos.Report;
+import tablePojos.Report_Revision;
+import tablePojos.User;
 
 
 public class PdfService {
@@ -31,24 +39,24 @@ public class PdfService {
     public static final Color bgColorBrightGray = new Color(240, 240, 240);
     // Hoehen von Zellen
     public static final Float textFliedMiddleHigh = 20f;
-    public static final Float textFliedHigh = 120f;
+    public static final Float textFliedHigh = 150f;
 
 
 
     public PdfService() {
     }
 
-    public PdfService(User user,Report report,Report_Revision reportRevision) throws FileNotFoundException, DocumentException {
+    public PdfService(User user,Report report,Report_Revision reportRevision) throws IOException, DocumentException {
 
 
         //<editor-fold desc="Initiale Einstellungen">
         // Neues Document erstellen mit Ausmasen einer DIN A4 Seite und Abstandsangaben fuer oben,unten,links,rechts
         Document document = new Document(PageSize.A4, 20f, 20f, 20f, 20f);
         // Format fuer die Datums festlegen
-        DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String startDateStr = dateFormat.format(report.getDate());
         // Name der PDF erstellen und speicherort /code angeben
-        String fileName = "/code/Berichtsheft-" + user.getEmail() + "-" + startDateStr  +".pdf";
+        String fileName = "/code/PDF/Berichtsheft-" + user.getEmail() + "-" + startDateStr  +".pdf";
 
         // Neue Instanz eines PdfWriters welcher das Document und speichertOrt bzw FileOutStream bekommt
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -57,12 +65,32 @@ public class PdfService {
         //</editor-fold>
 
         //<editor-fold desc="Ueberschrift der PDF erstellen">
-        Chunk chunk1 = new Chunk("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage");
-        chunk1.setUnderline(1.0f, -1.4f);
-        chunk1.setFont(FontFactory.getFont("Arial", 13, Font.BOLD));
-        Paragraph p = new Paragraph(chunk1);
-        p.setAlignment(Element.ALIGN_CENTER);
-        document.add(p);
+
+
+        table = new PdfPTable(new float[]{20,80});
+        table.getDefaultCell().setBorder(0);
+        table.setWidthPercentage(85);
+        //Image img = Image.getInstance("/code/logo_tn.jpg");
+        //img.scaleAbsolute(100,200);
+        table.addCell(Image.getInstance("/code/PDF/logo/logo.jpg"));
+        PdfPCell cell = new PdfPCell(Phrase.getInstance("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage"));
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setBorder(0);
+        table.addCell(cell);
+        document.add(table);
+
+
+        //Image img = Image.getInstance("/code/logo_tn.jpg");
+        //document.add(img);
+        //Chunk chunk1 = new Chunk("Systemgenerierter Ausbildungsnachweis nach IHK Vorlage");
+        //chunk1.setUnderline(1.0f, -1.4f);
+        //chunk1.setFont(FontFactory.getFont("Arial", 13, Font.BOLD));
+        //Paragraph p = new Paragraph(chunk1);
+        //p.setAlignment(Element.ALIGN_CENTER);
+        //document.add(p);
+
+
+
         //</editor-fold>
 
         document.add(new Paragraph(Chunk.NEWLINE));
@@ -82,13 +110,13 @@ public class PdfService {
 
         // Tablle der Azubi Daten befuellen
         tableAddCell("Name des/der Auszubildenden:", null,null, bgColorBrightGray);
-        tableAddCell(user.getFirst_name() + " " + user.getLast_name(), textFliedMiddleHigh, 2, bgColorBrightGray);
+        tableAddCell(user.getFirst_name() + " " + user.getLast_name(), textFliedMiddleHigh, 2, null);
         tableAddCell("Bericht Nr.:", null,null, bgColorBrightGray);
         tableAddCell(report.getReportCount() + "", null,null, null);
         tableAddCell("Ausbildungsjahr:", textFliedMiddleHigh, null, bgColorBrightGray);
         tableAddCell(user.getEducational_year() + "", textFliedMiddleHigh, null, null);
-        tableAddCell("Ausbildungs Abt.:", textFliedMiddleHigh, 2, bgColorBrightGray);
-        tableAddCell(user.getJob() + "", null, null, null);
+        tableAddCell("Beruf:", textFliedMiddleHigh, null, bgColorBrightGray);
+        tableAddCell(user.getJob() + "", null, 2, null);
         tableAddCell("Ausbildungswoche von:", textFliedMiddleHigh, null, bgColorBrightGray);
         tableAddCell(startDateStr + "", textFliedMiddleHigh, null, null);
         tableAddCell("bis:", textFliedMiddleHigh, null, bgColorBrightGray);
@@ -122,7 +150,7 @@ public class PdfService {
         document.add(table);
         //</editor-fold>
 
-        document.add(new Paragraph(Chunk.NEWLINE));
+        //document.add(new Paragraph(Chunk.NEWLINE));
 
         //<editor-fold desc="Ausbilder Kommentar">
         // Ausbilder Kommenatar Tabelle erstellen das Float Array beschreibt die Anzahl und Breite der Spalten
@@ -130,8 +158,8 @@ public class PdfService {
         table.setWidthPercentage(85);
 
         // Kommeantar einfuegen
-        tableAddCell("Kommentar des Ausbilders",textFliedMiddleHigh,null,bgColorGray);
-        tableAddCell(reportRevision.getComment() + "",textFliedHigh,null,null);
+        tableAddCell("Zeitstempel der Abnahme: " + reportRevision.getTimeStamp(),textFliedMiddleHigh,null,bgColorGray);
+        //tableAddCell(reportRevision.getComment() + "",textFliedHigh,null,null);
         document.add(table);
         //</editor-fold>
 

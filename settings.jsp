@@ -3,6 +3,8 @@
 <%@page errorPage="error.jsp" %>
 
 
+
+
 <!-- Setzte Attribute Page für die navbar -->
 <%
   request.setAttribute("page", "settings");
@@ -10,11 +12,13 @@
   //Registerbutton nur beim Ausbilder erstellen
   pageContext.setAttribute("register", "");
   if (Integer.parseInt(session.getAttribute("instructor").toString()) == 1) {
-    pageContext.setAttribute("register", "<a href=\"instructor/register.jsp\" type=\"button\" "
-      + "class=\"btn btn-block btn-setting\" name=\"btn-register\">\nRegistrierung\n</a>\n");
+    pageContext.setAttribute("register", "<form id=\"register\" action=\"instructor/register.jsp\" method=\"post\">\n" +
+      "  <input type =\"Submit\" name=\"SubmitType\" id=\"trainee\" value=\"Azubi Registrieren\" class=\"btn btn-block btn-setting\">\n" +
+      "  <input type =\"Submit\" name=\"SubmitType\" id=\"instructor\" value=\"Ausbilder Registrieren\" class=\"btn btn-block btn-setting\">\n" +
+      "</form></br>");
   }
 
-  //Mitteilung ob eim aendern des Passwortes erfolgreich wer oder nicht.
+  //Mitteilung ob eine aendern des Passwortes erfolgreich wer oder nicht.
   String data = (String) session.getAttribute("settingsData");
   String message = "";
   if (data != null) {
@@ -27,15 +31,31 @@
       message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nPasswort erfolgreich ge&aumlndert"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
-    } else if (data.equals("goodREGData"))//Bei erfolgreichen Regestrieren
+    } else if (data.equals("goodREGData"))//Bei erfolgreichen Registrieren
     {
-      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\nUser erfolgreich Regestriert"
+      message += "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n<strong>User</strong> erfolgreich Registriert"
         + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
         + "</button>\n</div>\n";
     }
   }
+
+  String errdata = (String) session.getAttribute("error");
+  if (errdata != null) {
+    if (errdata.equals("pwERROR")) {//Passwort stimmt nicht mit Passwortwiederholen überein
+      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n<strong>Passwort</strong> wurde falsch wiederholt!"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
+    } else if(errdata.equals("userERROR")){//User könnte nicht Erstellt werden
+      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n"
+        + "<strong>Registrierung</strong> des Users fehlgeschlagen!\nBitte wiederholen!"
+        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
+        + "</button>\n</div>\n";
+    }
+  }
+
   pageContext.setAttribute("message", message);
   session.removeAttribute("settingsData");//Daten nach Prüfung leeren.
+  session.removeAttribute("error");
 %>
 
 
@@ -49,8 +69,8 @@
     <div class="container inForm">
         ${message}
         ${register}
-          <a href="instructor/register.jsp" type="button" class="btn btn-block btn-setting" data-toggle="modal"
-             data-target="#password-modal" name="btn-changePw">Passwort &aumlndern</a>
+          <button type="button" class="btn btn-block btn-setting" data-toggle="modal"
+             data-target="#password-modal" name="btn-changePw">Passwort &aumlndern</button>
     </div>
 
     <!--Modal Passwordaendern -->
@@ -60,7 +80,7 @@
           <div class=" justify-content-lg-center inForm">
             <!---  <div class="col-12 col-sm-10 col-md-8 ">--->
             <div class="form-group">
-              <h2 class="">Password &auml;ndern</h2>
+              <h2 class="modaltitle">Password &auml;ndern</h2>
             </div>
             <div class="form-group">
               <hr/>
