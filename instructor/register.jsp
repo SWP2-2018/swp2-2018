@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@page errorPage="../error.jsp"%>
+<%//@page errorPage="../error.jsp"%>
 
 
 <!-- Setzte Attribute Page für die navbar -->
@@ -11,29 +11,36 @@
     response.sendRedirect("error.jsp");
   }
 
-  String data = (String) session.getAttribute("error");
-  String message="";
-  if (data != null) {
-    if (data.equals("pwERROR")) {//Passwort stimmt nicht mit Passwortwiederholen überein
-      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n<strong>Passwort</strong> wurde falsch wiederholt!"
-        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
-        + "</button>\n</div>\n";
-    } else if(data.equals("userERROR")){//User könnte nicht Erstellt werden
-      message += "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n"
-        + "<strong>Regestrierung</strong> des Users fehlgeschlagen!\nBitte wiederholen!"
-        + "\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n<span aria-hidden=\"true\">\n&times;\n</span>\n"
-        + "</button>\n</div>\n";
-    }
+  if(request.getParameter("SubmitType").toString().equals("Azubi Registrieren")){
+    pageContext.setAttribute("type", "Azubi");
+    pageContext.setAttribute("eduYears", "<div class=\"row\">\n" +
+      "              <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
+      "                <div class=\"form-group form-inline\">\n" +
+      "                  <label class=\"control-label col-4\" id=\"educationYears\">Startdatum</label>\n" +
+      "                  <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
+      "                    <input type=\"date\" name=\"start_date\" id=\"start_date\" class=\"form-control input\" required>\n" +
+      "                  </div>\n" +
+      "                </div>\n" +
+      "              </div>\n" +
+      "              <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
+      "                <div class=\"form-group\">\n" +
+      "                  <input class=\"form-control input \" type=\"number\" min=\"0\" name=\"educational_year\" id=\"educational_year\"\n" +
+      "                         placeholder=\"Ausbildungs Jahr\">\n" +
+      "                </div>\n" +
+      "              </div>\n" +
+      "            </div>");
+  }else{
+    pageContext.setAttribute("type", "Ausbilder");
+    pageContext.setAttribute("eduYears", "<input type=\"hidden\" name=\"start_date\" id=\"start_date\" value=\"1900-01-01\" >\n" +
+      "<input type=\"hidden\" name=\"educational_year\" id=\"educational_year\" value=\"0\">");
   }
-  pageContext.setAttribute("message", message);
-  session.removeAttribute("error");
 
 %>
 <t:stdTempl>
   <jsp:attribute name="titleText"> - register</jsp:attribute>
   <jsp:body>
-    <t:navbar>
 
+    <t:navbar>
       <jsp:attribute name="navText">Einstellungen</jsp:attribute>
       <jsp:body>
       </jsp:body>
@@ -47,24 +54,10 @@
 
 
           <div class="form-group">
-            <h2 class="">Neuen Benutzer Anlegen</h2>
+            <h2 class="">Neuen ${type} Anlegen</h2>
           </div>
           <!------ Auswahl Azubi/Ausbilder ---------->
-          <div class="form-group ">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons" required>
-              <label class="btn btn-outline-secondary  active">
-                <input type="radio" name="options" value="trainee" checked> Azubi
-              </label>
-              <label class="btn btn-outline-secondary ">
-                <input type="radio" name="options" value="instructor"> Ausbilder
-              </label>
-            </div>
-            <div class="form-group">
-              <hr/>
-            </div>
-
-            ${message}
-
+          <input type="hidden" name="type" id="type_User" value="${type}">
             <!------ Vor-Nachname eingabe ---------->
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">
@@ -87,31 +80,16 @@
             </div>
             <div class="form-group">
               <input type="text" name="user" id="user" class="form-control input"
-                     placeholder="e-Mail" required>
+                     placeholder="Email" required>
             </div>
 
             <!------ Startdatum eingabe und Ausbildungs Jahr ---------->
-            <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group form-inline">
-                  <label class="control-label col-4">Startdatum</label>
-                  <div class="col-xs-12 col-sm-6 col-md-6">
-                    <input type="date" name="start_date" id="start_date" class="form-control input" required>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input class="form-control input " type="number" min="0" name="educational_year" id="educational_year"
-                         placeholder="Ausbildungs Jahr">
-                </div>
-              </div>
-            </div>
+            ${eduYears}
             <!------  eingabe ---------->
 
             <div class="form-group">
               <input class="form-control input " type="number" min="0" name="instructor_id" id="instructor_id"
-                     placeholder="Ausbilder ID">
+                     placeholder="ID des Ausbildungsbereichs">
             </div>
 
             <!------ Passwort eingabe ---------->
