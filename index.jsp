@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="/style/css/font-awesome.css" >
+
   <link rel="stylesheet" href="/style/css/bootstrap.min.css">
   <link rel="stylesheet" href="/style/css/own.css">
   <link rel="icon" type="image/svg+xml" href="style/icons/icon.svg">
-
+  <link rel="stylesheet" href="/style/css/font-awesome.css" >
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
 
